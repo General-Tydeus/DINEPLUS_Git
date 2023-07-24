@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:DINEPLUS.FldrMainMenu"
+                    xmlns:pages="clr-namespace:DINEPLUS.FldrMainMenu"
+                    x:Class="DINEPLUS.FldrMainMenu.PageMainMenu"
+                    NavigationPage.HasNavigationBar="False"
+                    BarBackgroundColor="LightSkyBlue"
+                    BarTextColor="White"
+                    >
+    <TabbedPage.Children>
+        <ContentPage Title="HOME">
+            <StackLayout>
+                <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </StackLayout>
+        </ContentPage>
+        <NavigationPage Title="PAYO">
+            <x:Arguments>
+                <pages:PagePAYO />
+            </x:Arguments>
+        </NavigationPage >
+        <NavigationPage  Title="SO">
+            <x:Arguments>
+                <pages:PageSO />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+
+    <!--<NavigationPage Title="PAYO">
+        <x:Arguments>
+            <pages:PagePAYO />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="SO">
+        <x:Arguments>
+            <pages:PageSO />
+        </x:Arguments>
+    </NavigationPage>
+
+    <TabbedPage.Children>
+        <ContentPage Title="HOME">
+            <StackLayout>
+                <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </StackLayout>
+        </ContentPage>
+    </TabbedPage.Children>-->
+
+</TabbedPage>

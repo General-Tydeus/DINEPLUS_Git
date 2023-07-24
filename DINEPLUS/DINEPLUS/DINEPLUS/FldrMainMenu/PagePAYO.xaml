@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Pay as you Order"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="DINEPLUS.FldrMainMenu.PagePAYO">
+    
+    <ContentPage.Content>
+        <StackLayout    
+            BackgroundColor="LightSkyBlue"
+            >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Grid.Column="0"
+                    Text="Menu"
+                    x:Name="focusme"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"/>
+
+                <ImageButton
+                        x:Name="btnCart"
+                        Source="cartwhite.png"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Aspect="AspectFit"
+                        BackgroundColor="LightSkyBlue"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        Clicked="btnCart_Clicked"
+                        VerticalOptions="Center" />
+                <Label
+                        x:Name="lblCartOrder"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Red"
+                        Text="0"                        
+                        VerticalOptions="Start" 
+                        HorizontalOptions="End"/>
+            </Grid>
+            <!--<StackLayout 
+            Orientation="Horizontal" 
+            Margin="0,10,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Start"
+                    Text="Menu"
+                    x:Name="focusme"
+                    TextColor="Black"
+                    VerticalOptions="Start"/>
+                <ImageButton x:Name="btnCart"
+                             Source="cartwhite.png"
+                             Aspect="Fill"
+                             HorizontalOptions="EndAndExpand"
+                             HeightRequest="50"
+                             WidthRequest="50"
+                             VerticalOptions="Center"
+                             BackgroundColor="LightSkyBlue"
+                             Clicked="btnCart_Clicked"
+                    />
+                <Label x:Name="lblCartOrder"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Red"
+                        Text="0"                        
+                        VerticalOptions="Center" 
+                        HorizontalOptions="EndAndExpand"
+                    />
+            </StackLayout>-->
+            <!--<Label
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="CenterAndExpand"
+                Text="Menu"
+                x:Name="focusme"
+                TextColor="Black"
+                VerticalOptions="Start"/>-->
+            <!--<BoxView Color="Black" HeightRequest="1"/>-->
+
+            <!--<Grid BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="20" Text="Product" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" FontSize="20" Text="UM" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" FontSize="20" Text="Price" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+               
+
+            </Grid>
+            <BoxView Color="Black" HeightRequest="1"/>-->
+
+            <CollectionView 
+                x:Name="ClMenu" 
+                x:FieldModifier="Public"
+                SelectionMode="Single"
+                ItemsLayout="VerticalList"
+                SelectionChanged ="ClMenu_SelectionChanged"
+                BackgroundColor="White"
+                >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" RowSpacing="10" ColumnSpacing="10" BackgroundColor="white">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <!--<RowDefinition Height="1*" />-->
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <!--<ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="3*" />-->
+                            </Grid.ColumnDefinitions>
+
+                            <!--<BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="4" />-->
+                            <Image
+                                HeightRequest="60"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Aspect="AspectFill"
+                                WidthRequest="66"
+                                Grid.RowSpan="2"
+                                Source="rice.jpg"
+                                />
+                            <Label
+                                Text="{Binding ProductDesc}"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                VerticalOptions="End"
+                                FontSize="20"
+                                Grid.Column="1"
+                                 />
+                            <Label
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                VerticalOptions="Start"
+                                Grid.Column="1"
+                                Grid.Row="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}" />
+                                        <Span Text=" per " />
+                                        <Span Text="{Binding UnitMeasure}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <!--<Label
+                                Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                VerticalOptions="Start"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                />
+                            <Label
+                                HorizontalTextAlignment="End"
+                                Text="{Binding UnitMeasure}"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                Grid.Column="3"
+                            />-->
+                        </Grid>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
