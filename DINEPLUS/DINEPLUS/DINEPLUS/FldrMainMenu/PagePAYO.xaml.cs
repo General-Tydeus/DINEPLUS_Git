@@ -1,4 +1,5 @@
 ﻿using DINEPLUS.FldrClass;
+using DINEPLUS.FldrModel;
 using DINEPLUS.FldrPopup;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -9,7 +10,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static DINEPLUS.FldrModel.ClsModelMain;
 
 namespace DINEPLUS.FldrMainMenu
 {

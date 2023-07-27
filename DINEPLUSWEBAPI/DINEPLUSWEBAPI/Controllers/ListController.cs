@@ -1,4 +1,5 @@
 ﻿using DINEPLUSWEBAPI.FldrClass;
+using DINEPLUSWEBAPI.FldrModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -74,6 +75,30 @@ namespace DINEPLUSWEBAPI.Controllers
                 myconnection.Close();
                 return ViewtblDetailsUser1;
             }
+        }
+
+        [HttpGet]
+        [Route("API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblList")]
+        public IEnumerable<MdlTables> GetTblList()
+        {
+
+            string sqlStatement = $"SELECT * FROM tblEntryTables";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                MdlTables MdlTables1 = new MdlTables
+                {
+                    TableCode = dr["TableCode"].ToString(),
+                    TableDesc = dr["TableDesc"].ToString(),
+                    Status = dr["Status"].ToString(),
+                    LongStatus = new ClsStringHelper().LongStats(dr["Status"].ToString())
+                };
+                yield return MdlTables1;
+            }
+            myconnection.Close();
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using DINEPLUS.FldrModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static DINEPLUS.FldrModel.ClsModelMain;
 
 namespace DINEPLUS.FldrClass
 {
@@ -15,6 +15,14 @@ namespace DINEPLUS.FldrClass
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetProductList");
             var data = JsonConvert.DeserializeObject<List<MdlProduct>>(response);
+            return data;
+        }
+
+        public async Task<List<MdlTables>> GetTblList()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblList");
+            var data = JsonConvert.DeserializeObject<List<MdlTables>>(response);
             return data;
         }
     }

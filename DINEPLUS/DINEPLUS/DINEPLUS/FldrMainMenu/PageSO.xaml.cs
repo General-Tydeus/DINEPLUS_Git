@@ -16,5 +16,10 @@ namespace DINEPLUS.FldrMainMenu
         {
             InitializeComponent();
         }
+
+        private void btnCart_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
