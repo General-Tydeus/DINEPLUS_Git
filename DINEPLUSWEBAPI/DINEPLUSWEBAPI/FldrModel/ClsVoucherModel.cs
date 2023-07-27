@@ -58,4 +58,17 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string VoucherNumber { get; set; }
         public bool TaxBase { get; set; }
     }
+
+
+
+
+
+
+    public class MdlTables
+    {
+        public string TableCode { get; set; }
+        public string TableDesc { get; set; }
+        public string Status { get; set; }
+        public string LongStatus { get; set; }
+    }
 }

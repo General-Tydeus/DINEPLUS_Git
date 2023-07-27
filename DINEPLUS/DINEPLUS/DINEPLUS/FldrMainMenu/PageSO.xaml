@@ -1,13 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Sales Order"
+             NavigationPage.HasNavigationBar="False"
              x:Class="DINEPLUS.FldrMainMenu.PageSO">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="Start" />
+        <StackLayout BackgroundColor="White">
+            <Grid BackgroundColor="Yellow">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Grid.Column="0"
+                    Text="SALE ORDER"
+                    x:Name="focusme"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="End"/>
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
