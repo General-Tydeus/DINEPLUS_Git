@@ -17,9 +17,17 @@ namespace DINEPLUS.FldrMainMenu
             InitializeComponent();
         }
 
-        private void btnCart_Clicked(object sender, EventArgs e)
+        protected async override void OnAppearing()
         {
-
+            await LoadSumary();
         }
+
+        public async Task LoadSumary()
+        {
+            Clview.ItemsSource = await App.ClsServeMain.ImportTableList();
+        }
+
+
+
     }
 }

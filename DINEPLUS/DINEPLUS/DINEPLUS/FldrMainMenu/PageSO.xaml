@@ -21,9 +21,64 @@
                     x:Name="focusme"
                     TextColor="Black"
                     VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="End"/>
-
+                    HorizontalOptions="Start"/>
             </Grid>
+
+            <CollectionView 
+            x:Name="Clview" 
+            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0" 
+                          RowSpacing="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout 
+                            Orientation="Horizontal"  
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="Center">
+                            <Label
+                            IsVisible="True"
+                            Text= "{Binding TableDesc}"
+                            TextColor="Red"
+                            FontSize="35"
+                            VerticalOptions="Center"
+                            FontAttributes="Bold"/>
+                            </StackLayout>
+
+                            <StackLayout 
+                            Orientation="Horizontal"  
+                            Grid.Row="1"
+                            Grid.Column="0" 
+                            HorizontalOptions="Center">
+                                
+                            <Label
+                            IsVisible="True"
+                            Text= "{Binding LongStatus}"
+                            TextColor="Green"
+                            VerticalOptions="Center" />
+                                
+                            </StackLayout>
+
+                            <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2"
+                                 VerticalOptions="Center" HeightRequest="3" BackgroundColor="Navy"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
