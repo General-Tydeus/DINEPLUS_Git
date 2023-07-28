@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DINEPLUS.FldrClass
 {
-    class ClsListEntry
+    public class ClsListEntry
     {
         public async Task<List<MdlProduct>> GetProductList()
         {
