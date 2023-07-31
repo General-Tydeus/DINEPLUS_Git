@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DINEPLUS.FldrModel;
+using DINEPLUS.FldrSO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,11 @@ namespace DINEPLUS.FldrMainMenu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageSO : ContentPage
     {
+        public MdlTables MdlTables1;
         public PageSO()
         {
             InitializeComponent();
+            DisplayAlert("", "s", "ok");
         }
 
         protected async override void OnAppearing()
@@ -27,7 +31,11 @@ namespace DINEPLUS.FldrMainMenu
             Clview.ItemsSource = await App.ClsServeMain.ImportTableList();
         }
 
+        private async void Clview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MdlTables1 = e.CurrentSelection[0] as MdlTables;
 
-
+            await Navigation.PushAsync(new PageProductList(MdlTables1));
+        }
     }
 }

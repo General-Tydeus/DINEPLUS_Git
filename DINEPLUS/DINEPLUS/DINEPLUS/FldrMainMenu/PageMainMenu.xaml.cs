@@ -25,8 +25,13 @@ namespace DINEPLUS.FldrMainMenu
         }
         public void Errors()
         {
-            //await DisplayAlert("USERCODE", PageLogin.glbltxtUserCode, "Oks");
-            //await DisplayAlert("CNCODE", PageLogin.glbltxtCNCode, "Oks");
+
+        }
+
+        private void TabbedPage_CurrentPageChanged(object sender, EventArgs e)
+        {
+            var i = this.Children.IndexOf(this.CurrentPage);
+            DisplayAlert("", i.ToString(), "ok");
 
         }
     }
