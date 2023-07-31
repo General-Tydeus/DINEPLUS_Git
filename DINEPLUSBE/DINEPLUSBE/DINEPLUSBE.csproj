@@ -1,0 +1,131 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="FldrControlPanel\PageEntryMenu.xaml.cs">
+      <DependentUpon>PageEntryMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageNameAdd.xaml.cs">
+      <DependentUpon>PageNameAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageNameEditList.xaml.cs">
+      <DependentUpon>PageNameEditList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageNameEdit.xaml.cs">
+      <DependentUpon>PageNameEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageTableEditList.xaml.cs">
+      <DependentUpon>PageTableEditList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageTableEdit.xaml.cs">
+      <DependentUpon>PageTableEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageTableAdd.xaml.cs">
+      <DependentUpon>PageTableAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageCategoryAdd.xaml.cs">
+      <DependentUpon>PageCategoryAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageCategoryEdit.xaml.cs">
+      <DependentUpon>PageCategoryEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageProductEdit.xaml.cs">
+      <DependentUpon>PageProductEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageCategoryEditList.xaml.cs">
+      <DependentUpon>PageCategoryEditList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageProductEditList.xaml.cs">
+      <DependentUpon>PageProductEditList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageProductAdd.xaml.cs">
+      <DependentUpon>PageProductAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPopup\PopupEditProduct.xaml.cs">
+      <DependentUpon>PopupEditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPopup\PopupEditName.xaml.cs">
+      <DependentUpon>PopupEditName.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPopup\PopupEditTable.xaml.cs">
+      <DependentUpon>PopupEditTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPopup\PopupEditCategory.xaml.cs">
+      <DependentUpon>PopupEditCategory.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="FldrControlPanel\PageEntryMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrControlPanel\PageMainMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageNameAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageNameEditList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageNameEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageTableEditList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageTableEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageTableAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageCategoryAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageCategoryEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageProductEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageCategoryEditList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageProductEditList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageProductAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrLoginPage\PageChangePWord.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrLoginPage\PageLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrPopup\PopupEditCategoryList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrPurchases\PageProductSearchList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

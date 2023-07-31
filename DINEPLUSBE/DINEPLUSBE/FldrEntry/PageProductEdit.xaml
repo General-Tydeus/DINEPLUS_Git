@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrEntry.PageProductEdit" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="EDIT PRODUCT" FontSize="Large" FontAttributes="Bold" TextColor="White"/>
+            </StackLayout>
+            <Grid Padding="5" BackgroundColor="DodgerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="7*"/>
+                   
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblProductDesc" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntProductDesc" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnProductDesc" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnProductDesc_Clicked"/>
+                   
+                <Label x:Name="lblUnitM" Grid.Row="1" Grid.Column="0" Text="UM" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntUnitM" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnUnitM" Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUnitM_Clicked"/>
+
+                <Label x:Name="lblCatDesc" Grid.Row="2" Grid.Column="0" Text="Category" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntCatDesc" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnCatDesc" Grid.Row="2" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnCatDesc_Clicked"/>
+
+                <Label x:Name="lblSellingPrice" Grid.Row="3" Grid.Column="0" Text="Selling Price" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntSellingPrice" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnSellingPrice" Grid.Row="3" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnSellingPrice_Clicked"/>
+
+                <Label x:Name="lblUnitCost" Grid.Row="4" Grid.Column="0" Text="Unit Cost" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntUnitCost" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnUCost" Grid.Row="4" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUCost_Clicked"/>
+
+                <Label x:Name="lblActive" Grid.Row="5" Grid.Column="0" Text="Active" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Switch x:Name="SWTActive" Grid.Row="5" Grid.Column="1" IsEnabled="False" />
+            </Grid>
+               
+                <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnContinueEP" Text="Continue Edit Product" Clicked="BtnContinueEP_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                    <Button x:Name="btnRetMain" Text="Return to Main Menu" Clicked="BtnRetMain_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="1" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

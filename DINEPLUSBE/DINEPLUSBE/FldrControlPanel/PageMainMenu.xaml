@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DINEPLUSBE.FldrControlPanel.PageMainMenu"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="DodgerBlue">
+                <Label
+                    x:Name="lblTitle"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="WELCOME"
+                    TextColor="White" />
+                <StackLayout
+                    BackgroundColor="DodgerBlue"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+
+                    <Grid
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        RowSpacing="8"
+                        VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            x:Name="BtnPurchases"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnPurchases_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Purchases"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                   
+                        <Button
+                            x:Name="BtnAdjustment"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnAdjustment_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Adjustment"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="pay.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnEntry"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnEntry_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Entry"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="Entry.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnSecurity"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnSecurity_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Security"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="preparation.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnReports"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnReports_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Reports"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="summary.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+
+                        
+                        <Button
+                            x:Name="BtnLogout"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnLogout_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Logout"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="logout.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
