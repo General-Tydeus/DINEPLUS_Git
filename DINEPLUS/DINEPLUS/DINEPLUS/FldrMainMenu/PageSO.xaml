@@ -26,7 +26,8 @@
 
             <CollectionView 
             x:Name="Clview" 
-            SelectionMode="Single">
+            SelectionMode="Single"
+                SelectionChanged="Clview_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="0" 
@@ -35,7 +36,7 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="20"/>
                             </Grid.RowDefinitions>
-
+                            
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100*"/>
                             </Grid.ColumnDefinitions>
@@ -45,6 +46,7 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             HorizontalOptions="Center">
+                                
                             <Label
                             IsVisible="True"
                             Text= "{Binding TableDesc}"

@@ -41,9 +41,8 @@
     <EmbeddedResource Update="FldrPopup\PageViewOrders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FldrSO\" />
+    <EmbeddedResource Update="FldrSO\PageProductList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

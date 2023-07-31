@@ -9,7 +9,7 @@ namespace DINEPLUSWEBAPI.FldrClass
     {
         public string PlsConnect()
         {
-            return "Server = DESKTOP-FHUL9S2\\SQLEXPRESS; Database = DINEPLUS_BE; User ID = server2008; Password = Mssqlone1; Trusted_Connection = False; TrustServerCertificate=True;";
+            return "Server = DESKTOP-N1P7VB9\\SQLEXPRESS; Database = DINEPLUS_BE; User ID = server2008; Password = Mssqlone1; Trusted_Connection = False; TrustServerCertificate=True;";
 
 
 
