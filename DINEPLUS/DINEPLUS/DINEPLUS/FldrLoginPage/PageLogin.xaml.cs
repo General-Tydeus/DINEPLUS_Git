@@ -1,4 +1,5 @@
 ﻿using DINEPLUS.FldrClass;
+using DINEPLUS.FldrModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,6 +111,11 @@ namespace DINEPLUS.FldrMainMenu
             try
             {
                 PreferenceTransaction();
+
+
+                await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
+                await Task.Delay(200);
+                await App.ClsServeMain.SaveTblFunc();
 
                 await Navigation.PushAsync(new PageMainMenu());
                 var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUS.FldrSO.PageProductList"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightSkyBlue">
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Grid.Column="0"
+                    Text="{Binding TableDesc}"
+                    TextColor="Black" />
+
+                <ImageButton
+                        x:Name="btnCart"
+                        Source="cartwhite.png"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Aspect="AspectFit"
+                        BackgroundColor="LightSkyBlue"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        VerticalOptions="Center"
+                        Clicked="btnCart_Clicked"/>
+                <Label
+                        x:Name="lblCartOrder"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Red"
+                        Text="0"                        
+                        VerticalOptions="Start" 
+                        HorizontalOptions="End"/>
+            </Grid>
+
+            <CollectionView 
+                x:Name="ClMenu" 
+                x:FieldModifier="Public"
+                SelectionMode="Single"
+                ItemsLayout="VerticalList"
+                SelectionChanged="ClMenu_SelectionChanged"
+                BackgroundColor="White"
+                >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" RowSpacing="10" ColumnSpacing="10" BackgroundColor="white">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                HeightRequest="60"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Aspect="AspectFill"
+                                WidthRequest="66"
+                                Grid.RowSpan="2"
+                                Source="rice.jpg"
+                                />
+                            <Label
+                                Text="{Binding ProductDesc}"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                VerticalOptions="End"
+                                FontSize="20"
+                                Grid.Column="1"
+                                 />
+                            <Label
+                                FontAttributes="Bold"
+                                TextColor="Red"
+                                VerticalOptions="Start"
+                                Grid.Column="1"
+                                Grid.Row="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}" />
+                                        <Span Text=" per " />
+                                        <Span Text="{Binding UnitMeasure}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

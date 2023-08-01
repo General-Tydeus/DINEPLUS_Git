@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                  x:Class="DINEPLUSBE.FldrPopup.PopupEditCategory"
+             CloseWhenBackgroundIsClicked="False">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <StackLayout
+        Margin="5"
+        Padding="24"
+        HeightRequest="120"
+        WidthRequest="300"
+        BackgroundColor="WhiteSmoke"
+        HorizontalOptions="Center"
+        VerticalOptions="StartAndExpand">
+        <StackLayout>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lblTitle" Text="DESCRIPTION" Grid.Row="0" Grid.Column="0" FontSize="Large" FontAttributes="Bold"/>
+                <Entry x:Name="lblEntryField" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button x:Name="btnUpdate" BackgroundColor="Crimson" Clicked="BtnUpdate_Clicked"
+            CornerRadius="10" FontSize="Default" IsEnabled="True" Text="Update"
+            TextColor="White" Grid.Row="2" Grid.Column="0"/>
+               <Button x:Name="btnClose" BackgroundColor="Crimson" Clicked="BtnClose_Clicked"
+            CornerRadius="10" FontSize="Default" IsEnabled="True" Text="Close"
+            TextColor="White" Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

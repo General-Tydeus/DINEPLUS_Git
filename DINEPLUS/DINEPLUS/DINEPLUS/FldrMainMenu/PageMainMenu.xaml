@@ -5,8 +5,9 @@
                     xmlns:pages="clr-namespace:DINEPLUS.FldrMainMenu"
                     x:Class="DINEPLUS.FldrMainMenu.PageMainMenu"
                     NavigationPage.HasNavigationBar="False"
-                    BarBackgroundColor="LightSkyBlue"
+                    BarBackgroundColor="Black"
                     BarTextColor="White"
+                    CurrentPageChanged="TabbedPage_CurrentPageChanged"
                     >
     <TabbedPage.Children>
         <ContentPage Title="HOME">
@@ -19,7 +20,7 @@
                 <pages:PagePAYO />
             </x:Arguments>
         </NavigationPage >
-        <NavigationPage  Title="SO">
+        <NavigationPage  Title="Sales Order">
             <x:Arguments>
                 <pages:PageSO />
             </x:Arguments>

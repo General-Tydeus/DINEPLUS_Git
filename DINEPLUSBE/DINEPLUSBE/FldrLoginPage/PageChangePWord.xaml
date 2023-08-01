@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DINEPLUSBE"
+             x:Class="DINEPLUSBE.FldrLoginPage.PageChangePWord" NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout VerticalOptions="Start">
+                <Label x:Name="lblTitle" Text="CHANGE PASSWORD" FontSize="Large" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+            <Image x:Name="imgLog"  Source="man.ico" HeightRequest="120" WidthRequest="120" Aspect="AspectFit" BackgroundColor="LightBlue" HorizontalOptions="Center"/>
+
+        </StackLayout>
+            <StackLayout VerticalOptions="Start">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Place new controls here -->
+                <Entry x:Name="txtUserName" Grid.Row="1" Grid.Column="1" Placeholder="User Name" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Entry x:Name="txtOldPWord" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Old Password" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Entry x:Name="txtNewPWord" Grid.Row="3" Grid.Column="1" IsPassword="True" Placeholder="New Password" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Entry x:Name="txtVerifyPWord" Grid.Row="4" Grid.Column="1" IsPassword="True" Placeholder="Verify" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Button x:Name="btnSave" Grid.Row="5" Grid.Column="1" Text="Save" BackgroundColor="DodgerBlue" Clicked="BtnSave_Clicked" TextColor="White" BorderColor="White" BorderWidth="1"/>
+            </Grid>
+        </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

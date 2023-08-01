@@ -1,13 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Sales Order"
+             NavigationPage.HasNavigationBar="False"
              x:Class="DINEPLUS.FldrMainMenu.PageSO">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="Start" />
+        <StackLayout BackgroundColor="White">
+            <Grid BackgroundColor="Yellow">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Grid.Column="0"
+                    Text="SALE ORDER"
+                    x:Name="focusme"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Start"/>
+            </Grid>
+
+            <CollectionView 
+            x:Name="Clview" 
+            SelectionMode="Single"
+                SelectionChanged="Clview_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0" 
+                          RowSpacing="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout 
+                            Orientation="Horizontal"  
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="Center">
+                                
+                            <Label
+                            IsVisible="True"
+                            Text= "{Binding TableDesc}"
+                            TextColor="Red"
+                            FontSize="35"
+                            VerticalOptions="Center"
+                            FontAttributes="Bold"/>
+                            </StackLayout>
+
+                            <StackLayout 
+                            Orientation="Horizontal"  
+                            Grid.Row="1"
+                            Grid.Column="0" 
+                            HorizontalOptions="Center">
+                                
+                            <Label
+                            IsVisible="True"
+                            Text= "{Binding LongStatus}"
+                            TextColor="Green"
+                            VerticalOptions="Center" />
+                                
+                            </StackLayout>
+
+                            <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2"
+                                 VerticalOptions="Center" HeightRequest="3" BackgroundColor="Navy"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
