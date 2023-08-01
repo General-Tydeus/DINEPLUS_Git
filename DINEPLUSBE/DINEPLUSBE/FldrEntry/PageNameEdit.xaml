@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrEntry.PageNameEdit" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="EDIT NAME" FontSize="Large" FontAttributes="Bold" TextColor="White"/>
+            </StackLayout>
+            <Grid Padding="5" BackgroundColor="DodgerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="7*"/>
+                   
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblCustName" Grid.Row="0" Grid.Column="0" Text="Name" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntCustName" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnCustName" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnCustName_Clicked"/>
+                   
+                <Label x:Name="lblActive" Grid.Row="1" Grid.Column="0" Text="Active" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Switch x:Name="SWTActive" Grid.Row="1" Grid.Column="1" IsEnabled="False" />
+            </Grid>
+               
+                <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnContinueEP" Text="Continue Edit Product" Clicked="BtnContinueEP_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                    <Button x:Name="btnRetMain" Text="Return to Main Menu" Clicked="BtnRetMain_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="1" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:SPEEDBUY"
+             x:Class="DINEPLUSBE.FldrPurchases.PageProductSearchList" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DodgerBlue">
+            <Frame BorderColor="White" Padding="1" Margin="5">
+                <Grid BackgroundColor="DodgerBlue" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="40*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblPickupMsg" Text="Pickup?" Grid.Row="0" Grid.Column="0" TextColor="White"
+                        HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                    <Switch x:Name="SWPickup" Grid.Row="0" Grid.Column="1"  IsVisible="True" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center" IsEnabled="True" />
+
+                    <ImageButton x:Name="IbtnShow" Grid.Row="0" Grid.Column="3"   Aspect="AspectFit" Source="cart.png"  BackgroundColor="DodgerBlue" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Clicked="IbtnShow_Clicked" />
+                    <Label x:Name="lblEntTotalItem" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center" TextColor="White" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+            </Frame>
+            
+            <SearchBar x:Name="SBSearch" Placeholder="Search" TextChanged="SearchBar_TextChanged" TextColor="White"/>
+            <Frame BorderColor="White" Padding="1" Margin="5">
+                   <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Description"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Grid.Column="1" Text="S. Price"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+
+                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="LVProductList"  ItemsSource="{Binding}" 
+          IsGroupingEnabled="True"
+          GroupShortNameBinding="{Binding Key}"
+          GroupDisplayBinding="{Binding Key}" >
+                
+                <!--<ListView x:Name="LVProductList"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5">
+                                <Frame Padding="0" BorderColor="White">
+                                    <Grid Padding="5" RowSpacing="0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="1*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblProductCode" Grid.Column="0" Text="{Binding ProductCode}" IsVisible="False" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                        <Label x:Name="lblProductDesc" Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                        <Label x:Name="lblSellingPrice" Grid.Column="1" Text="{Binding SellingPrice, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                                                                            
+                                        <BoxView BackgroundColor="Black"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Frame BorderColor="DodgerBlue" Padding="1" Margin="5">
+                <Grid BackgroundColor="DodgerBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="40*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblTotal" Text="Total" Grid.Row="0" Grid.Column="0" TextColor="White" VerticalOptions="CenterAndExpand" IsVisible="True"/>
+                    <Label x:Name="lblEntTotalAmt" Grid.Row="0" Grid.Column="1" TextColor="White" VerticalOptions="CenterAndExpand"/>
+
+                    <Button x:Name="btnSave"  Grid.Row="0"  Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="DodgerBlue" TextColor="White" 
+                        BorderRadius="10" ContentLayout="Left, 5" BorderColor="White" BorderWidth="1" IsEnabled="True" Text="Checkout" Clicked="BtnSave_Clicked">
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource" iOS="cube.ico" Android="icon2.png"/>
+                        </Button.Image>
+                    </Button>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
