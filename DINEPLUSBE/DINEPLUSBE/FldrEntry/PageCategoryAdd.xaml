@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrEntry.PageCategoryAdd" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="ADD CATEGORY" VerticalOptions="Center" TextColor="White" FontSize="Large"/>
+            </StackLayout>
+                <!-- Place new controls here -->
+
+            <Label x:Name="lblCatCode" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            
+            <Entry x:Name="txtCategoryDesc" Placeholder="Category" TextColor="White" FontSize="Medium"/>
+            
+            <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

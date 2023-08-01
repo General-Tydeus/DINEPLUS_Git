@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DINEPLUSBE.FldrControlPanel.PageEntryMenu"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="DodgerBlue">
+                <Label
+                    x:Name="lblTitle"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="WELCOME ENTRY"
+                    TextColor="White" />
+                <StackLayout
+                    BackgroundColor="DodgerBlue"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+
+                    <Grid
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        RowSpacing="8"
+                        VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            x:Name="BtnProductAdd"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnProductAdd_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Product - Add"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="loanentry.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                   
+                        <Button
+                            x:Name="BtnProductEdit"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnProductEdit_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Product - Edit"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="updateicon.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnCategoryAdd"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnCategoryAdd_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Category - Add"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="loanentry.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnCategoryEdit"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnCategoryEdit_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Category - Edit"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="updateicon.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnTableAdd"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnTableAdd_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Table - Add"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="loanentry.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnTableEdit"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnTableEdit_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Table - Edit"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="updateicon.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnCustNameAdd"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnCustNameAdd_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Name - Add"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="loanentry.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnCustNameEdit"
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnCustNameEdit_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Name - Edit"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="updateicon.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
