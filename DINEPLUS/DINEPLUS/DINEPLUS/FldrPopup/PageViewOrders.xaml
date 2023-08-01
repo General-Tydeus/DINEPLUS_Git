@@ -34,7 +34,7 @@
                         <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                     </Grid>
                 </Frame>
-                <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+                <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center" ItemSelected="LV1_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -43,14 +43,14 @@
                                         <SwipeItem
                                         Text="Remove"
                                         BackgroundColor="Red"
-                                        
+                                        Invoked="SwipeItem_Invoked"
                                         />
                                     </SwipeView.RightItems>
                                     <SwipeView.LeftItems>
                                         <SwipeItem
                                         Text="Remove"
                                         BackgroundColor="Red"
-                                       
+                                        Invoked="SwipeItem_Invoked"
                                         />
                                     </SwipeView.LeftItems>
                                     <Frame Padding="0" BorderColor="DarkSlateGray">

@@ -95,6 +95,7 @@
                         VerticalOptions="Center" />
                         <CheckBox
                         x:Name="cbRemember"
+                        CheckedChanged="cbRemember_CheckedChanged"
                         VerticalOptions="Center" />
                     </StackLayout>
                 </Grid>
