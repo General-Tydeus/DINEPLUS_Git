@@ -9,17 +9,91 @@
                     BarTextColor="White"
                     >
     <TabbedPage.Children>
-        <ContentPage Title="HOME">
+        <ContentPage x:Name="homePage" Title="HOME">
             <StackLayout>
-                <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+
+                    <Label
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="40"
+                        >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Welcome to" />
+                                <Span Text="  " />
+                                <Span Text="DINEPLUS+" FontAttributes="Italic" FontSize="40"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Image
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill"
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    Margin="0,50,0,0"
+                    Source="logo.jpg"
+                    />
+                </StackLayout>
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+
+
+                    <Button
+                       x:Name="btnHome"
+                       Text="Home"
+                       BackgroundColor="LightSkyBlue"
+                       BorderColor="Black"
+                       BorderWidth="1"
+                       HeightRequest="70"
+                       Margin="60,0,60,0"
+                       />
+                    <Button
+                       x:Name="btnSummary"
+                       Text="Sales Report"
+                       BackgroundColor="LightSkyBlue"
+                       BorderColor="Black"
+                       BorderWidth="1"
+                       HeightRequest="70"
+                       Margin="60,0,60,0"
+                       />
+                    <Button 
+                       x:Name="btnLogout"
+                       Text="Log out"
+                       BackgroundColor="LightSkyBlue"
+                       BorderColor="Black"
+                       BorderWidth="1"
+                       HeightRequest="70"
+                       Margin="60,0,60,0"
+                       Clicked="btnLogout_Clicked"
+                       />
+                </StackLayout>
+                
             </StackLayout>
         </ContentPage>
-        <NavigationPage Title="PAYO">
+
+        <NavigationPage x:Name="payoPage" Title="PAYO">
             <x:Arguments>
                 <pages:PagePAYO />
             </x:Arguments>
         </NavigationPage >
-        <NavigationPage  Title="SO">
+        <NavigationPage x:Name="soPage" Title="SO">
             <x:Arguments>
                 <pages:PageSO />
             </x:Arguments>

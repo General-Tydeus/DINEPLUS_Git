@@ -41,5 +41,8 @@
     <EmbeddedResource Update="FldrPopup\PageViewOrders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="FldrPopup\PopUpdOrd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
