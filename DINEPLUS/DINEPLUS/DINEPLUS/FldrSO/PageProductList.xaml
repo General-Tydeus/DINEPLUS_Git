@@ -5,9 +5,8 @@
              NavigationPage.HasNavigationBar="False">
     
     <ContentPage.Content>
-        <StackLayout    
-            BackgroundColor="LightSkyBlue"
-            >
+        <StackLayout BackgroundColor="LightSkyBlue">
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7*"/>
@@ -22,7 +21,7 @@
                     FontAttributes="Bold"
                     FontSize="30"
                     Grid.Column="0"
-                    Text="Product List"
+                    Text="{Binding TableDesc}"
                     TextColor="Black" />
 
                 <ImageButton
@@ -34,7 +33,8 @@
                         BackgroundColor="LightSkyBlue"
                         HeightRequest="50"
                         WidthRequest="50"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"
+                        Clicked="btnCart_Clicked"/>
                 <Label
                         x:Name="lblCartOrder"
                         Grid.Row="0"
@@ -90,7 +90,7 @@
                                  />
                             <Label
                                 FontAttributes="Bold"
-                                TextColor="Black"
+                                TextColor="Red"
                                 VerticalOptions="Start"
                                 Grid.Column="1"
                                 Grid.Row="1">
