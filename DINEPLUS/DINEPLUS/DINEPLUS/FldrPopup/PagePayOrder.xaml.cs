@@ -91,6 +91,7 @@ namespace DINEPLUS.FldrPopup
                     {
                         PagePAYO.Instance.listOrders.Clear();
                         PagePAYO.Instance.LoadExp();
+                        PageViewOrders.Instance.LoadLV();
                         //await Navigation.PopAsync();
                         //for (var counter = 1; counter < 2; counter++)
                         //{
@@ -103,10 +104,12 @@ namespace DINEPLUS.FldrPopup
                         //PageMainMenu.Instance.CurrentPage = PageMainMenu.Instance.Children[1];
                         //Navigation.RemovePage(Navigation.NavigationStack[1]);
                         //await Navigation.PopToRootAsync();
-                        //await Navigation.PopAsync();
                         PageMainMenu.Instance.CurrentPage = PageMainMenu.Instance.Children[1];
+                        await Navigation.PopAsync();
+
                         //await Navigation.PushAsync(new PageMainMenu());
                         await PopupNavigation.Instance.PopAsync();
+                        //await Navigation.PopAsync();
 
                         //clrPages();
                     }

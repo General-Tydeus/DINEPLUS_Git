@@ -14,10 +14,43 @@ namespace DINEPLUS.FldrMainMenu
     public partial class PageLogin : ContentPage
     {
         public static string glbltxtUserCode, glbltxtGroupCode, glbltxtUserName, glbltxtCNCode, glbltxtCompleteName;
+        private string pristrRememberPassword;
+
+        private void cbRemember_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            pristrRememberPassword = e.Value.ToString();
+        }
 
         public PageLogin()
         {
             InitializeComponent();
+            //string rememberedUser = Preferences.Get("rememberUser", string.Empty);
+            //string rememberedPassword = Preferences.Get("rememberPass", string.Empty);
+            //if (!string.IsNullOrEmpty(rememberedUser) && !string.IsNullOrEmpty(rememberedPassword))
+            //{
+            //    txtUserName.Text = rememberedUser;
+            //    txtPassword.Text = rememberedPassword;
+            //    cbRemember.IsChecked = true;
+            //}
+        }
+        protected override void OnAppearing()
+        {
+            bool valueFirstMove = Preferences.Get("prefRmbPassword", false);
+
+            if (valueFirstMove == false)
+            {
+            }
+            else if (valueFirstMove == true)
+            {
+                bool valueSwitch = Preferences.Get("prefRmbPassword", false);
+                cbRemember.IsChecked = valueSwitch;
+
+                string valueLoginName = Preferences.Get("prefUserName", "A");
+                txtUserName.Text = valueLoginName;
+
+                string valuePassword = Preferences.Get("prefPassword", "B");
+                txtPassword.Text = valuePassword;
+            }
         }
         private async void btnLogin_Clicked(object sender, EventArgs e)
         {
@@ -56,7 +89,15 @@ namespace DINEPLUS.FldrMainMenu
                 glbltxtGroupCode = varUserDetails.GroupCode;
                 glbltxtUserName = varUserDetails.UserName;
                 glbltxtCNCode = varUserDetails.CNCode;
+
+                //if (cbRemember.IsChecked)
+                //{
+                //    Preferences.Set("rememberUser", txtUserName.Text);
+                //    Preferences.Set("rememberPass", txtPassword.Text);
+                //}
                 OpenMainMenu();
+
+
 
             }
             //catch (Exception)
@@ -68,6 +109,7 @@ namespace DINEPLUS.FldrMainMenu
         {
             try
             {
+                PreferenceTransaction();
 
                 await Navigation.PushAsync(new PageMainMenu());
                 var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
@@ -78,6 +120,35 @@ namespace DINEPLUS.FldrMainMenu
             catch (Exception)
             {
                 await DisplayAlert("Attention!", "Posible error connnection!", "OK");
+            }
+        }
+        private void PreferenceTransaction()
+        {
+            if (string.IsNullOrEmpty(pristrRememberPassword))
+            {
+                Preferences.Set("prefUserName", txtUserName.Text);
+            }
+            else
+            {
+                SavePreference();
+            }
+        }
+        private void SavePreference()
+        {
+            if (bool.Parse(pristrRememberPassword) == true)
+            {
+                Preferences.Set("LogCheck", "2");// two == main
+
+                Preferences.Set("prefRmbPassword", bool.Parse(pristrRememberPassword));
+
+                Preferences.Set("prefUserName", txtUserName.Text);
+
+                Preferences.Set("prefPassword", txtPassword.Text);
+            }
+            else if (bool.Parse(pristrRememberPassword) == false)
+            {
+                Preferences.Clear();
+                Preferences.Set("prefUserName", txtUserName.Text);
             }
         }
     }
