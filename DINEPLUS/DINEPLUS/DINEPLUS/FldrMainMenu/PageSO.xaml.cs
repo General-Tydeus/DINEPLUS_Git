@@ -18,7 +18,6 @@ namespace DINEPLUS.FldrMainMenu
         public PageSO()
         {
             InitializeComponent();
-            DisplayAlert("", "s", "ok");
         }
 
         protected async override void OnAppearing()
@@ -31,11 +30,11 @@ namespace DINEPLUS.FldrMainMenu
             Clview.ItemsSource = await App.ClsServeMain.ImportTableList();
         }
 
-        private async void Clview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Clview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MdlTables1 = e.CurrentSelection[0] as MdlTables;
 
-            await Navigation.PushAsync(new PageProductList(MdlTables1));
+            Navigation.PushAsync(new PageProductList(MdlTables1));
         }
     }
 }

@@ -15,6 +15,12 @@ namespace DINEPLUS.FldrModel
             public double UCost { get; set; }
             public bool Active { get; set; }
         }
+
+
+
+
+
+
         public class MdlOrders
         {
             public string StockNumber { get; set; }
