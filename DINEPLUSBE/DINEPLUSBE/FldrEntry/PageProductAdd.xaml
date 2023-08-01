@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrEntry.PageProductAdd" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="ADD NEW PRODUCT" VerticalOptions="Center" TextColor="White" FontSize="Large"/>
+            </StackLayout>
+                <!-- Place new controls here -->
+
+            <Label x:Name="lblProductCode" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Picker x:Name="PKCatCode" Title="Category" TextColor="White"         
+            ItemsSource="{Binding CatDesc}"
+            ItemDisplayBinding="{Binding CatDesc}"
+            SelectedItem="{Binding CatCode}" FontSize="Medium"/>
+            
+            <Entry x:Name="txtProductDesc" Placeholder="Product Description" TextColor="White" FontSize="Medium"/>
+                <Entry x:Name="txtUnitMeasure" Placeholder="Unit of Measure" TextColor="White" FontSize="Medium"/>
+                <Entry x:Name="txtUCost" Placeholder="Unit Cost" Keyboard="Numeric" TextColor="White" HorizontalTextAlignment="End" FontSize="Medium"/>
+                <Entry x:Name="txtSellingPrice" Placeholder="Selling Price" Keyboard="Numeric" TextColor="White" HorizontalTextAlignment="End"/>
+
+            <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
