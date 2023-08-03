@@ -89,7 +89,8 @@ namespace DINEPLUS.FldrSO
                     Cost = vl.UCost,
                     Discount = 0,
                     ProductDesc = vl.ProductDesc,
-                    Totals = vl.Totals
+                    Totals = vl.Totals,
+                    OrderTime = DateTime.Now.ToString("hh:mm tt")
                 });
             }
             return listofData;

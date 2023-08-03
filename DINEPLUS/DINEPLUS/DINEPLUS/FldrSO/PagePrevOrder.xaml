@@ -24,30 +24,33 @@
                 Margin="0"
                 Padding="0"/>
 
-            <Frame BackgroundColor="Red" BorderColor="DarkSlateGray" Padding="0">
+            <Frame BackgroundColor="Black" BorderColor="DarkSlateGray" Padding="0">
                 <Grid RowSpacing="0" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="1.5*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Text="Product"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
-                    <Label Grid.Column="1" Text="Price"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
-                    <Label Grid.Column="2" Text="Qty"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
-                    <Label Grid.Column="3" Text="Total"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                    <Label Grid.Column="0" Text="Time"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                    <Label Grid.Column="1" Text="Product"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                    <Label Grid.Column="2" Text="Price"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                    <Label Grid.Column="3" Text="Qty"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                    <Label Grid.Column="4" Text="Total"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
 
                     <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                     <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                     <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                 </Grid>
             </Frame>
 
-            <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+            <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -55,37 +58,37 @@
                                 <SwipeView.RightItems>
                                     <SwipeItem
                                         Text="Remove"
-                                        BackgroundColor="Red"
-                                        />
+                                        BackgroundColor="Red"/>
                                 </SwipeView.RightItems>
                                 <SwipeView.LeftItems>
                                     <SwipeItem
                                         Text="Remove"
-                                        BackgroundColor="Red"
-                                        />
+                                        BackgroundColor="Red"/>
                                 </SwipeView.LeftItems>
                                 <Frame Padding="0" BorderColor="DarkSlateGray">
                                     <Grid Padding="0" RowSpacing="0" >
-
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="40"/>
                                         </Grid.RowDefinitions>
 
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="5*"/>
                                             <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="1.5*"/>
                                             <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="1.5*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
-                                        <Label Grid.Column="1" Text="{Binding UP, StringFormat= '₱{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black" Padding="0,0,5,0"/>
-                                        <Label Grid.Column="2" Text="{Binding POut}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
-                                        <Label Grid.Column="3" Text="{Binding Totals, StringFormat= '₱{0:#,0.#0}'}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" Padding="0,0,5,0"/>
+                                        <Label Grid.Column="0" Text="{Binding OrderTime}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label Grid.Column="1" Text="{Binding ProductDesc}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label Grid.Column="2" Text="{Binding UP, StringFormat= '₱{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black" Padding="0,0,5,0"/>
+                                        <Label Grid.Column="3" Text="{Binding POut}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label Grid.Column="4" Text="{Binding Totals, StringFormat= '₱{0:#,0.#0}'}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" Padding="0,0,5,0"/>
 
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
 
                                     </Grid>
                                 </Frame>
@@ -99,6 +102,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -109,31 +113,66 @@
                     <Button 
                     Text="Print BILL"
                     x:Name="btnPrint"
+                    Clicked="btnPrint_Clicked"
                     Grid.Column="0"
                     Grid.Row="1"
-                    BackgroundColor="Navy"
+                    BackgroundColor="Green"
                     CornerRadius="5"
-                    FontSize="20"
                     FontAttributes="Bold"
-                    TextColor="White"
-                    Margin="10,0,0,0"/>
+                    TextColor="White">
+                        <Button.Image>
+                            <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="repri.png"
+                                    iOS="cube.ico" />
+                        </Button.Image>
+                    </Button>
 
                     <Button 
                     Text="PAY BILL"
                     x:Name="BtnPay"
+                    Clicked="BtnPay_Clicked"
                     Grid.Column="1"
                     Grid.Row="1"
                     BackgroundColor="Maroon"
                     CornerRadius="5"
-                    FontSize="20"
+                    BorderRadius="0"
                     FontAttributes="Bold"
-                    TextColor="White"
-                    Margin="0,0,10,0"/>
+                    TextColor="White">
+                        <Button.Image>
+                            <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="pay.png"
+                                    iOS="cube.ico" />
+                        </Button.Image>
+                    </Button>
+
+                    <Button
+                    FontFamily="CalibriBold"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    BackgroundColor="DodgerBlue"
+                    BorderColor="White"
+                    BorderRadius="0"
+                    CornerRadius="5"
+                    x:Name="btnaddOrd"
+                    Clicked="btnaddOrd_Clicked"
+                    BorderWidth="1"
+                    Text="ADD ORDER"
+                    TextColor="White">
+                        <Button.Image>
+                            <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="addorder.png"
+                                    iOS="cube.ico" />
+                        </Button.Image>
+                    </Button>
+
 
                     <StackLayout 
                          Grid.Row="0"
                          Grid.Column="0"
-                         Grid.ColumnSpan="2"
+                         Grid.ColumnSpan="3"
                          Orientation="Horizontal"
                         HorizontalOptions="End">
                         <Label

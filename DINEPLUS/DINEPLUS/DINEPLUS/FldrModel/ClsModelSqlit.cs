@@ -49,5 +49,6 @@ namespace DINEPLUS.FldrModel
         public double Cost { get; set; }
         public double Discount { get; set; }
         public double Totals { get; set; }
+        public string OrderTime { get; set; }
     }
 }
