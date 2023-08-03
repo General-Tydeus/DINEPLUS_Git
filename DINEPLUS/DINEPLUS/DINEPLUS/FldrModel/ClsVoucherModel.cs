@@ -19,10 +19,10 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string CNCode { get; set; }
         public double CashReceived { get; set; }
         public bool Serve { get; set; }
-
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }
 
         //public List<ModeltblMain3> ModelSubtblMain3 { get; set; }
+
         //public ModeltblPayMainLoan2 ModelSubtblPayMainLoan2 { get; set; }
     }
 
