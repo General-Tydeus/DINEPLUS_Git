@@ -3,6 +3,7 @@ using DINEPLUS.FldrModel;
 using Rg.Plugins.Popup.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,6 +28,12 @@ namespace DINEPLUS.FldrSO
         {
             var varlist = await new ClsListEntry().GetProductList();
             ClMenu.ItemsSource = varlist;
+        }
+
+
+        public void clsPage1()
+        {
+            Navigation.RemovePage(this);
         }
 
         private void ClMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,6 +90,11 @@ namespace DINEPLUS.FldrSO
 
         private void btnCart_Clicked(object sender, System.EventArgs e)
         {
+            if(listOrders.Count <= 0)
+            {
+                this.DisplayToastAsync("No Item to Show!!", 500);
+                return;
+            }
             Navigation.PushAsync(new PageSOCart(MdlTables11));
         }
     }

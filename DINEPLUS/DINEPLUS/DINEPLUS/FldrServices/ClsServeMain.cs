@@ -18,12 +18,10 @@ namespace DINEPLUS.FldrServices
 
             db = new SQLiteAsyncConnection(dbPath);
             db.CreateTableAsync<MdlTables>().Wait();
+            db.CreateTableAsync<LocaltblMain1>().Wait();
 
         }
 
-
-
-        //how to insert into sqlite table from list
         public async Task<int> SaveTblFunc()  
         {
             var varToTbl = await new ClsListEntry().GetTblList();
@@ -44,9 +42,20 @@ namespace DINEPLUS.FldrServices
             return db.QueryAsync<MdlTables>($"SELECT * FROM MdlTables ORDER BY TableCode");
         }
 
+        public Task<int> SOMainCount()
+        {
+            return db.ExecuteScalarAsync<int>("SELECT COUNT(DocNum) FROM LocaltblMain1");
+        }
 
+        public Task<int> SaveClsModelSO1(LocaltblMain1 LocaltblMain11)
+        {
+            return db.InsertAsync(LocaltblMain11);
+        }
 
-
+        public void TableOccupied(string strTableCode)
+        {
+            db.ExecuteScalarAsync<MdlTables>($"UPDATE MdlTables SET Status='O', LongStatus='OCCUPIED' WHERE TableCode='{strTableCode}'");
+        }
 
     }
 }

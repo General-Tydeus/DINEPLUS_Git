@@ -18,10 +18,15 @@ namespace DINEPLUS.FldrModel
         public string Reference { get; set; }
         public string ControlNo { get; set; }
         public string Remarks { get; set; }
-        public bool Void { get; set; }
         public string CNCode { get; set; }
-        public double CashReceived { get; set; }
         public string TableCode { get; set; }
-        public bool Serve { get; set; }
+        public double CAmount { get; set; }
+        public string TableDesc { get; set; }
+
+
+
+        public double CashReceived { get; set; }
+        public bool Void { get; set; } = false;
+        public bool Payed { get; set; } = false;
     }
 }
