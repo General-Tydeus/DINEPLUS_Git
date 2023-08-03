@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrEntry.PageCategoryEdit" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="EDIT CATEGORY" FontSize="Large" FontAttributes="Bold" TextColor="White"/>
+                <Label x:Name="lblCatCode" Text="{Binding CatCode}" FontSize="Large" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+            </StackLayout>
+            
+            <Grid Padding="5" BackgroundColor="DodgerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblCatDesc" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <Label x:Name="lblEntCatDesc" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White" Text="{Binding CatDesc}"/>
+                <Button x:Name="BtnCatDesc" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnCatDesc_Clicked_1"/>
+            </Grid>
+               
+                <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnContinueEP" Text="Continue Edit Product" Clicked="BtnContinueEP_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                    <Button x:Name="btnRetMain" Text="Return to Main Menu" Clicked="BtnRetMain_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="1" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

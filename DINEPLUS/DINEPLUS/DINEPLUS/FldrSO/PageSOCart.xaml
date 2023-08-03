@@ -13,30 +13,6 @@
                 Margin="0"
                 Padding="0"/>
             <Label
-                FontSize="30"
-                Text="TABLE ORDERS"
-                TextColor="Black" 
-                HorizontalOptions="Center"
-                Margin="0"
-                Padding="0"
-                FontFamily="Calibri"/>
-            <Label
-                FontSize="30"
-                Text="TABLE ORDERS"
-                TextColor="Black" 
-                HorizontalOptions="Center"
-                Margin="0"
-                Padding="0"
-                FontFamily="Calibri"/>
-            <Label
-                FontSize="30"
-                Text="TABLE ORDERS"
-                TextColor="Black" 
-                HorizontalOptions="Center"
-                Margin="0"
-                Padding="0"
-                FontFamily="CBI"/>
-            <Label
                 FontAttributes="Bold"
                 FontSize="15"
                 Text="{Binding TableDesc}"
@@ -107,6 +83,7 @@
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                         <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    
                                     </Grid>
                                 </Frame>
                             </SwipeView>
@@ -129,7 +106,8 @@
                     </Grid.RowDefinitions>
 
                     <Button 
-                    Text="Add Order"
+                        Clicked="btnSave_Clicked"
+                    Text="TAKE ORDER"
                     x:Name="btnSave"
                     Grid.Column="0"
                     Grid.Row="0"

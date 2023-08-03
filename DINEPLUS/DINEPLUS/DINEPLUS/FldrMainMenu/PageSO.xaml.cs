@@ -15,8 +15,10 @@ namespace DINEPLUS.FldrMainMenu
     public partial class PageSO : ContentPage
     {
         public MdlTables MdlTables1;
+        public static PageSO Instance;
         public PageSO()
         {
+            Instance = this;
             InitializeComponent();
         }
 
