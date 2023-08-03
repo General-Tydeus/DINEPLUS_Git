@@ -29,4 +29,25 @@ namespace DINEPLUS.FldrModel
         public bool Void { get; set; } = false;
         public bool Payed { get; set; } = false;
     }
+
+
+
+
+
+    public class LocaltblMain2
+    {
+        [PrimaryKey]
+        [AutoIncrement]
+        public int RowNum { get; set; }
+        public string IC { get; set; }
+        public string DocNum { get; set; }
+        public string StockNumber { get; set; }
+        public string ProductDesc { get; set; }
+        public double PIn { get; set; }
+        public double POut { get; set; }
+        public double UP { get; set; }
+        public double Cost { get; set; }
+        public double Discount { get; set; }
+        public double Totals { get; set; }
+    }
 }

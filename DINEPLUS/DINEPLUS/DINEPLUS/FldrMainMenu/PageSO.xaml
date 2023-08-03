@@ -67,7 +67,14 @@
                             Text= "{Binding LongStatus}"
                             TextColor="Green"
                             VerticalOptions="Center" />
-                                
+
+
+                                <Label
+                            IsVisible="True"
+                            Text= "{Binding TableDocNum}"
+                            TextColor="Green"
+                            VerticalOptions="Center" />
+
                             </StackLayout>
 
                             <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2"

@@ -3,6 +3,7 @@ using DINEPLUS.FldrModel;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms.Xaml;
 
 namespace DINEPLUS.FldrSO
@@ -41,7 +42,9 @@ namespace DINEPLUS.FldrSO
             }
 
             await App.ClsServeMain.SaveClsModelSO1(tblSavetblMain1());
-            App.ClsServeMain.TableOccupied(tblSavetblMain1().TableCode);
+            await App.ClsServeMain.SaveClsModelSO2(SavetblMain2());
+
+            App.ClsServeMain.TableOccupied(tblSavetblMain1().TableCode, MyDocNum);
 
             PageSOCart.Instance.clsPage2();
             await PageSO.Instance.LoadSumary();
@@ -66,6 +69,30 @@ namespace DINEPLUS.FldrSO
                 TableDesc = PageProductList.Instance.MdlTables11.TableDesc,
                 CAmount = PageSOCart.Instance.Totals
             };
+        }
+
+
+
+        public List<LocaltblMain2> SavetblMain2()
+        {
+            var listofData = new List<LocaltblMain2>();
+            foreach (var vl in PageProductList.Instance.listOrders)
+            {
+                listofData.Add(new LocaltblMain2()
+                {
+                    IC = $"SO{MyDocNum}",
+                    DocNum = MyDocNum,
+                    StockNumber = vl.StockNumber,
+                    PIn = 0,
+                    POut = vl.Qty,
+                    UP = vl.SellingPrice,
+                    Cost = vl.UCost,
+                    Discount = 0,
+                    ProductDesc = vl.ProductDesc,
+                    Totals = vl.Totals
+                });
+            }
+            return listofData;
         }
     }
 }

@@ -8,7 +8,8 @@
             
             <Label
                 FontSize="30"
-                Text="TABLE ORDERS"
+                Text="PREVIOUS ORDERS"
+                FontAttributes="Bold"
                 TextColor="Black" 
                 HorizontalOptions="Center"
                 Margin="0"
@@ -78,8 +79,8 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
-                                        <Label Grid.Column="1" Text="{Binding SellingPrice, StringFormat= '₱{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black" Padding="0,0,5,0"/>
-                                        <Label Grid.Column="2" Text="{Binding Qty}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label Grid.Column="1" Text="{Binding UP, StringFormat= '₱{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black" Padding="0,0,5,0"/>
+                                        <Label Grid.Column="2" Text="{Binding POut}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
                                         <Label Grid.Column="3" Text="{Binding Totals, StringFormat= '₱{0:#,0.#0}'}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" Padding="0,0,5,0"/>
 
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
@@ -93,51 +94,61 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
-            <StackLayout x:Name="SLName" BackgroundColor="white" HeightRequest="80">
+            <StackLayout x:Name="SLName" BackgroundColor="white" HeightRequest="121">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="1"/>
                     </Grid.RowDefinitions>
 
                     <Button 
-                    Text="TAKE ORDER"
-                    x:Name="btnSave"
+                    Text="Print BILL"
+                    x:Name="btnPrint"
                     Grid.Column="0"
-                    Grid.Row="0"
-                    BackgroundColor="Red"
+                    Grid.Row="1"
+                    BackgroundColor="Navy"
                     CornerRadius="5"
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="White"
                     Margin="10,0,0,0"/>
 
+                    <Button 
+                    Text="PAY BILL"
+                    x:Name="BtnPay"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    BackgroundColor="Maroon"
+                    CornerRadius="5"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Margin="0,0,10,0"/>
+
                     <StackLayout 
-                 Grid.Row="0"
-                 Grid.Column="2">
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Orientation="Horizontal"
+                        HorizontalOptions="End">
                         <Label
-                            HorizontalTextAlignment="Center"
-                            VerticalOptions="Center" 
                             IsVisible="True"
                             Text= "Total : "
                             TextColor="Green"
                             FontAttributes="Bold"/>
                         <Label
-                            HorizontalTextAlignment="End"
-                            VerticalOptions="Center" 
                             x:Name="lblTotals"
                             Grid.Column="3"
                             Text="₱ 0.00"
                             FontAttributes="Bold"
-                            FontSize="23"
+                            FontSize="30"
                             TextColor="Red"/>
+                        
                     </StackLayout>
 
                 </Grid>
