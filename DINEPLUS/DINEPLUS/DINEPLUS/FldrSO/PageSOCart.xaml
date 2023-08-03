@@ -5,6 +5,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
+            
             <Label
                 FontSize="30"
                 Text="TABLE ORDERS"
@@ -12,6 +13,7 @@
                 HorizontalOptions="Center"
                 Margin="0"
                 Padding="0"/>
+            
             <Label
                 FontAttributes="Bold"
                 FontSize="15"

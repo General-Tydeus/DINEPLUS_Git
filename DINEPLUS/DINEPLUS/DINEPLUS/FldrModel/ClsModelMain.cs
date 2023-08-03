@@ -53,5 +53,6 @@ namespace DINEPLUS.FldrModel
         public string TableDesc { get; set; }
         public string Status { get; set; }
         public string LongStatus { get; set; }
+        public string TableDocNum { get; set; } = "NA";
     }
 }

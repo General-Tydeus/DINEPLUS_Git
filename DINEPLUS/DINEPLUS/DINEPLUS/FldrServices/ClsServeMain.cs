@@ -19,6 +19,7 @@ namespace DINEPLUS.FldrServices
             db = new SQLiteAsyncConnection(dbPath);
             db.CreateTableAsync<MdlTables>().Wait();
             db.CreateTableAsync<LocaltblMain1>().Wait();
+            db.CreateTableAsync<LocaltblMain2>().Wait();
 
         }
 
@@ -51,10 +52,22 @@ namespace DINEPLUS.FldrServices
         {
             return db.InsertAsync(LocaltblMain11);
         }
-
-        public void TableOccupied(string strTableCode)
+        public Task<int> SaveClsModelSO2(List<LocaltblMain2> LocaltblMain21)
         {
-            db.ExecuteScalarAsync<MdlTables>($"UPDATE MdlTables SET Status='O', LongStatus='OCCUPIED' WHERE TableCode='{strTableCode}'");
+            return db.InsertAllAsync(LocaltblMain21);
+        }
+
+        public void TableOccupied(string strTableCode, string myDocNum)
+        {
+            db.ExecuteScalarAsync<MdlTables>($"UPDATE MdlTables SET Status='O', LongStatus='OCCUPIED', TableDocNum='{myDocNum}' WHERE TableCode='{strTableCode}'");
+        }
+
+
+
+
+        public Task<List<LocaltblMain2>> LocaltblMainTwo(string myDocNum)
+        {
+            return db.QueryAsync<LocaltblMain2>($"SELECT * FROM LocaltblMain2 WHERE DocNum='{myDocNum}' ORDER BY RowNum");
         }
 
     }

@@ -36,7 +36,14 @@ namespace DINEPLUS.FldrMainMenu
         {
             MdlTables1 = e.CurrentSelection[0] as MdlTables;
 
-            Navigation.PushAsync(new PageProductList(MdlTables1));
+            if(MdlTables1.Status == "O")
+            {
+                Navigation.PushAsync(new PagePrevOrder(MdlTables1));
+            }
+            else
+            {
+                Navigation.PushAsync(new PageProductList(MdlTables1));
+            }
         }
     }
 }
