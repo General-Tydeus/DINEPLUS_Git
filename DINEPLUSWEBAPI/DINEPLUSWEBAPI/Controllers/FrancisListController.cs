@@ -126,5 +126,28 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
             return ModeltblEntryNameMSSQL;
         }
+
+        [HttpGet]
+        [Route("API/WEBAPI/Entry/GetNameForvoucher")]
+        public IEnumerable<ModeltblEntryName> GetNameListForVoucher()
+        {
+            List<ModeltblEntryName> ModeltblEntryNameMSSQL = new List<ModeltblEntryName>();
+            string sqlStatement = $"SELECT ControlNo, CustName FROM tblEntryName WHERE Active=1 ORDER BY CustName";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModeltblEntryName ModeltblEntryName1 = new ModeltblEntryName
+                {
+                    ControlNo = dr["ControlNo"].ToString(),
+                    CustName = dr["CustName"].ToString(),
+                };
+                ModeltblEntryNameMSSQL.Add(ModeltblEntryName1);
+            }
+            myconnection.Close();
+            return ModeltblEntryNameMSSQL;
+        }
     }
 }

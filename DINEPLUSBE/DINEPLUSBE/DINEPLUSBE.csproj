@@ -70,6 +70,18 @@
     <Compile Update="FldrPopup\PopupEditCategory.xaml.cs">
       <DependentUpon>PopupEditCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrPurchases\PagePDAddQty.xaml.cs">
+      <DependentUpon>PagePDAddQty.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPurchases\PagePDName.xaml.cs">
+      <DependentUpon>PagePDName.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPurchases\PagePDProductSearchList.xaml.cs">
+      <DependentUpon>PagePDProductSearchList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrPurchases\PagePDCart.xaml.cs">
+      <DependentUpon>PagePDCart.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -124,7 +136,16 @@
     <EmbeddedResource Update="FldrPopup\PopupEditCategoryList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="FldrPurchases\PageProductSearchList.xaml">
+    <EmbeddedResource Update="FldrPurchases\PagePDAddQty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrPurchases\PagePDName.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrPurchases\PagePDProductSearchList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrPurchases\PagePDCart.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

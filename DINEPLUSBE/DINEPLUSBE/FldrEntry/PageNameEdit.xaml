@@ -31,20 +31,7 @@
                 <Switch x:Name="SWTActive" Grid.Row="1" Grid.Column="1" IsEnabled="False" />
             </Grid>
                
-                <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="btnContinueEP" Text="Continue Edit Product" Clicked="BtnContinueEP_Clicked" VerticalOptions="EndAndExpand"
-                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
-                    <Button x:Name="btnRetMain" Text="Return to Main Menu" Clicked="BtnRetMain_Clicked" VerticalOptions="EndAndExpand"
-                           Grid.Row="0" Grid.Column="1" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
-                </Grid>
+               
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

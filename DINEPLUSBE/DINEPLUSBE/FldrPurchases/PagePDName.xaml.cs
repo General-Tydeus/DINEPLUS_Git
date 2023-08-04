@@ -11,45 +11,60 @@ using System.Net;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrModel;
 using DINEPLUSBE.FldrControlPanel;
+using DINEPLUSBE.FldrPurchases;
 
 namespace DINEPLUSBE.FldrEntry
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PageNameEditList : ContentPage
+	public partial class PagePDName : ContentPage
 	{
-        public PageNameEditList()
+        public static PagePDName Instance;
+
+        public PagePDName()
 		{
 			InitializeComponent ();
+            Instance = this;
             LVNameList.ItemSelected += LVNameList_ItemSelected;
+            LoadName();
+            DPTDate.Date = DateTime.Now;
 		}
 
         private async void LVNameList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
-                string strControlNo = (e.SelectedItem as ModeltblEntryName)?.ControlNo.ToString();
-                string strCustName = (e.SelectedItem as ModeltblEntryName)?.CustName.ToString();
-                bool boolActive = (bool)(e.SelectedItem as ModeltblEntryName)?.Active;
-                await Navigation.PushAsync(new PageNameEdit(strControlNo, strCustName, boolActive));
+                if (string.IsNullOrEmpty(txtReference.Text))
+                {
+                    await DisplayAlert("Information", "Reference is empty", "OK");
+                }
+                else
+                {
+                    if (e.SelectedItem != null)
+                    {
+                        await Navigation.PushAsync(new PagePDProductSearchList()
+                        {
+                            BindingContext = e.SelectedItem as ModeltblEntryName
+                        });
+                    }
+                }
             }
             catch (Exception)
             {
-                await DisplayAlert("Information", "Something went wrong. Possible error in connection", "OK");
+                DisplayAlert("Information", "Something went wrong. Possible error in connection", "OK");
             }
 
         }
 
-        protected async override void OnAppearing()
+        private async void LoadName()
         {
             try
             {
-            LVNameList.ItemsSource = await new ClsList().GetName();
+                LVNameList.ItemsSource = await new ClsList().GetNameForVoucher();
             }
             catch (Exception)
             {
                 await DisplayAlert("Information", "Something is wrong. Possible error in connection", "OK");
             }
-
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -57,15 +72,6 @@ namespace DINEPLUSBE.FldrEntry
             List<ModeltblEntryName> ModeltblEntryName1;
             ModeltblEntryName1 = await new ClsList().GetName();
             LVNameList.ItemsSource = ModeltblEntryName1.Where(x => x.CustName.ToLower().Contains(e.NewTextValue)).ToList();
-        }
-
-        private async void BtnRetMain_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageMainMenu());
-            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-            foreach (var page in pageList)
-                Navigation.RemovePage(page);
         }
     }
 }

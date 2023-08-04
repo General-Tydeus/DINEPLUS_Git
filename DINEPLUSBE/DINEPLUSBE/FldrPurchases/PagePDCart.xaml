@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrPurchases.PagePDCart" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="DodgerBlue">
+
+            <Grid BackgroundColor="DodgerBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="40*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="lblTotal" Text="Total" Grid.Row="0" Grid.Column="2" TextColor="White" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
+                <Label x:Name="lblEntTotalAmt" Grid.Row="0" Grid.Column="3" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="End" FontSize="Medium"/>
+            </Grid>
+
+            <Frame BackgroundColor="White" Padding="1" Margin="5">
+                <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                       
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Description"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Grid.Column="1" Text="Qty"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Grid.Column="2" Text="Cost"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Grid.Column="3" Text="Total"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5">
+                                <Frame Padding="5" BorderColor="White">
+                                    <Grid Padding="0" RowSpacing="0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Red"/>
+                                        <Label Grid.Column="1" Text="{Binding PIn, StringFormat= '{0:#,0.#0}'} " IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red"/>
+                                        <Label Grid.Column="2" Text="{Binding UCost, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red"/>
+                                        <Label x:Name="lblTotalOrd" Grid.Column="3" Text="{Binding Total, StringFormat= '{0:#,0.#0}'}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red"/>
+
+                                        <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnDelete" Text="Delete" TextColor="White" BorderColor="White" BorderWidth="1" BackgroundColor="DodgerBlue" Clicked="BtnDelete_Clicked" IsVisible="False"/>
+            <Button x:Name="BtnSave" Text="Save" TextColor="White" BorderColor="White" BorderWidth="1" BackgroundColor="DodgerBlue" Clicked="BtnSave_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

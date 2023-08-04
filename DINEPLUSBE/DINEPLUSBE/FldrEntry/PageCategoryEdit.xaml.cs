@@ -41,26 +41,6 @@ namespace DINEPLUSBE.FldrEntry
         }
 
 
-
-        private async void BtnRetMain_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageMainMenu());
-            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-            foreach (var page in pageList)
-                Navigation.RemovePage(page);
-        }
-
-        private async void BtnContinueEP_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageProductEditList());
-            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-            foreach (var page in pageList)
-                Navigation.RemovePage(page);
-        }
-
-
         private async void BtnCatDesc_Clicked_1(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new PopupEditCategory(lblCatCode.Text, pristrCatDesc), true);

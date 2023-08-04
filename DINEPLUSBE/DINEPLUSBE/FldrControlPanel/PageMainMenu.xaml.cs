@@ -1,5 +1,6 @@
 ﻿
 using DINEPLUSBE.FldrClass;
+using DINEPLUSBE.FldrEntry;
 using DINEPLUSBE.FldrLoginPage;
 using System;
 using System.Collections.Generic;
@@ -109,9 +110,9 @@ namespace DINEPLUSBE.FldrControlPanel
             //await Navigation.PushAsync(new PageSetup());
         }
 
-        private void BtnPurchases_Clicked(object sender, EventArgs e)
+        private async void BtnPurchases_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PagePDName());
         }
 
         private void BtnAdjustment_Clicked(object sender, EventArgs e)

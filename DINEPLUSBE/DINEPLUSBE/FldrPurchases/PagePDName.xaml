@@ -2,21 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local="clr-namespace:DINEPLUSBE"
-             x:Class="DINEPLUSBE.FldrEntry.PageNameEditList" NavigationPage.HasNavigationBar="False">
+             x:Class="DINEPLUSBE.FldrEntry.PagePDName" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout BackgroundColor="DodgerBlue">
-            
+            <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblDocNum" Text="Number" Grid.Row="0" Grid.Column="0" TextColor="White" FontSize="Medium"/>
+                <Label x:Name="lblDate" Text="Date" Grid.Row="1" Grid.Column="0" TextColor="White" FontSize="Medium" />
+                <Label x:Name="lblReference" Text="Reference" Grid.Row="2" Grid.Column="0" TextColor="White" FontSize="Medium"/>
+                <Label Text=":" Grid.Row="0" Grid.Column="1" TextColor="White" FontSize="Medium"/>
+                <Label Text=":" Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="Medium"/>
+                <Label Text=":" Grid.Row="2" Grid.Column="1" TextColor="White" FontSize="Medium"/>
+                <Label x:Name="lblEntDocNum" Text="0000001" Grid.Row="0" Grid.Column="2" TextColor="White" FontSize="Medium" HorizontalTextAlignment="End"/>
+                <DatePicker x:Name="DPTDate"  TextColor="White" Grid.Row="1" Grid.Column="2" HorizontalOptions="End"/>
+                <Entry x:Name="txtReference" Grid.Row="2" Grid.Column="2" TextColor="White" FontSize="Medium"/>
+            </Grid>
 
             <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>
             <Frame BorderColor="White" Padding="1" Margin="5">
                 <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Description"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White"/>
+                    <Label Grid.Column="0" Text="Description"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium"/>
                 </Grid>
             </Frame>
 
@@ -43,18 +64,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-
-                </Grid.ColumnDefinitions>
-
-                <Button x:Name="BtnRetMain" Text="Return to Main Menu" Clicked="BtnRetMain_Clicked" VerticalOptions="EndAndExpand"
-                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
-            </Grid>
          </StackLayout>
     </ContentPage.Content>
 </ContentPage>
