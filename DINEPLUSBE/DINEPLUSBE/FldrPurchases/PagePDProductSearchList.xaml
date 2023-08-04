@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:DINEPLUSBE"
+             x:Class="DINEPLUSBE.FldrPurchases.PagePDProductSearchList" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DodgerBlue">
+            <Frame BorderColor="White" Padding="1" Margin="5">
+                <Grid BackgroundColor="DodgerBlue" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="40*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <ImageButton x:Name="IbtnShow" Grid.Row="0" Grid.Column="0"   Aspect="AspectFit" Source="cart.png"  BackgroundColor="DodgerBlue" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Clicked="IbtnShow_Clicked" />
+                    <Label x:Name="lblEntTotalItem" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" TextColor="Wheat" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="P" TextColor="Red" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="Medium"/>
+                    <Label x:Name="lblEntTotalAmt" Grid.Row="0" Grid.Column="3" Text="0.00" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" FontSize="Medium"/>
+
+                </Grid>
+            </Frame>
+            
+            <SearchBar x:Name="SBSearch" Placeholder="Search" TextChanged="SearchBar_TextChanged" TextColor="White"/>
+            <Frame BorderColor="White" Padding="1" Margin="5">
+                   <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Description"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium"/>
+                    <Label Grid.Column="1" Text="Cost"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium"/>
+                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                </Grid>
+            </Frame>
+
+          
+                <ListView x:Name="LVProductList"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5">
+                                <Frame Padding="0" BorderColor="White">
+                                    <Grid Padding="5" RowSpacing="0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="1*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblProductCode" Grid.Column="0" Text="{Binding StockNumber}" IsVisible="False" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                        <Label x:Name="lblProductDesc" Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                        <Label x:Name="lblSellingPrice" Grid.Column="1" Text="{Binding UCost, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="DodgerBlue"/>
+                                        <BoxView BackgroundColor="Black"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

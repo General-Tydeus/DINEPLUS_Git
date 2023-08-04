@@ -41,5 +41,13 @@ namespace DINEPLUSBE.FldrClass
             var data = JsonConvert.DeserializeObject<List<ModeltblEntryName>>(response);
             return data;
         }
+
+        public async Task<List<ModeltblEntryName>> GetNameForVoucher()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Entry/GetNameForVoucher");
+            var data = JsonConvert.DeserializeObject<List<ModeltblEntryName>>(response);
+            return data;
+        }
     }
 }

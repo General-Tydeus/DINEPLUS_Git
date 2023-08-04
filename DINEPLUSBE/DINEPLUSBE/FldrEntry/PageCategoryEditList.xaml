@@ -37,12 +37,27 @@
                                         <Label x:Name="lblCatCode" Grid.Column="0" Text="{Binding CatCode}" IsVisible="False" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
                                         <Label x:Name="lblCatDesc" Grid.Column="0" Text="{Binding CatDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Red"/>
                                     </Grid>
+                                    
+                                    
                                 </Frame>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-         </StackLayout>
+
+            <Grid Padding="5" BackgroundColor="DodgerBlue" VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                     <Button x:Name="btnRetMain" Text="Return to Main Menu" Clicked="btnRetMain_Clicked" VerticalOptions="EndAndExpand"
+                           Grid.Row="0" Grid.Column="0" BackgroundColor="DodgerBlue" BorderColor="White" BorderWidth="1" TextColor="White"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

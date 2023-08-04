@@ -22,13 +22,15 @@ namespace DINEPLUSBE.FldrEntry
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageNameEdit : ContentPage
     {
-        private string pristrControlNo;
+        private string pristrControlNo, pristrCustName;
+        private bool priboolActive;
         private string pristrTogglefire = "1";//1=toggle not fire, 2=toggle fire
-        private string pristrCustName;
-        public PageNameEdit(string strHeadControlNo)
+        public PageNameEdit(string strHeadControlNo, string strHeadCustName, bool boolHeadActive)
         {
             InitializeComponent();
             pristrControlNo = strHeadControlNo;
+            pristrCustName = strHeadCustName;
+            priboolActive = boolHeadActive;
             SWTActive.Toggled += SWTActive_Toggled;
             SWTActive.IsEnabled = true;
         }
@@ -60,14 +62,14 @@ namespace DINEPLUSBE.FldrEntry
         {
             try
             {
-               
-                var varNames = await new ClsList().GetName();
-                foreach (var VL in varNames)
-                {
-                    pristrCustName = VL.CustName;
-                    lblEntCustName.Text = $"{VL.CustName.ToString()} >>";
-                    SWTActive.IsToggled = VL.Active;
-                }
+
+                //var varNames = await new ClsList().GetName();
+                //foreach (var VL in varNames)
+                //{
+             //   pristrCustName = VL.CustName;
+                lblEntCustName.Text = $"{pristrCustName} >>";
+                SWTActive.IsToggled = priboolActive;
+                //}
                 pristrTogglefire = "2";
             }
             catch (Exception)
@@ -78,24 +80,7 @@ namespace DINEPLUSBE.FldrEntry
 
       
        
-        private async void BtnRetMain_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageMainMenu());
-            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-            foreach (var page in pageList)
-                Navigation.RemovePage(page);
-        }
-
-        private async void BtnContinueEP_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageNameEditList());
-            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-            foreach (var page in pageList)
-                Navigation.RemovePage(page);
-        }
-
+        
         private async void BtnCustName_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new PopupEditName(pristrControlNo, pristrCustName), true);

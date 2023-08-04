@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrPurchases.PagePDAddQty" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DodgerBlue">
+            <Grid Padding="5" BackgroundColor="DodgerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblStockNumber" IsVisible="False"/>
+                <Label x:Name="lblProductDesc" Grid.Row="0" Grid.Column="0"
+                       TextColor="Red" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start"/>
+            </Grid>
+
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblQty" Grid.Row="0" Grid.Column="0" Text="Quantity" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
+                <Entry x:Name="txtQty" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                       Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged"/>
+
+                <Label x:Name="lblUM" Grid.Row="1" Grid.Column="0" Text="UM" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
+                <Label x:Name="lblEntUM" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                        FontSize="Large" IsEnabled="False"/>
+
+                <Label x:Name="lblUnitCost" Grid.Row="2" Grid.Column="0" Text="Unit Cost" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
+                <Entry x:Name="txtUnitCost" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                       Keyboard="Numeric" FontSize="Large" TextChanged="txtUnitCost_TextChanged"/>
+
+                <Label x:Name="lblTotal" Grid.Row="3" Grid.Column="0" Text="Total" HorizontalTextAlignment="Start" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>
+                <Label x:Name="lblEntTotal" Grid.Row="3" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>
+            </Grid>
+                    <Button x:Name="btnPost" Grid.Row="0"  Grid.Column="1"  BackgroundColor="DodgerBlue" Text="Add to Shelf" TextColor="White" BorderColor="White" BorderWidth="1"
+                        BorderRadius="20" ContentLayout="Top, 10" IsEnabled="True" VerticalOptions="EndAndExpand" Clicked="BtnPost_Clicked">
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource" iOS="cube.ico" Android="cart1.ico"/>
+                        </Button.Image>
+                    </Button>
+                </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

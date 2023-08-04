@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrModel;
+using DINEPLUSBE.FldrControlPanel;
 
 namespace DINEPLUSBE.FldrEntry
 {
@@ -59,5 +60,13 @@ namespace DINEPLUSBE.FldrEntry
             LVCategoryList.ItemsSource = ModeltblCategory1.Where(x => x.CatDesc.ToLower().Contains(e.NewTextValue)).ToList();
         }
 
+        private async void btnRetMain_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageMainMenu());
+            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
+            foreach (var page in pageList)
+                Navigation.RemovePage(page);
+        }
     }
 }
