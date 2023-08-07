@@ -68,11 +68,11 @@ namespace DINEPLUSWEBAPI.Controllers
                         mycommand.Parameters.Add("_Reference", SqlDbType.VarChar).Value = ModeltblMain11.Reference;
                         mycommand.Parameters.Add("_ControlNo", SqlDbType.VarChar).Value = ModeltblMain11.ControlNo;
                         mycommand.Parameters.Add("_Remarks", SqlDbType.VarChar).Value = ModeltblMain11.Remarks;
-                        mycommand.Parameters.Add("_CashReceived", SqlDbType.VarChar).Value = ModeltblMain11.CashReceived;
+                        mycommand.Parameters.Add("_CashReceived", SqlDbType.Money).Value = ModeltblMain11.CashReceived;
                         mycommand.Parameters.Add("_Serve", SqlDbType.Bit).Value = ModeltblMain11.Serve;
                         mycommand.Parameters.Add("_CNCode", SqlDbType.VarChar).Value = ModeltblMain11.CNCode;
-                        mycommand.Parameters.Add("_TableCode", SqlDbType.VarChar).Value = ModeltblMain11.TableCode;
-                        mycommand.Parameters.Add("_CAmount", SqlDbType.VarChar).Value = ModeltblMain11.CAmount;
+                        mycommand.Parameters.Add("_TableCode", SqlDbType.Char).Value = ModeltblMain11.TableCode;
+                        mycommand.Parameters.Add("_CAmount", SqlDbType.Money).Value = ModeltblMain11.CAmount;
 
                         mycommand.ExecuteNonQuery();
 

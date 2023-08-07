@@ -32,11 +32,11 @@ namespace DINEPLUS.FldrMainMenu
             Instance = this;
 
         }
+
         protected async override void OnAppearing()
         {
             var varlist = await new ClsListEntry().GetProductList();
 
-            //await DisplayAlert(" ","   ", varlist.Count.ToString());
             ClMenu.ItemsSource = varlist;
         }
 

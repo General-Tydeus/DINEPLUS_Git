@@ -80,7 +80,9 @@ namespace DINEPLUS.FldrPopup
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);
                 string strresult = await result.Content.ReadAsStringAsync();
-                if (result.IsSuccessStatusCode)
+               // await DisplayAlert("Error", strresult, "OK");
+
+                if (strresult == "1")
                 {
                     var clientGet = new HttpClient();
                     clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Various/GetDoorMessage/?strWAPIVoucher=CS");
@@ -91,21 +93,9 @@ namespace DINEPLUS.FldrPopup
                     {
                         PagePAYO.Instance.listOrders.Clear();
                         PagePAYO.Instance.LoadExp();
-                        //await Navigation.PopAsync();
-                        //for (var counter = 1; counter < 2; counter++)
-                        //{
-                        //    Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-                        //}
-                        //int pageCount = Navigation.NavigationStack.Count;
-                        //await DisplayAlert("Navigation Stack Count", $"Number of pages in the stack: {pageCount}", "OK");
-
-                        //await Navigation.PushAsync(new PagePAYO());
-                        //PageMainMenu.Instance.CurrentPage = PageMainMenu.Instance.Children[1];
+                        //Navigation.RemovePage(this);
                         //Navigation.RemovePage(Navigation.NavigationStack[1]);
-                        //await Navigation.PopToRootAsync();
-                        //await Navigation.PopAsync();
-                        PageMainMenu.Instance.CurrentPage = PageMainMenu.Instance.Children[1];
-                        //await Navigation.PushAsync(new PageMainMenu());
+                        await Navigation.PopAsync();
                         await PopupNavigation.Instance.PopAsync();
 
                         //clrPages();
@@ -144,7 +134,7 @@ namespace DINEPLUS.FldrPopup
                 TDate = DateTime.Now,
                 DocNum = lblDocNum.Text,
                 Reference = txtRef.Text,
-                ControlNo = "12345678",
+                ControlNo = "123",
                 Remarks = txtRemarks.Text,
                 CNCode = PageLogin.glbltxtCNCode,
                 CashReceived = double.Parse(totalOrd),

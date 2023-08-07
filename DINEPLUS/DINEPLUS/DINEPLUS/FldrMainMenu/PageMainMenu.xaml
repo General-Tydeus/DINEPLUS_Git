@@ -1,15 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:local="clr-namespace:DINEPLUS.FldrMainMenu"
                     xmlns:pages="clr-namespace:DINEPLUS.FldrMainMenu"
                     x:Class="DINEPLUS.FldrMainMenu.PageMainMenu"
                     NavigationPage.HasNavigationBar="False"
-                    BarBackgroundColor="Black"
-                    BarTextColor="White"
-                    CurrentPageChanged="TabbedPage_CurrentPageChanged"
+                    xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
                     >
-    <TabbedPage.Children>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Padding="10">
+            <Label Text="Home" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+
+        <!-- Buttons -->
+        <!--<Grid Grid.Row="1" BackgroundColor="LightBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                x:Name="btnPayo"
+                Text="Pay as you Order"
+                BackgroundColor="LightBlue"
+                Clicked="btnPayo_Clicked"
+                />
+            <Button
+                x:Name="btnSO"
+                Text="Sales Order"  
+                BackgroundColor="LightBlue" 
+                Grid.Column="1" 
+                Clicked="btnSO_Clicked"
+                />
+        </Grid>-->
+        <nav:PageButtons Grid.Row="1" />
+
+    </Grid>
+
+    <!--<TabbedPage.Children>
         <ContentPage Title="HOME">
             <StackLayout>
                 <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
@@ -25,7 +60,7 @@
                 <pages:PageSO />
             </x:Arguments>
         </NavigationPage>
-    </TabbedPage.Children>
+    </TabbedPage.Children>-->
 
     <!--<NavigationPage Title="PAYO">
         <x:Arguments>
@@ -47,4 +82,4 @@
         </ContentPage>
     </TabbedPage.Children>-->
 
-</TabbedPage>
+</ContentPage>
