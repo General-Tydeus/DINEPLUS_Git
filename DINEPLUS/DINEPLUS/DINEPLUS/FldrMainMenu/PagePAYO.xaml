@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Pay as you Order"
              NavigationPage.HasNavigationBar="False"
+                    xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
+             
              x:Class="DINEPLUS.FldrMainMenu.PagePAYO">
     
     <ContentPage.Content>
-        <StackLayout    
-            BackgroundColor="LightSkyBlue"
-            >
-            <Grid>
+        <StackLayout BackgroundColor="White">
+            <Grid BackgroundColor="LightBlue">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="4*" />
@@ -35,7 +35,7 @@
                         Grid.Row="0"
                         Grid.Column="3"
                         Aspect="AspectFit"
-                        BackgroundColor="LightSkyBlue"
+                        BackgroundColor="LightBlue"
                         HeightRequest="50"
                         WidthRequest="50"
                         Clicked="btnCart_Clicked"
@@ -52,66 +52,6 @@
                         VerticalOptions="Start" 
                         HorizontalOptions="End"/>
             </Grid>
-            <!--<StackLayout 
-            Orientation="Horizontal" 
-            Margin="0,10,0,0">
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Start"
-                    Text="Menu"
-                    x:Name="focusme"
-                    TextColor="Black"
-                    VerticalOptions="Start"/>
-                <ImageButton x:Name="btnCart"
-                             Source="cartwhite.png"
-                             Aspect="Fill"
-                             HorizontalOptions="EndAndExpand"
-                             HeightRequest="50"
-                             WidthRequest="50"
-                             VerticalOptions="Center"
-                             BackgroundColor="LightSkyBlue"
-                             Clicked="btnCart_Clicked"
-                    />
-                <Label x:Name="lblCartOrder"
-                        FontAttributes="Bold"
-                        FontSize="Large"
-                        HorizontalTextAlignment="Center"
-                        TextColor="Red"
-                        Text="0"                        
-                        VerticalOptions="Center" 
-                        HorizontalOptions="EndAndExpand"
-                    />
-            </StackLayout>-->
-            <!--<Label
-                FontAttributes="Bold"
-                FontSize="30"
-                HorizontalOptions="CenterAndExpand"
-                Text="Menu"
-                x:Name="focusme"
-                TextColor="Black"
-                VerticalOptions="Start"/>-->
-            <!--<BoxView Color="Black" HeightRequest="1"/>-->
-
-            <!--<Grid BackgroundColor="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="20" Text="Product" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
-                <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" FontSize="20" Text="UM" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
-                <Label Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" FontSize="20" Text="Price" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
-               
-
-            </Grid>
-            <BoxView Color="Black" HeightRequest="1"/>-->
-
             <CollectionView 
                 x:Name="ClMenu" 
                 x:FieldModifier="Public"
@@ -158,7 +98,7 @@
                                  />
                             <Label
                                 FontAttributes="Bold"
-                                TextColor="Black"
+                                TextColor="Red"
                                 VerticalOptions="Start"
                                 Grid.Column="1"
                                 Grid.Row="1">
@@ -192,6 +132,7 @@
                 </CollectionView.ItemTemplate>
                 
             </CollectionView>
+            <nav:PageButtons Grid.Row="1" />
 
         </StackLayout>
     </ContentPage.Content>

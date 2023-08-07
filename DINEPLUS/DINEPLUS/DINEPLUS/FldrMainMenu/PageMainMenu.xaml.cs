@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -6,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace DINEPLUS.FldrMainMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageMainMenu : Xamarin.Forms.TabbedPage
+    public partial class PageMainMenu : ContentPage
     {
 
         public static PageMainMenu Instance;
@@ -15,16 +16,17 @@ namespace DINEPLUS.FldrMainMenu
         {
             Instance = this;
             InitializeComponent();
-            On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            //On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
 
-
-        private void TabbedPage_CurrentPageChanged(object sender, EventArgs e)
+        private async void btnPayo_Clicked(object sender, EventArgs e)
         {
-            var i = this.Children.IndexOf(this.CurrentPage);
-            //DisplayAlert("", i.ToString(), "ok");
+            await Navigation.PushAsync(new PagePAYO());
         }
 
-
+        private async void btnSO_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageSO());
+        }
     }
 }

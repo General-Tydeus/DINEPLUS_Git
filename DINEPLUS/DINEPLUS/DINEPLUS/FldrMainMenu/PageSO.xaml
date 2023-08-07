@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
+             xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
              x:Class="DINEPLUS.FldrMainMenu.PageSO">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
@@ -86,6 +87,7 @@
 
 
 
+            <nav:PageButtons Grid.Row="1" />
 
 
         </StackLayout>

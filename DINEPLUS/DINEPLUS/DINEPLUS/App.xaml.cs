@@ -1,4 +1,5 @@
-﻿using DINEPLUS.FldrMainMenu;
+﻿using DINEPLUS.FldrClass;
+using DINEPLUS.FldrMainMenu;
 using DINEPLUS.FldrServices;
 using System;
 using System.IO;
