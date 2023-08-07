@@ -129,6 +129,8 @@ namespace DINEPLUS.FldrPopup
             }
             return new ModeltblMain1()
             {
+                ModelSubtblMain2 = SavetblMain2(),
+
                 Voucher = "CS",
                 UserCode = PageLogin.glbltxtUserCode,
                 TDate = DateTime.Now,
@@ -139,8 +141,9 @@ namespace DINEPLUS.FldrPopup
                 CNCode = PageLogin.glbltxtCNCode,
                 CashReceived = double.Parse(totalOrd),
                 Serve = true,
+                TableCode = "00",
+                CAmount = 0,
 
-                ModelSubtblMain2 = SavetblMain2()
             };
         }
         public List<ModeltblMain2> SavetblMain2()

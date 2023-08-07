@@ -6,7 +6,7 @@
                     xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
              
              x:Class="DINEPLUS.FldrMainMenu.PagePAYO">
-    
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Grid BackgroundColor="LightBlue">
@@ -24,6 +24,7 @@
                     FontAttributes="Bold"
                     FontSize="30"
                     Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Text="Menu"
                     x:Name="focusme"
                     TextColor="Black"
@@ -56,81 +57,82 @@
                 x:Name="ClMenu" 
                 x:FieldModifier="Public"
                 SelectionMode="Single"
-                ItemsLayout="VerticalList"
+                ItemsLayout="VerticalGrid, 2"
                 SelectionChanged ="ClMenu_SelectionChanged"
                 BackgroundColor="White"
                 >
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10" RowSpacing="10" ColumnSpacing="10" BackgroundColor="white">
+                        <Frame
+                            Padding="3"
+                            CornerRadius="20"
+                            BorderColor="WhiteSmoke"
+                         
+                            >
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <!--<RowDefinition Height="1*" />-->
-                            </Grid.RowDefinitions>
+                            <Grid Padding="10" Margin="15, 20, 15, 15" RowSpacing="0" ColumnSpacing="0" BackgroundColor="white">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <!--<ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="3*" />-->
-                            </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
 
-                            <!--<BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="4" />-->
-                            <Image
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--<BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="4" />-->
+
+                                <Image
                                 HeightRequest="60"
-                                HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Start"
                                 Aspect="AspectFill"
                                 WidthRequest="66"
+                                Grid.Column="1"
                                 Grid.RowSpan="2"
                                 Source="rice.jpg"
                                 />
-                            <Label
-                                Text="{Binding ProductDesc}"
-                                FontAttributes="Bold"
-                                TextColor="Black"
-                                VerticalOptions="End"
-                                FontSize="20"
-                                Grid.Column="1"
-                                 />
-                            <Label
-                                FontAttributes="Bold"
-                                TextColor="Red"
-                                VerticalOptions="Start"
-                                Grid.Column="1"
-                                Grid.Row="1">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}" />
-                                        <Span Text=" per " />
-                                        <Span Text="{Binding UnitMeasure}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <!--<Label
-                                Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}"
-                                FontAttributes="Bold"
-                                TextColor="Black"
-                                VerticalOptions="Start"
-                                Grid.Column="1"
-                                Grid.Row="1"
-                                />
-                            <Label
-                                HorizontalTextAlignment="End"
-                                Text="{Binding UnitMeasure}"
-                                FontAttributes="Bold"
-                                TextColor="Black"
-                                VerticalOptions="Center"
-                                Grid.Column="3"
-                            />-->
-                        </Grid>
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    TextColor="Red"
+                                    VerticalOptions="End"
+                                    HorizontalOptions="Center"
+                                    Grid.Column="1"
+                                    Grid.Row="0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ProductDesc}" TextColor="Black" FontSize="20" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    FontAttributes="Bold"
+                                    TextColor="Red"
+                                    VerticalOptions="End"
+                                    HorizontalOptions="Center"
+                                    Margin="0,0,0,-20"
+                                    Grid.Column="1"
+                                    Grid.Row="0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}" />
+                                            <Span Text=" per " />
+                                            <Span Text="{Binding UnitMeasure}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
 
                 </CollectionView.ItemTemplate>
-                
+
             </CollectionView>
             <nav:PageButtons Grid.Row="1" />
 
