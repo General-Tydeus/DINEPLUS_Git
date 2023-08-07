@@ -19,8 +19,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="FldrAdjustment\PageASName.xaml.cs">
+      <DependentUpon>PageASName.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrAdjustment\PageASProductSearchList.xaml.cs">
+      <DependentUpon>PageASProductSearchList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrAdjustment\PageASAddQty.xaml.cs">
+      <DependentUpon>PageASAddQty.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrAdjustment\PageASCart.xaml.cs">
+      <DependentUpon>PageASCart.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrControlPanel\PageEntryMenu.xaml.cs">
       <DependentUpon>PageEntryMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrControlPanel\PageReportMenu.xaml.cs">
+      <DependentUpon>PageReportMenu.xaml</DependentUpon>
     </Compile>
     <Compile Update="FldrEntry\PageNameAdd.xaml.cs">
       <DependentUpon>PageNameAdd.xaml</DependentUpon>
@@ -82,10 +97,28 @@
     <Compile Update="FldrPurchases\PagePDCart.xaml.cs">
       <DependentUpon>PagePDCart.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrReports\PageRptInvSum.xaml.cs">
+      <DependentUpon>PageRptInvSum.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="FldrAdjustment\PageASName.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrAdjustment\PageASProductSearchList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrAdjustment\PageASAddQty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrAdjustment\PageASCart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrControlPanel\PageEntryMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrControlPanel\PageReportMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrControlPanel\PageMainMenu.xaml">
@@ -146,6 +179,12 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrPurchases\PagePDCart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrReports\PageAsOfDate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrReports\PageRptInvSum.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

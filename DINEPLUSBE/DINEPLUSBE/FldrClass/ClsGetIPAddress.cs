@@ -8,8 +8,8 @@ namespace DINEPLUSBE.FldrClass
     {
         public string GetIPAddress()
         {
-            return "http://192.168.1.36:147";
-
+            //return "http://192.168.1.24:147";
+            return "https://dinepluswebapi20230807055506.azurewebsites.net";
         }
     }
 }

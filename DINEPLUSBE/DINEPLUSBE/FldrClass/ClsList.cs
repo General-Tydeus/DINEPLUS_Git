@@ -49,5 +49,15 @@ namespace DINEPLUSBE.FldrClass
             var data = JsonConvert.DeserializeObject<List<ModeltblEntryName>>(response);
             return data;
         }
+
+        public async Task<List<ModelInvSum>> GetInvSum(string strAsOfDate)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetInventorySummary?DTURIAsOfDate={strAsOfDate}");
+            var data = JsonConvert.DeserializeObject<List<ModelInvSum>>(response);
+            return data;
+        }
+
+        
     }
 }

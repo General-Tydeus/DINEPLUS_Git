@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrReports.PageAsOfDate">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DodgerBlue">
+            <Label Text="DATE TO OPEN" TextColor="Red" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+            <Grid
+                     Padding="10"
+                     HorizontalOptions="Center"
+                     RowSpacing="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="15*" />
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="DPAsOfDate" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalOptions="CenterAndExpand" TextColor="Red" x:FieldModifier="public"/>
+                <Button
+                            x:Name="BtnOpen"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnOpen_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Open"
+                            TextColor="White">
+                    <Button.Image>
+                        <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                    </Button.Image>
+                </Button>
+
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

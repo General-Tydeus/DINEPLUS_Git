@@ -13,15 +13,15 @@ using DINEPLUSBE.FldrModel;
 using DINEPLUSBE.FldrControlPanel;
 using DINEPLUSBE.FldrPurchases;
 
-namespace DINEPLUSBE.FldrPurchases
+namespace DINEPLUSBE.FldrAdjustment
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PagePDName : ContentPage
+	public partial class PageASName : ContentPage
 	{
-        public static PagePDName Instance;
+        public static PageASName Instance;
         public string pubstrControlNo;
 
-        public PagePDName()
+        public PageASName()
 		{
 			InitializeComponent ();
             Instance = this;
@@ -43,7 +43,7 @@ namespace DINEPLUSBE.FldrPurchases
                     pubstrControlNo = (e.SelectedItem as ModeltblEntryName)?.ControlNo.ToString();
                     if (e.SelectedItem != null)
                     {
-                        await Navigation.PushAsync(new PagePDProductSearchList()
+                        await Navigation.PushAsync(new PageASProductSearchList()
                         {
                             BindingContext = e.SelectedItem as ModeltblEntryName
                         });
@@ -80,7 +80,7 @@ namespace DINEPLUSBE.FldrPurchases
         {
             try
             {
-                lblEntDocNum.Text = await new ClsAutoNumber().GetVoucherAutoNum("PD", "01");
+                lblEntDocNum.Text = await new ClsAutoNumber().GetVoucherAutoNum("AS", "01");
 
             }
             catch (Exception)

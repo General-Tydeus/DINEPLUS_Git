@@ -12,15 +12,15 @@ using System.Net;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrModel;
 
-namespace DINEPLUSBE.FldrPurchases
+namespace DINEPLUSBE.FldrAdjustment
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PagePDProductSearchList : ContentPage
+	public partial class PageASProductSearchList : ContentPage
 	{
-        public static PagePDProductSearchList Instance;
-        public List<ModeltblMain2PD> ModeltblMain2PDList = new List<ModeltblMain2PD>();
+        public static PageASProductSearchList Instance;
+        public List<ModeltblMain2AS> ModeltblMain2ASList = new List<ModeltblMain2AS>();
 
-        public PagePDProductSearchList()
+        public PageASProductSearchList()
         {
             InitializeComponent();
             Instance = this;
@@ -41,7 +41,7 @@ namespace DINEPLUSBE.FldrPurchases
                 string strISSellingPrice = (e.SelectedItem as ModeltblProducts)?.SellingPrice.ToString("N2");
                 string strISUCost = (e.SelectedItem as ModeltblProducts)?.UCost.ToString("N2");
 
-                await Navigation.PushAsync(new PagePDAddQty(strISProductCode, strISProductDesc, strISUnitM, strISSellingPrice, strISUCost));
+                await Navigation.PushAsync(new PageASAddQty(strISProductCode, strISProductDesc, strISUnitM, strISSellingPrice, strISUCost));
             }
             catch (Exception)
             {
@@ -72,10 +72,9 @@ namespace DINEPLUSBE.FldrPurchases
             }
             else
             {
-                await Navigation.PushAsync(new PagePDCart());
+                await Navigation.PushAsync(new PageASCart());
             }
         }
-        
         private async void LoadProductList()
         {
             try
@@ -91,11 +90,11 @@ namespace DINEPLUSBE.FldrPurchases
         protected override void OnAppearing()
         {
           
-           lblEntTotalItem.Text = ModeltblMain2PDList.Count.ToString();
+           lblEntTotalItem.Text = ModeltblMain2ASList.Count.ToString();
             double dblTotalAmount = 0;
-            foreach (var varlooplist in ModeltblMain2PDList)
+            foreach (var varlooplist in ModeltblMain2ASList)
             {
-                dblTotalAmount = dblTotalAmount + (varlooplist.PIn * varlooplist.UCost);
+                dblTotalAmount = dblTotalAmount + ((varlooplist.PIn- varlooplist.POut) * varlooplist.UCost);
             }
             lblEntTotalAmt.Text = dblTotalAmount.ToString("N2");
         }

@@ -58,6 +58,7 @@ namespace DINEPLUSBE.FldrLoginPage
                 glbltxtGroupCode = varUserDetails.GroupCode;
                 glbltxtUserName = varUserDetails.UserName;
                 glbltxtCNCode = varUserDetails.CNCode;
+
                 OpenMainMenu();
 
             }

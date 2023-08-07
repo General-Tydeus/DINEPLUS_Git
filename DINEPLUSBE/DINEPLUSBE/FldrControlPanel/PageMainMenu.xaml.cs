@@ -1,7 +1,10 @@
 ﻿
+using DINEPLUSBE.FldrAdjustment;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrEntry;
 using DINEPLUSBE.FldrLoginPage;
+using DINEPLUSBE.FldrPurchases;
+using DINEPLUSBE.FldrReports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,7 +105,7 @@ namespace DINEPLUSBE.FldrControlPanel
 
         private async void BtnReports_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new PageMainReports());
+            await Navigation.PushAsync(new PageReportMenu());
         }
 
         private async void BtnSetup_Clicked(object sender, EventArgs e)
@@ -115,9 +118,9 @@ namespace DINEPLUSBE.FldrControlPanel
             await Navigation.PushAsync(new PagePDName());
         }
 
-        private void BtnAdjustment_Clicked(object sender, EventArgs e)
+        private async void BtnAdjustment_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PageASName());
         }
 
         private async void BtnEntry_Clicked(object sender, EventArgs e)

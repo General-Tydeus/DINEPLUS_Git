@@ -22,13 +22,26 @@ namespace DINEPLUSBE.FldrModel
         public int RowNum { get; set; }
         public double Total { get; set; }
     }
+
+    public class ModeltblMain2AS
+    {
+        public string StockNumber { get; set; }
+        public string ProductDesc { get; set; }
+        public double PIn { get; set; }
+        public double POut { get; set; }
+        public double UCost { get; set; }
+        public int RowNum { get; set; }
+        public double Total { get; set; }
+        public double Qty { get; set; }
+    }
+
     public class ModeltblMain1
     {
         public string IC { get; set; }
         public string Voucher { get; set; }
         public string DocNum { get; set; }
         public string UserCode { get; set; }
-        public DateTime TDate { get; set; }
+        public string TDate { get; set; }
         public string Reference { get; set; }
         public string ControlNo { get; set; }
         public string Remarks { get; set; }
@@ -37,6 +50,7 @@ namespace DINEPLUSBE.FldrModel
         public double CashReceived { get; set; }
         public bool Serve { get; set; }
         public string TableCode { get; set; }
+        public double CAmount { get; set; }
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }
     }
 
@@ -51,5 +65,7 @@ namespace DINEPLUSBE.FldrModel
         public double Discount { get; set; }
         public int RowNum { get; set; }
     }
+
+
 }
 

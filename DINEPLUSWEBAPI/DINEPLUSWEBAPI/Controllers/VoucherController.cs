@@ -57,8 +57,8 @@ namespace DINEPLUSWEBAPI.Controllers
                         myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
                         myconnection.Open();
                         ClsGetAcctVoucher1.ClsOneTheDoor(ModeltblMain11.Voucher);
-                        string SqlStatement = "INSERT INTO tblMain1 (IC, DocNum, Voucher, UserCode, TDate, Reference, ControlNo, Remarks, CashReceived, Serve, CNCode, TableCode, CAmount)" +
-                                                "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount)";
+                        string SqlStatement = "INSERT INTO tblMain1 (IC, DocNum, Voucher, UserCode, TDate, Reference, ControlNo, Remarks, CashReceived, Serve, CNCode, TableCode, CAmount, DE)" +
+                                                "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount, @_DE)";
                         mycommand = new SqlCommand(SqlStatement, myconnection);
                         mycommand.Parameters.Add("_IC", SqlDbType.VarChar).Value = ModeltblMain11.Voucher + ModeltblMain11.UserCode + ModeltblMain11.CNCode;
                         mycommand.Parameters.Add("_Voucher", SqlDbType.VarChar).Value = ModeltblMain11.Voucher;
@@ -68,14 +68,13 @@ namespace DINEPLUSWEBAPI.Controllers
                         mycommand.Parameters.Add("_Reference", SqlDbType.VarChar).Value = ModeltblMain11.Reference;
                         mycommand.Parameters.Add("_ControlNo", SqlDbType.VarChar).Value = ModeltblMain11.ControlNo;
                         mycommand.Parameters.Add("_Remarks", SqlDbType.VarChar).Value = ModeltblMain11.Remarks;
-                        mycommand.Parameters.Add("_CashReceived", SqlDbType.VarChar).Value = ModeltblMain11.CashReceived;
+                        mycommand.Parameters.Add("_CashReceived", SqlDbType.Money).Value = ModeltblMain11.CashReceived;
                         mycommand.Parameters.Add("_Serve", SqlDbType.Bit).Value = ModeltblMain11.Serve;
                         mycommand.Parameters.Add("_CNCode", SqlDbType.VarChar).Value = ModeltblMain11.CNCode;
                         mycommand.Parameters.Add("_TableCode", SqlDbType.VarChar).Value = ModeltblMain11.TableCode;
-                        mycommand.Parameters.Add("_CAmount", SqlDbType.VarChar).Value = ModeltblMain11.CAmount;
-
+                        mycommand.Parameters.Add("_CAmount", SqlDbType.Money).Value = ModeltblMain11.CAmount;
+                        mycommand.Parameters.Add("_DE", SqlDbType.DateTime).Value = new ClsDateandTime().plsLocalZoneDateTimeNow();
                         mycommand.ExecuteNonQuery();
-
 
                         //if (ModeltblMain11.ModelSubtblMain3 != null)
                         //{

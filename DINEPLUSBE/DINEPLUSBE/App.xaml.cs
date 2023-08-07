@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using System.IO;
 using DINEPLUSBE.FldrServices;
 using DINEPLUSBE.FldrControlPanel;
+using DINEPLUSBE.FldrLoginPage;
 
 namespace DINEPLUSBE
 {
@@ -15,7 +16,8 @@ namespace DINEPLUSBE
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new PageMainMenu());
+            //MainPage = new NavigationPage(new PageMainMenu());
+            MainPage = new NavigationPage(new PageLogin());
         }
         public static ClsServeMain ClsServeMain
         {
