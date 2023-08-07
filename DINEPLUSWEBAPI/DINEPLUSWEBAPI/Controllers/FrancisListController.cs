@@ -149,5 +149,40 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
             return ModeltblEntryNameMSSQL;
         }
+
+        [HttpGet]
+        [Route("API/WEBAPI/Report/GetInventorySummary")]
+        public IEnumerable<ModelInvSum> GetInvSummary(DateTime DTURIAsOfDate)
+        {
+            string strAsOfDate = DTURIAsOfDate.ToString("MM/dd/yyyy");
+            List<ModelInvSum> ModelInvSumMSSQL = new List<ModelInvSum>();
+            string sqlStatement = $"SELECT StockNumber, ProductDesc, SUM(AlsQty) AS AlsQty, SUM(AlsTotalCost) AS AlsTotalCost" +
+                $" FROM ViewInventory WHERE TDate<='{strAsOfDate}' GROUP BY ProductDesc, StockNumber ORDER BY ProductDesc";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModelInvSum ModelInvSum1 = new ModelInvSum
+                {
+                    StockNumber = dr["StockNumber"].ToString(),
+                    ProductDesc = dr["ProductDesc"].ToString(),
+                    AlsQty=double.Parse(dr["AlsQty"].ToString()),
+                    AlsTotalCost=double.Parse(dr["AlsTotalCost"].ToString()),
+                };
+                ModelInvSumMSSQL.Add(ModelInvSum1);
+            }
+            myconnection.Close();
+            return ModelInvSumMSSQL;
+        }
+
+        public class ModelInvSum
+        {
+            public string StockNumber { get; set; }
+            public string ProductDesc { get; set; }
+            public double AlsQty { get; set; }
+            public double AlsTotalCost { get; set; }
+        }
     }
 }

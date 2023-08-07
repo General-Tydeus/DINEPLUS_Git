@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DINEPLUSBE.FldrPurchases
+namespace DINEPLUSBE.FldrAdjustment
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PagePDAddQty : ContentPage
+    public partial class PageASAddQty : ContentPage
     {
         private string strHeadStockNumber, strHeadSProductDesc, strHeadUnitM, strHeadSellingPrice, strHeadUCost;
         private int priintRowNum = 1;
 
 
-        public PagePDAddQty(string strInitStockNumber, string strInitSProductDesc, string strInitUnitM, string strInitSellingPrice, string strInitUCost)
+        public PageASAddQty(string strInitStockNumber, string strInitSProductDesc, string strInitUnitM, string strInitSellingPrice, string strInitUCost)
         {
             InitializeComponent();
             strHeadStockNumber = strInitStockNumber;
@@ -25,7 +25,8 @@ namespace DINEPLUSBE.FldrPurchases
             strHeadUnitM = strInitUnitM;
             strHeadSellingPrice = strInitSellingPrice;
             strHeadUCost = strInitUCost;
-            txtQty.Text = "1.00";
+            txtPIn.Text = "1.00";
+            txtPOut.Text = "0.00";
             lblEntTotal.Text = "0.00";
             txtUnitCost.Text = double.Parse(strHeadUCost).ToString("N2");
 
@@ -59,38 +60,40 @@ namespace DINEPLUSBE.FldrPurchases
         }
         private async void BtnPost_Clicked(object sender, EventArgs e)
         {
-            if (double.Parse(txtQty.Text) == 0)
+            if (double.Parse(txtPIn.Text)+double.Parse(txtPOut.Text) == 0)
             {
                 await DisplayAlert("Information", "Zero quantity", "OK");
-                txtQty.Focus();
+                txtPIn.Focus();
             }
             else
             {
-                if (PagePDProductSearchList.Instance.ModeltblMain2PDList.Count == 0)
+                if (PageASProductSearchList.Instance.ModeltblMain2ASList.Count == 0)
                 {
                     priintRowNum = 1;
                 }
                 else
                 {
-                    var varTopRowNum = PagePDProductSearchList.Instance.ModeltblMain2PDList.Max(i => i.RowNum);
+                    var varTopRowNum = PageASProductSearchList.Instance.ModeltblMain2ASList.Max(i => i.RowNum);
                     priintRowNum = varTopRowNum + 1;
                 }
-                ModeltblMain2PD ModeltblMain2PD1 = new ModeltblMain2PD()
+                ModeltblMain2AS ModeltblMain2AS1 = new ModeltblMain2AS()
                 {
                     StockNumber = lblStockNumber.Text,
                     ProductDesc = lblProductDesc.Text,
-                    PIn = double.Parse(txtQty.Text),
+                    PIn = double.Parse(txtPIn.Text),
+                    POut = double.Parse(txtPOut.Text),
+                    Qty=double.Parse(txtPIn.Text)-double.Parse(txtPOut.Text),
                     UCost = double.Parse(txtUnitCost.Text),
                     RowNum = priintRowNum,
-                    Total=double.Parse(txtQty.Text)*double.Parse(txtUnitCost.Text),
+                    Total=(double.Parse(txtPIn.Text)-double.Parse(txtPOut.Text))*double.Parse(txtUnitCost.Text),
                 };
-            PagePDProductSearchList.Instance.ModeltblMain2PDList.Add(ModeltblMain2PD1);
+            PageASProductSearchList.Instance.ModeltblMain2ASList.Add(ModeltblMain2AS1);
             await Navigation.PopAsync();
             }
         }
         private string TotalAmt()
         {
-            string strTotal = (double.Parse(txtQty.Text) * double.Parse(txtUnitCost.Text)).ToString("N2");
+            string strTotal = ((double.Parse(txtPIn.Text)-double.Parse(txtPOut.Text)) * double.Parse(txtUnitCost.Text)).ToString("N2");
             return strTotal;
         }
      }

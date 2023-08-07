@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DINEPLUSBE.FldrControlPanel.PageReportMenu"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="DodgerBlue">
+                <Label
+                    x:Name="lblTitle"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="WELCOME TO REPORTS"
+                    TextColor="White" />
+                <StackLayout
+                    BackgroundColor="DodgerBlue"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand">
+
+                    <Grid
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        RowSpacing="8"
+                        VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="15*" />
+                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            x:Name="BtnInventorySum"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnInventorySum_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Inventory Summary"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

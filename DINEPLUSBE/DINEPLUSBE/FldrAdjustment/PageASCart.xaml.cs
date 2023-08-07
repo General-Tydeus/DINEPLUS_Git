@@ -15,13 +15,13 @@ using Xamarin.Forms.Xaml;
 using DINEPLUSBE.FldrLoginPage;
 using DINEPLUSBE.FldrControlPanel;
 
-namespace DINEPLUSBE.FldrPurchases
+namespace DINEPLUSBE.FldrAdjustment
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PagePDCart : ContentPage
+    public partial class PageASCart : ContentPage
     {
         private int selectedIndex;
-        public PagePDCart()
+        public PageASCart()
         {
             InitializeComponent();
             LV1.ItemSelected += LV1_ItemSelected;
@@ -31,8 +31,8 @@ namespace DINEPLUSBE.FldrPurchases
         {
             try
             {
-                ModeltblMain2PD selectedItem = LV1.SelectedItem as ModeltblMain2PD;
-                selectedIndex = PagePDProductSearchList.Instance.ModeltblMain2PDList.IndexOf(selectedItem);
+                ModeltblMain2AS selectedItem = LV1.SelectedItem as ModeltblMain2AS;
+                selectedIndex = PageASProductSearchList.Instance.ModeltblMain2ASList.IndexOf(selectedItem);
                 btnDelete.IsVisible = true;
             }
             catch (Exception)
@@ -45,12 +45,12 @@ namespace DINEPLUSBE.FldrPurchases
         {
             try
             {
-                var ItemInListView = PagePDProductSearchList.Instance.ModeltblMain2PDList;
+                var ItemInListView = PageASProductSearchList.Instance.ModeltblMain2ASList;
                 LV1.ItemsSource = ItemInListView;
                 double dblTotalAmount = 0;
                 foreach (var varlooplist in ItemInListView)
                 {
-                    dblTotalAmount = dblTotalAmount + (varlooplist.PIn * varlooplist.UCost);
+                    dblTotalAmount = dblTotalAmount + ((varlooplist.PIn-varlooplist.POut) * varlooplist.UCost);
                 }
                 lblEntTotalAmt.Text = dblTotalAmount.ToString("N2");
             }
@@ -63,7 +63,6 @@ namespace DINEPLUSBE.FldrPurchases
 
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Information", PagePDName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"), "OK");
             using (HttpClient client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
@@ -120,12 +119,12 @@ namespace DINEPLUSBE.FldrPurchases
         {
             return new ModeltblMain1()
             {
-                Voucher = "PD",
+                Voucher = "AS",
                 UserCode = PageLogin.glbltxtUserCode,
-                TDate = PagePDName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"),
-                Reference = PagePDName.Instance.txtReference.Text,
-                ControlNo = PagePDName.Instance.pubstrControlNo,
-                Remarks = "Purchases",
+                TDate = PageASName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"),
+                Reference = PageASName.Instance.txtReference.Text,
+                ControlNo = PageASName.Instance.pubstrControlNo,
+                Remarks = "Adjustment",
                 Void = true,
                 CNCode = "01",
                 CashReceived = 0,
@@ -140,13 +139,13 @@ namespace DINEPLUSBE.FldrPurchases
         {
             int intRowNum = 1;
             var listofData = new List<ModeltblMain2>();
-            foreach (var varlooplist in PagePDProductSearchList.Instance.ModeltblMain2PDList)
+            foreach (var varlooplist in PageASProductSearchList.Instance.ModeltblMain2ASList)
             {
                 listofData.Add(new ModeltblMain2()
                 {
                     StockNumber = varlooplist.StockNumber,
                     PIn = varlooplist.PIn,
-                    POut = 0,
+                    POut = varlooplist.POut,
                     UP = varlooplist.UCost,
                     Cost = varlooplist.Total,
                     Discount = 0,

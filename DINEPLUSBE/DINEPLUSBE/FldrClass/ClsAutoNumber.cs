@@ -47,5 +47,15 @@ namespace DINEPLUSBE.FldrClass
             string strresultFinal = strresult.Trim('"');
             return strresultFinal;
         }
+
+        public async Task<string> GetVoucherAutoNum(string strVoucher, string strCNCode)
+        {
+            var clientGet = new HttpClient();
+            clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/AutoNumber/GetVoucherAutoNum?strURIVoucher={strVoucher}&strURICNCode={strCNCode}");
+            HttpResponseMessage response = await clientGet.GetAsync("");
+            string strresult = await response.Content.ReadAsStringAsync();
+            string strresultFinal = strresult.Trim('"');
+            return strresultFinal;
+        }
     }
 }
