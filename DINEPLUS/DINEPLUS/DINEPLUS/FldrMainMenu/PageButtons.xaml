@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUS.FldrMainMenu.PageButtons">
+    <ContentView.Content>
+        <Grid BackgroundColor="LightBlue" ColumnSpacing="0" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button 
+                x:Name="btnPayo"
+                Text="Pay as you Order"
+                BackgroundColor="LightBlue"
+                Clicked="btnPayo_Clicked"
+                />
+            <Button
+                x:Name="btnSO"
+                Text="Sales Order"  
+                BackgroundColor="LightBlue" 
+                Grid.Column="1" 
+                Clicked="btnSO_Clicked"
+                />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

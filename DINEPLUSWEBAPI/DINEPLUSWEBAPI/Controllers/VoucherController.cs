@@ -74,6 +74,7 @@ namespace DINEPLUSWEBAPI.Controllers
                         mycommand.Parameters.Add("_TableCode", SqlDbType.VarChar).Value = ModeltblMain11.TableCode;
                         mycommand.Parameters.Add("_CAmount", SqlDbType.Money).Value = ModeltblMain11.CAmount;
                         mycommand.Parameters.Add("_DE", SqlDbType.DateTime).Value = new ClsDateandTime().plsLocalZoneDateTimeNow();
+
                         mycommand.ExecuteNonQuery();
 
                         //if (ModeltblMain11.ModelSubtblMain3 != null)
