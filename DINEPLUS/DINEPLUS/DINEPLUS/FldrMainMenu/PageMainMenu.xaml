@@ -7,79 +7,39 @@
                     NavigationPage.HasNavigationBar="False"
                     xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
                     >
+    <ContentPage.Content>
 
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            <!-- The Grid is wrapped inside a StackLayout -->
+        <StackLayout>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
 
-        <StackLayout Grid.Row="0" Padding="10">
-            <Label Text="Home" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                <StackLayout  
+                    BackgroundColor="White"
+                    Grid.Row="0"
+                    >
+
+                    <Button
+                        x:Name="btnHome"
+                        Text="Home"
+                        HorizontalOptions="CenterAndExpand" 
+                        VerticalOptions="CenterAndExpand"
+                        Padding="250,25,250,25"
+                        />
+                    
+                    
+                </StackLayout>
+
+                <nav:PageButtons 
+                    Grid.Row="1"
+                    />
+            </Grid>
         </StackLayout>
+    </ContentPage.Content>
 
-        <!-- Buttons -->
-        <!--<Grid Grid.Row="1" BackgroundColor="LightBlue">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button 
-                x:Name="btnPayo"
-                Text="Pay as you Order"
-                BackgroundColor="LightBlue"
-                Clicked="btnPayo_Clicked"
-                />
-            <Button
-                x:Name="btnSO"
-                Text="Sales Order"  
-                BackgroundColor="LightBlue" 
-                Grid.Column="1" 
-                Clicked="btnSO_Clicked"
-                />
-        </Grid>-->
-        <nav:PageButtons Grid.Row="1" />
-
-    </Grid>
-
-    <!--<TabbedPage.Children>
-        <ContentPage Title="HOME">
-            <StackLayout>
-                <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-            </StackLayout>
-        </ContentPage>
-        <NavigationPage Title="PAYO">
-            <x:Arguments>
-                <pages:PagePAYO />
-            </x:Arguments>
-        </NavigationPage >
-        <NavigationPage  Title="Sales Order">
-            <x:Arguments>
-                <pages:PageSO />
-            </x:Arguments>
-        </NavigationPage>
-    </TabbedPage.Children>-->
-
-    <!--<NavigationPage Title="PAYO">
-        <x:Arguments>
-            <pages:PagePAYO />
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="SO">
-        <x:Arguments>
-            <pages:PageSO />
-        </x:Arguments>
-    </NavigationPage>
-
-    <TabbedPage.Children>
-        <ContentPage Title="HOME">
-            <StackLayout>
-                <Label Text="Home" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-            </StackLayout>
-        </ContentPage>
-    </TabbedPage.Children>-->
 
 </ContentPage>
