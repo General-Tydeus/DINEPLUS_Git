@@ -11,8 +11,10 @@
         <StackLayout BackgroundColor="White">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="1*" />
                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -27,7 +29,7 @@
                 x:Name="btnPrinter" 
                 Text="Bluetooth Printer"
                 Clicked="btnPrinter_Clicked"
-                Grid.Row="10"
+                Grid.Row="1"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 BackgroundColor="LightBlue" />
@@ -36,14 +38,15 @@
                 x:Name="btnLogout"
                 Text="Log - Out"
                 Clicked="btnLogout_Clicked"
-                Grid.Row="11"
+                Grid.Row="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 BackgroundColor="LightBlue" />
 
-                <StackLayout>
-                    <nav:PageButtons Grid.Row="19" Grid.ColumnSpan="4"/>
-                </StackLayout>
+                <nav:PageButtons 
+                    Grid.Row="11" 
+                    Grid.ColumnSpan="4"/>
+    
 
             </Grid>
 
