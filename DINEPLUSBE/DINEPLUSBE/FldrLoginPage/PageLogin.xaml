@@ -1,104 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DINEPLUSBE.FldrLoginPage.PageLogin"
-             NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="GhostWhite"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="Start">
-                <Label
-                    x:Name="lblTitle"
-                    FontSize="30"
-                    TextColor="#004E92"
-                    FontAttributes="Bold"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="--Welcome User--"
-                    Padding="0,20,0,0"
-                    />
-                
-
-            </StackLayout>
-
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="8*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                    x:Name="lblLog"
-                    FontSize="30"
-                    TextColor="#004E92"
-                    FontAttributes="Bold"
-                    HorizontalOptions="StartAndExpand"
-                    Text="Log in"
-                    Padding="0,20,0,0"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    />
-                    <!--  Place new controls here  -->
-                    <Entry
-                        x:Name="txtUserName"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text=""
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        HorizontalTextAlignment="Center"
-                        Placeholder="User Name" />
-                    <Entry
-                        x:Name="txtPassword"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Text=""
-                        TextColor="Black"
-                        HorizontalTextAlignment="Center"
-                        FontAttributes="Bold"
-                        IsPassword="True"
-                        Placeholder="Password"/>
-                    <Button
-                        x:Name="btnLogin"
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        BackgroundColor="Yellow"
-                        BorderColor="Red"
-                        BorderWidth="2"
-                        CornerRadius="20"
-                        Text="Login"
-                        TextColor="Navy"
-                        FontAttributes="Bold"
-                        Clicked="btnLogin_Clicked"/>
-                    
-                    <StackLayout
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                        <Label
-                        TextColor="Blue"
-                        FontAttributes="Bold"
-                        FontSize="Large"
-                        Text="Remember Password?"
-                        VerticalOptions="Center" />
-                        <CheckBox
-                        x:Name="cbRemember"
-                        VerticalOptions="Center" />
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
+              xmlns:local="clr-namespace:DINEPLUSBE"
+             x:Class="DINEPLUSBE.FldrLoginPage.PageLogin" NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+        <StackLayout VerticalOptions="Start">
+            <Label x:Name="lblTitle"  Text="WELCOME" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+            <Image x:Name="imgLog"  Source="man.ico" HeightRequest="120" WidthRequest="120" Aspect="AspectFit" BackgroundColor="LightBlue" HorizontalOptions="Center"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <StackLayout VerticalOptions="Start">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Place new controls here -->
+                <Entry x:Name="txtLogInName" Grid.Row="1" Grid.Column="1" Placeholder="Login Name" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Entry x:Name="txtPassword" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Password" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Button x:Name="btnLogin" Grid.Row="3" Grid.Column="1" Text="Login" BackgroundColor="DodgerBlue" TextColor="White" BorderColor="White" BorderWidth="1"/>
+                <Button x:Name="btnSignup" Grid.Row="4" Grid.Column="1" Text="Change Password" BackgroundColor="DodgerBlue" TextColor="White" BorderColor="White" BorderWidth="1"/>
+                <Label x:Name="lblRemember" Text="Remember Password" Grid.Row="5" Grid.Column="1" TextColor="White"
+                       VerticalOptions="CenterAndExpand"/>
+                <Switch x:Name="SWRemember" Grid.Row="5" Grid.Column="1"  IsVisible="True" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="End" IsEnabled="True" />
+                </Grid>
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
 </ContentPage>

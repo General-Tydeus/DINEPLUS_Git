@@ -16,8 +16,8 @@ namespace DINEPLUSBE
         {
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new PageMainMenu());
-            MainPage = new NavigationPage(new PageLogin());
+            MainPage = new NavigationPage(new PageMainMenu());
+            //MainPage = new NavigationPage(new PageLogin());
         }
         public static ClsServeMain ClsServeMain
         {

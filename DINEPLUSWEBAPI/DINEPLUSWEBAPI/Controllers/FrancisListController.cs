@@ -177,12 +177,42 @@ namespace DINEPLUSWEBAPI.Controllers
             return ModelInvSumMSSQL;
         }
 
+        [HttpGet]
+        [Route("API/WEBAPI/Entry/GetNameOfUser")]
+        public IEnumerable<ClsModeltblUser> GetNameOfUser(string strURILoginName)
+        {
+            List<ClsModeltblUser> ClsModeltblUserMSSQL = new List<ClsModeltblUser>();
+            string sqlStatement = $"SELECT UserCode, UserName, CNCode FROM tblUser WHERE Active=1 AND UserName='{strURILoginName}'";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ClsModeltblUser ClsModeltblUser1 = new ClsModeltblUser
+                {
+                    UserCode = dr["UserCode"].ToString(),
+                    UserName = dr["UserName"].ToString(),
+                    CNCode=dr["CNCode"].ToString(),
+                };
+                ClsModeltblUserMSSQL.Add(ClsModeltblUser1);
+            }
+            myconnection.Close();
+            return ClsModeltblUserMSSQL;
+        }
         public class ModelInvSum
         {
             public string StockNumber { get; set; }
             public string ProductDesc { get; set; }
             public double AlsQty { get; set; }
             public double AlsTotalCost { get; set; }
+        }
+
+        public class ClsModeltblUser
+        {
+            public string UserCode { get; set; }
+            public string UserName { get; set; }
+            public string CNCode { get; set; }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace DINEPLUSBE.FldrPurchases
     public partial class PagePDCart : ContentPage
     {
         private int selectedIndex;
+        private string pristrUserCode;
         public PagePDCart()
         {
             InitializeComponent();
@@ -41,10 +42,13 @@ namespace DINEPLUSBE.FldrPurchases
             }
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             try
             {
+                var varUserName = await App.ClsServeMain.GetCurrentUser();
+                pristrUserCode = varUserName.UserCode;
+
                 var ItemInListView = PagePDProductSearchList.Instance.ModeltblMain2PDList;
                 LV1.ItemsSource = ItemInListView;
                 double dblTotalAmount = 0;
@@ -57,7 +61,7 @@ namespace DINEPLUSBE.FldrPurchases
 
             catch (Exception)
             {
-                DisplayAlert("Information", "Something is wrong, possible error in connection", "OK");
+                await DisplayAlert("Information", "Something is wrong, possible error in connection", "OK");
             }
         }
 
@@ -121,7 +125,7 @@ namespace DINEPLUSBE.FldrPurchases
             return new ModeltblMain1()
             {
                 Voucher = "PD",
-                UserCode = PageLogin.glbltxtUserCode,
+                UserCode = pristrUserCode,
                 TDate = PagePDName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"),
                 Reference = PagePDName.Instance.txtReference.Text,
                 ControlNo = PagePDName.Instance.pubstrControlNo,

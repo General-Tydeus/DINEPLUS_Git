@@ -1,8 +1,12 @@
-﻿using SQLite;
+﻿using DINEPLUSBE.FldrClass;
+using DINEPLUSBE.FldrModel;
+using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,10 +20,34 @@ namespace DINEPLUSBE.FldrServices
         public ClsServeMain(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath);
-            //db.CreateTableAsync<ClsModelUser>().Wait();
+            db.CreateTableAsync<ClsModeltblUser>().Wait();
             
         }
 
-        
+        public async Task<List<ClsModeltblUser>> GetCurrentUser(string localstrUserName)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Entry/GetNameOfUser?strURILoginName={localstrUserName}");
+            var data = JsonConvert.DeserializeObject<List<ClsModeltblUser>>(response);
+            return data;
+        }
+        public async Task<int> SaveGetCurrentUser(string localstrUserName1)//(/*List<User> user,List<Customer> cust,List<ProductMain> prod*/)
+        {
+            var varUser = await GetCurrentUser(localstrUserName1);
+            try
+            {
+                await db.InsertAllAsync(varUser);
+                return 0;
+            }
+            catch (Exception)
+            {
+                return 1;
+            }
+        }
+
+        public Task<ClsModeltblUser> GetCurrentUser()
+        {
+            return db.Table<ClsModeltblUser>().OrderByDescending(x => x.UserName).FirstOrDefaultAsync();
+        }
     }
 }

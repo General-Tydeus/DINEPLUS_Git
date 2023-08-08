@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DINEPLUSBE.FldrModel;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,11 +10,11 @@ namespace DINEPLUSBE.FldrClass
     class ClsServeSecurity
     {
         //private string pristrIPAddress = new ClsGetIPAddress().GetIPAddress();
-
-        public async Task<string> CheckSalesmanExists(string servstrUserNameLog)
+     
+        public async Task<string> CheckUserExists(string servstrUserNameLog)
         {
             var clientGet = new HttpClient();
-            clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/SWMGLWebAPI/Login/GetSalesmanExist/?pristrUserNameLog=" + servstrUserNameLog);
+            clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/WebAPI/Login/GetUserExist/?strURILogInName=" + servstrUserNameLog);
 
             HttpResponseMessage response = await clientGet.GetAsync("");
             string strresult = await response.Content.ReadAsStringAsync();
@@ -47,5 +48,6 @@ namespace DINEPLUSBE.FldrClass
                 return strresultFinal;
         }
 
+       
     }
 }
