@@ -48,5 +48,27 @@ namespace DINEPLUSWEBAPI.Controllers
                 return "2";//user doesnt exist
             }
         }
+
+        [HttpGet]
+        [Route("API/WebAPI/Login/GetUserExist")]
+        public string GetUserExist(string strURILogInName)
+        {
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+
+            string CheckNoTransact = string.Format("SELECT Count(*) FROM tblUser WHERE UserName = '" + strURILogInName + "' AND Active=1");
+            SqlCommand com = new SqlCommand(CheckNoTransact, myconnection);
+            int CountData = int.Parse(com.ExecuteScalar().ToString());
+            myconnection.Close();
+
+            if (CountData > 0)
+            {
+                return "1"; //User Exists
+            }
+            else
+            {
+                return "2";//user doesnt exist
+            }
+        }
     }
 }

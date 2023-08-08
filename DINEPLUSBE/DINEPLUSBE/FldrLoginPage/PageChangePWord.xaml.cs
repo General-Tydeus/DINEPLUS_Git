@@ -24,7 +24,7 @@ namespace DINEPLUSBE.FldrLoginPage
 
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
-            string strUserNameExist = await ClsServeSecurity1.CheckSalesmanExists(txtUserName.Text);
+            string strUserNameExist = await ClsServeSecurity1.CheckUserExists(txtUserName.Text);
 
             if (strUserNameExist == "1")// User name exist
             {

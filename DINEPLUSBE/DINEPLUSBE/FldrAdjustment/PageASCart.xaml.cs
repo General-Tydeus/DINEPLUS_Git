@@ -21,6 +21,7 @@ namespace DINEPLUSBE.FldrAdjustment
     public partial class PageASCart : ContentPage
     {
         private int selectedIndex;
+        private string pristrUserCode;
         public PageASCart()
         {
             InitializeComponent();
@@ -41,10 +42,12 @@ namespace DINEPLUSBE.FldrAdjustment
             }
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             try
             {
+                var varUserName = await App.ClsServeMain.GetCurrentUser();
+                pristrUserCode = varUserName.UserCode;
                 var ItemInListView = PageASProductSearchList.Instance.ModeltblMain2ASList;
                 LV1.ItemsSource = ItemInListView;
                 double dblTotalAmount = 0;
@@ -57,7 +60,7 @@ namespace DINEPLUSBE.FldrAdjustment
 
             catch (Exception)
             {
-                DisplayAlert("Information", "Something is wrong, possible error in connection", "OK");
+                await DisplayAlert("Information", "Something is wrong, possible error in connection", "OK");
             }
         }
 
@@ -120,7 +123,7 @@ namespace DINEPLUSBE.FldrAdjustment
             return new ModeltblMain1()
             {
                 Voucher = "AS",
-                UserCode = PageLogin.glbltxtUserCode,
+                UserCode = pristrUserCode,
                 TDate = PageASName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"),
                 Reference = PageASName.Instance.txtReference.Text,
                 ControlNo = PageASName.Instance.pubstrControlNo,
