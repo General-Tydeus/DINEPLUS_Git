@@ -23,7 +23,7 @@
         Margin="5"
         Padding="5"
         BackgroundColor="WhiteSmoke"
-        HeightRequest="500"
+        HeightRequest="450"
         WidthRequest="350"
         HorizontalOptions="Center"
         VerticalOptions="StartAndExpand">
@@ -32,7 +32,7 @@
                 <Grid>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
 
@@ -53,24 +53,40 @@
                         <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
                     <Label
+                        Text="Order # :"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="Medium"
+                        TextColor="Black"
+                        
+                        />
+                    <Label
                         x:Name="lblDocNum"
                         Grid.Row="0"
-                        Grid.Column="2"
-                        Text="DocNum" />
+                        Grid.Column="1"
+                        FontSize="Medium"
+                        TextColor="Black"
+                        Text="NA"
+                        />
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
+                        IsVisible="false"
                         Text="Reference :" />
                     <Entry
                         x:Name="txtRef"
                         Grid.Row="1"
                         Grid.Column="0"
                         FontSize="Medium"
+                        IsVisible="false"
+                        
                         TextColor="Black"
                         Text="NA"/>
                     <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="Medium"
+                        TextColor="Black"
                         Text="Remarks :" />
                     <Entry
                         x:Name="txtRemarks"
