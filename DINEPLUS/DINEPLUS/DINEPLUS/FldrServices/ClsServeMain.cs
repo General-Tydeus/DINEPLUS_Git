@@ -20,6 +20,8 @@ namespace DINEPLUS.FldrServices
             db.CreateTableAsync<MdlTables>().Wait();
             db.CreateTableAsync<LocaltblMain1>().Wait();
             db.CreateTableAsync<LocaltblMain2>().Wait();
+            db.CreateTableAsync<ViewtblDetailsUser>().Wait();
+            db.CreateTableAsync<ClsBluetoothPrinter>().Wait();
 
         }
 
@@ -70,5 +72,18 @@ namespace DINEPLUS.FldrServices
             return db.QueryAsync<LocaltblMain2>($"SELECT * FROM LocaltblMain2 WHERE DocNum='{myDocNum}' ORDER BY RowNum");
         }
 
+
+
+        public Task<ViewtblDetailsUser> GetLogInInfo()
+        {
+            return db.Table<ViewtblDetailsUser>().OrderBy(x => x.UserCode).FirstOrDefaultAsync();
+        }
+
+
+        public Task<string> CurrentBTPrinter()
+        {
+            return db.ExecuteScalarAsync<string>("SELECT PrinterName FROM" +
+            " ClsBluetoothPrinter");
+        }
     }
 }

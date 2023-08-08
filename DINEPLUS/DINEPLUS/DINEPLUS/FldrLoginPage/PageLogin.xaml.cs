@@ -14,8 +14,10 @@ namespace DINEPLUS.FldrMainMenu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageLogin : ContentPage
     {
-        public static string glbltxtUserCode, glbltxtGroupCode, glbltxtUserName, glbltxtCNCode, glbltxtCompleteName;
+        //public static string glbltxtUserCode, glbltxtGroupCode, glbltxtUserName, glbltxtCNCode, glbltxtCompleteName;
+        private bool pristrRememberPassword { get; set; } = false;
 
+    
         public PageLogin()
         {
             InitializeComponent();
@@ -52,11 +54,11 @@ namespace DINEPLUS.FldrMainMenu
                     await DisplayAlert("Information", "Invalid Login Information", "OK");
                     return;
                 }
-                var varUserDetails = await new ClsGetSecurity().GetUserDetailsList(txtUserName.Text);
-                glbltxtUserCode = varUserDetails.UserCode;
-                glbltxtGroupCode = varUserDetails.GroupCode;
-                glbltxtUserName = varUserDetails.UserName;
-                glbltxtCNCode = varUserDetails.CNCode;
+                //var varUserDetails = await new ClsGetSecurity().GetUserDetailsList(txtUserName.Text);
+                //glbltxtUserCode = varUserDetails.UserCode;
+                //glbltxtGroupCode = varUserDetails.GroupCode;
+                //glbltxtUserName = varUserDetails.UserName;
+                //glbltxtCNCode = varUserDetails.CNCode;
                 OpenMainMenu();
 
             }
@@ -70,10 +72,15 @@ namespace DINEPLUS.FldrMainMenu
             try
             {
 
-
                 await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
                 await Task.Delay(200);
                 await App.ClsServeMain.SaveTblFunc();
+
+                await App.ClsServeMain.db.DeleteAllAsync<ViewtblDetailsUser>();
+                await App.ClsServeInsertLocal.SaveLoginInfo(txtUserName.Text);
+
+
+                PreferenceTransaction();
 
                 await Navigation.PushAsync(new PageMainMenu());
                 var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
@@ -85,6 +92,34 @@ namespace DINEPLUS.FldrMainMenu
             {
                 await DisplayAlert("Attention!", "Posible error connnection!", "OK");
             }
+        }
+        private void PreferenceTransaction()
+        {
+            SavePreference();
+        }
+        private void SavePreference()
+        {
+            if (pristrRememberPassword)
+            {
+                Preferences.Set("LogCheck", "2");// two == main
+                Preferences.Set("prefUserName", txtUserName.Text);
+                Preferences.Set("prefPassword", txtPassword.Text);
+            }
+            else
+            {
+                Preferences.Set("LogCheck", "3");
+                Preferences.Set("prefUserName", txtUserName.Text);
+                Preferences.Set("prefPassword", txtPassword.Text);
+            }
+        }
+        private void cbRemember_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            pristrRememberPassword = e.Value;
+        }
+        protected override void OnAppearing()
+        {
+            pristrRememberPassword = cbRemember.IsChecked;
+            Preferences.Clear();
         }
     }
 }

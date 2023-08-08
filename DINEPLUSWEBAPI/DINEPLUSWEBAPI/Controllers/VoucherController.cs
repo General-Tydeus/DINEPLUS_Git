@@ -54,11 +54,12 @@ namespace DINEPLUSWEBAPI.Controllers
                     priIntVoidExist = ClsGetAcctVoucher1.ClsIfVoidExist(ModeltblMain11.Voucher, ModeltblMain11.UserCode, ModeltblMain11.CNCode);
                     if (priIntVoidExist == 2)
                     {
+
                         myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
                         myconnection.Open();
                         ClsGetAcctVoucher1.ClsOneTheDoor(ModeltblMain11.Voucher);
                         string SqlStatement = "INSERT INTO tblMain1 (IC, DocNum, Voucher, UserCode, TDate, Reference, ControlNo, Remarks, CashReceived, Serve, CNCode, TableCode, CAmount, DE)" +
-                                                "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount, @_DE)";
+                                               "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount, @_DE)";
                         mycommand = new SqlCommand(SqlStatement, myconnection);
                         mycommand.Parameters.Add("_IC", SqlDbType.VarChar).Value = ModeltblMain11.Voucher + ModeltblMain11.UserCode + ModeltblMain11.CNCode;
                         mycommand.Parameters.Add("_Voucher", SqlDbType.VarChar).Value = ModeltblMain11.Voucher;
@@ -76,6 +77,7 @@ namespace DINEPLUSWEBAPI.Controllers
                         mycommand.Parameters.Add("_DE", SqlDbType.DateTime).Value = new ClsDateandTime().plsLocalZoneDateTimeNow();
 
                         mycommand.ExecuteNonQuery();
+
 
                         //if (ModeltblMain11.ModelSubtblMain3 != null)
                         //{

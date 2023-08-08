@@ -22,6 +22,12 @@ namespace DINEPLUS.FldrMainMenu
         {
             var targetPage = ((App)Application.Current).MainPage.Navigation.NavigationStack.FirstOrDefault(p => p.GetType() == typeof(PageSO));
 
+            var navigationStack = ((App)Application.Current).MainPage.Navigation.NavigationStack;
+
+            if (navigationStack.Count > 0 && navigationStack[navigationStack.Count - 1] is PageSO)
+            {
+                return;
+            }
             if (targetPage != null)
             {
                 ((App)Application.Current).MainPage.Navigation.RemovePage(targetPage);
@@ -34,6 +40,12 @@ namespace DINEPLUS.FldrMainMenu
         {
             var targetPage = ((App)Application.Current).MainPage.Navigation.NavigationStack.FirstOrDefault(p => p.GetType() == typeof(PagePAYO));
 
+            var navigationStack = ((App)Application.Current).MainPage.Navigation.NavigationStack;
+
+            if (navigationStack.Count > 0 && navigationStack[navigationStack.Count - 1] is PagePAYO)
+            {
+                return;
+            }
             if (targetPage != null)
             {
                 ((App)Application.Current).MainPage.Navigation.RemovePage(targetPage);

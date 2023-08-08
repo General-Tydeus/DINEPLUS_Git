@@ -1,5 +1,6 @@
 ﻿using DINEPLUS.FldrClass;
 using DINEPLUS.FldrMainMenu;
+using DINEPLUS.Interfaces;
 using DINEPLUSWEBAPI.FldrModel;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Pages;
@@ -20,9 +21,12 @@ namespace DINEPLUS.FldrPopup
     public partial class PagePayOrder : PopupPage
     {
         //string DocNum;
+        public static PagePayOrder Instance;
+
         public PagePayOrder()
         {
             InitializeComponent();
+            Instance = this;
             lblTotals.Text = $"₱{ PageViewOrders.Instance.LoadSumOrd()}";
             AutoNumber();
         }
@@ -35,7 +39,7 @@ namespace DINEPLUS.FldrPopup
         {
             try
             {
-                lblDocNum.Text = await new ClsAutoNum().GetVoucherAutoNum("CS", PageLogin.glbltxtCNCode);
+                lblDocNum.Text = await new ClsAutoNum().GetVoucherAutoNum("CS", PageMainMenu.Instance.strCNCode);
                 txtRef.Text = $"CS{lblDocNum.Text}";
 
             }
@@ -80,10 +84,12 @@ namespace DINEPLUS.FldrPopup
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);
                 string strresult = await result.Content.ReadAsStringAsync();
-               // await DisplayAlert("Error", strresult, "OK");
+
+                //await DisplayAlert("Error", strresult, "OK");
 
                 if (strresult == "1")
                 {
+
                     var clientGet = new HttpClient();
                     clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Various/GetDoorMessage/?strWAPIVoucher=CS");
                     HttpResponseMessage response = await clientGet.GetAsync("");
@@ -91,10 +97,9 @@ namespace DINEPLUS.FldrPopup
                     string strresultFinal = strresult.Trim('"');
                     if (strresultFinal == "0")
                     {
+                        PrintReceipt();
                         PagePAYO.Instance.listOrders.Clear();
                         PagePAYO.Instance.LoadExp();
-                        //Navigation.RemovePage(this);
-                        //Navigation.RemovePage(Navigation.NavigationStack[1]);
                         await Navigation.PopAsync();
                         await PopupNavigation.Instance.PopAsync();
 
@@ -132,13 +137,13 @@ namespace DINEPLUS.FldrPopup
                 ModelSubtblMain2 = SavetblMain2(),
 
                 Voucher = "CS",
-                UserCode = PageLogin.glbltxtUserCode,
+                UserCode = PageMainMenu.Instance.strUserCode,
                 TDate = DateTime.Now,
                 DocNum = lblDocNum.Text,
                 Reference = txtRef.Text,
-                ControlNo = "123",
+                ControlNo = "001",
                 Remarks = txtRemarks.Text,
-                CNCode = PageLogin.glbltxtCNCode,
+                CNCode = PageMainMenu.Instance.strCNCode,
                 CashReceived = double.Parse(totalOrd),
                 Serve = true,
                 TableCode = "00",
@@ -196,6 +201,25 @@ namespace DINEPLUS.FldrPopup
             await PopupNavigation.Instance.PopAsync();
 
             await Navigation.PopAsync();
+        }
+        public async void PrintReceipt()
+        {
+            string strBTPrinterName = await App.ClsServeMain.CurrentBTPrinter();
+
+            DependencyService.Get<IBlueToothPrinterService>().SetCurrentDevice(strBTPrinterName);
+            if (DependencyService.Get<IBlueToothPrinterService>().boolBluetoothOn(strBTPrinterName) == false)
+            {
+                await DisplayAlert("Information", "Bluetooth turned off", "OK");
+                return;
+            }
+            if (await DependencyService.Get<IBlueToothPrinterService>().CheckBlueToothPrinter() == false)
+            {
+                await DisplayAlert("Information", "No bluetooth device connected", "OK");
+                return;
+            }
+            DependencyService.Get<IBlueToothPrinterService>().testPrint();
+
+
         }
     }
 }
