@@ -53,11 +53,26 @@ namespace DINEPLUSBE.FldrClass
         public async Task<List<ModelInvSum>> GetInvSum(string strAsOfDate)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetInventorySummary?DTURIAsOfDate={strAsOfDate}");
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetInventorySummary?strURIAsOfDate={strAsOfDate}");
             var data = JsonConvert.DeserializeObject<List<ModelInvSum>>(response);
             return data;
         }
 
-        
+        public async Task<List<ModelCollection>> GetColSum(string strFromDate, string strToDate)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetCollectionSummary?strURIFromDate={strFromDate}&strURIToDate={strToDate}");
+            var data = JsonConvert.DeserializeObject<List<ModelCollection>>(response);
+            return data;
+        }
+
+        public async Task<List<ModelSalesProduct>> GetSalesProduct(string strFromDate, string strToDate)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetSalesProduct?strURIFromDate={strFromDate}&strURIToDate={strToDate}");
+            var data = JsonConvert.DeserializeObject<List<ModelSalesProduct>>(response);
+            return data;
+        }
+
     }
 }

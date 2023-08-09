@@ -18,13 +18,14 @@ using DINEPLUSBE.FldrControlPanel;
 namespace DINEPLUSBE.FldrReports
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageRptInvSum : ContentPage
+    public partial class PageRptCollectionSum : ContentPage
     {
-        private string pristrDate;
-        public PageRptInvSum(string strHeadDate)
+        private string pristrFromDate, pristrToDate;
+        public PageRptCollectionSum(string strHeadFromDate, string strHeadToDate)
         {
             InitializeComponent();
-            pristrDate = strHeadDate;
+            pristrFromDate = strHeadFromDate;
+            pristrToDate = strHeadToDate;
         }
 
 
@@ -32,13 +33,12 @@ namespace DINEPLUSBE.FldrReports
         {
             try
             {
-                //string strAsOfDateRpt = priDTDate.ToString("MM/dd/yyyy");
-                var ItemInListView = await new ClsList().GetInvSum(pristrDate);
+                var ItemInListView = await new ClsList().GetColSum(pristrFromDate, pristrToDate);
                 LV1.ItemsSource = ItemInListView;
                 double dblTotalAmount = 0;
                 foreach (var varlooplist in ItemInListView)
                 {
-                    dblTotalAmount = dblTotalAmount+varlooplist.AlsTotalCost;
+                    dblTotalAmount = dblTotalAmount+varlooplist.CAmount;
                 }
                 lblEntTotalAmt.Text = dblTotalAmount.ToString("N2");
             }

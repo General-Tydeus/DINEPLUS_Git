@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrReports.PageRangeDate">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DodgerBlue">
+            <Label Text="DATE TO OPEN" TextColor="Red" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+            <Grid
+                     Padding="10"
+                     HorizontalOptions="Center"
+                     RowSpacing="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="15*" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="From" Grid.Row="1" Grid.Column="0" FontSize="Large" TextColor="Red" HorizontalOptions="Start"/>
+                <DatePicker x:Name="DPFromDate" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public"/>
+                <Label Text="To" Grid.Row="2" Grid.Column="0" FontSize="Large" TextColor="Red" HorizontalOptions="Start"/>
+                <DatePicker x:Name="DPToDate" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public"/>
+
+
+                <Button
+                            x:Name="BtnOpen"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnOpen_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Open"
+                            TextColor="White">
+                            
+                    <Button.Image>
+                        <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                    </Button.Image>
+                </Button>
+
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
