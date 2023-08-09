@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -66,6 +67,17 @@ namespace DINEPLUSBE.FldrModel
         public int RowNum { get; set; }
     }
 
+    public class DeviceInfo
+    {
+        public string Title { get; set; }
+        public string MacAddress { get; set; }
+    }
+    public class ClsBluetoothPrinter
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string PrinterName { get; set; }
+    }
 
 }
 

@@ -4,21 +4,20 @@
               xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                   x:Class="DINEPLUSBE.FldrPopup.LoadingPopup"
-             CloseWhenBackgroundIsClicked="False">
+                    CloseWhenBackgroundIsClicked="False">
     <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-        <Frame HasShadow="True" BackgroundColor="White">
+        <Frame HasShadow="True" BackgroundColor="Transparent">
             <AbsoluteLayout HorizontalOptions="Center" VerticalOptions="Center">
 
                 <ActivityIndicator
-    Color="Green"
-    IsRunning="True"
-    IsEnabled="True"
-    VerticalOptions="Center"
-    HorizontalOptions="Center"
-                Opacity="50"
-    HeightRequest="70"
-    WidthRequest="70"/>
-            
+                    Color="FloralWhite"
+                    IsRunning="True"
+                    IsEnabled="True"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    HeightRequest="100"
+                    WidthRequest="100"/> 
+
                 <!--<ActivityIndicator
     Color="Red"
     IsRunning="True"

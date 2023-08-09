@@ -85,5 +85,10 @@ namespace DINEPLUSBE.FldrControlPanel
         {
 
         }
+
+        private async void BtnPrinter_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PagePrinterSetup());
+        }
     }
 }

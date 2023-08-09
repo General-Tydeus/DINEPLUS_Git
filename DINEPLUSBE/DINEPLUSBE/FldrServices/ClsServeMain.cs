@@ -21,6 +21,7 @@ namespace DINEPLUSBE.FldrServices
         {
             db = new SQLiteAsyncConnection(dbPath);
             db.CreateTableAsync<ClsModeltblUser>().Wait();
+            db.CreateTableAsync<ClsBluetoothPrinter>().Wait();
             
         }
 
@@ -48,6 +49,11 @@ namespace DINEPLUSBE.FldrServices
         public Task<ClsModeltblUser> GetCurrentUser()
         {
             return db.Table<ClsModeltblUser>().OrderByDescending(x => x.UserName).FirstOrDefaultAsync();
+        }
+
+        public Task<string> CurrentBTPrinter()
+        {
+            return db.ExecuteScalarAsync<string>("SELECT PrinterName FROM ClsBluetoothPrinter");
         }
     }
 }
