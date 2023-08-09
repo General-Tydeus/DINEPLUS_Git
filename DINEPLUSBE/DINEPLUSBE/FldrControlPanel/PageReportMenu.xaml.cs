@@ -27,5 +27,14 @@ namespace DINEPLUSBE.FldrControlPanel
         {
             await Navigation.PushAsync(new PageAsOfDate("InvSum"));
         }
+
+        private async void BtnCollectSum_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageRangeDate("ColSum"));
+        }
+        private async void BtnSalesProducts_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageRangeDate("SalesProducts"));
+        }
     }
 }

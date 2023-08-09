@@ -26,7 +26,8 @@
                         VerticalOptions="CenterAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="15*" />
-                            
+                            <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100*" />
@@ -51,6 +52,47 @@
                                     iOS="cube.ico" />
                             </Button.Image>
                         </Button>
+
+                        <Button
+                            x:Name="BtnCollectSum"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnCollectSum_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Collection Summary"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
+                        <Button
+                            x:Name="BtnSalesProducts"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnSalesProducts_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Sales Summary - Products"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="orderslip.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
+
                     </Grid>
                 </StackLayout>
             </StackLayout>

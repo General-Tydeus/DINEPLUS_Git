@@ -97,6 +97,15 @@
     <Compile Update="FldrPurchases\PagePDCart.xaml.cs">
       <DependentUpon>PagePDCart.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrReports\PageRangeDate.xaml.cs">
+      <DependentUpon>PageRangeDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrReports\PageRptSalesProducts.xaml.cs">
+      <DependentUpon>PageRptSalesProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrReports\PageRptCollectionSum.xaml.cs">
+      <DependentUpon>PageRptCollectionSum.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrReports\PageRptInvSum.xaml.cs">
       <DependentUpon>PageRptInvSum.xaml</DependentUpon>
     </Compile>
@@ -181,8 +190,17 @@
     <EmbeddedResource Update="FldrPurchases\PagePDCart.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="FldrReports\PageRangeDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrReports\PageAsOfDate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrReports\PageRptSalesProducts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrReports\PageRptCollectionSum.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrReports\PageRptInvSum.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -25,7 +25,7 @@ namespace DINEPLUSBE.FldrReports
         {
             if (pristrrpttoopen== "InvSum")
             {
-                await Navigation.PushAsync(new PageRptInvSum(DPAsOfDate.Date));
+                await Navigation.PushAsync(new PageRptInvSum(DPAsOfDate.Date.ToString("MM/dd/yyyy")));
             }
 
         }

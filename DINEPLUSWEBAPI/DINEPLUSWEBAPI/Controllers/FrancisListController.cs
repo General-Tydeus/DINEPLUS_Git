@@ -152,12 +152,12 @@ namespace DINEPLUSWEBAPI.Controllers
 
         [HttpGet]
         [Route("API/WEBAPI/Report/GetInventorySummary")]
-        public IEnumerable<ModelInvSum> GetInvSummary(DateTime DTURIAsOfDate)
+        public IEnumerable<ModelInvSum> GetInvSummary(string strURIAsOfDate)
         {
-            string strAsOfDate = DTURIAsOfDate.ToString("MM/dd/yyyy");
+            //string strAsOfDate = DTURIAsOfDate.ToString("MM/dd/yyyy");
             List<ModelInvSum> ModelInvSumMSSQL = new List<ModelInvSum>();
             string sqlStatement = $"SELECT StockNumber, ProductDesc, SUM(AlsQty) AS AlsQty, SUM(AlsTotalCost) AS AlsTotalCost" +
-                $" FROM ViewInventory WHERE TDate<='{strAsOfDate}' GROUP BY ProductDesc, StockNumber ORDER BY ProductDesc";
+                $" FROM ViewInventory WHERE TDate<='{strURIAsOfDate}' GROUP BY ProductDesc, StockNumber ORDER BY ProductDesc";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(sqlStatement, myconnection);
@@ -175,6 +175,58 @@ namespace DINEPLUSWEBAPI.Controllers
             }
             myconnection.Close();
             return ModelInvSumMSSQL;
+        }
+
+        [HttpGet]
+        [Route("API/WEBAPI/Report/GetCollectionSummary")]
+        public IEnumerable<ModelCollection> GetColSummary(string strURIFromDate, string strURIToDate)
+        {
+            //string strAsOfDate = DTURIAsOfDate.ToString("MM/dd/yyyy");
+            List<ModelCollection> ModelCollectionMSSQL = new List<ModelCollection>();
+            string sqlStatement = $"SELECT RefDoc, TDate, CAmount" +
+                $" FROM ViewCollection WHERE TDate Between '{strURIFromDate}' AND '{strURIToDate}'";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModelCollection ModelCollection1 = new ModelCollection
+                {
+                    RefDoc = dr["RefDoc"].ToString(),
+                    TDate = DateTime.Parse(dr["TDate"].ToString()),
+                    CAmount = double.Parse(dr["CAmount"].ToString()),
+                };
+                ModelCollectionMSSQL.Add(ModelCollection1);
+            }
+            myconnection.Close();
+            return ModelCollectionMSSQL;
+        }
+
+
+        [HttpGet]
+        [Route("API/WEBAPI/Report/GetSalesProduct")]
+        public IEnumerable<ModelSalesProduct> GetSalesProduct(string strURIFromDate, string strURIToDate)
+        {
+            List<ModelSalesProduct> ModelSalesProductMSSQL = new List<ModelSalesProduct>();
+            string sqlStatement = $"SELECT ProductDesc, SUM(TotalQty) AS TotalQty, SUM(TotalSales) AS TotalSales" +
+                $" FROM ViewSalesProduct WHERE TDate Between '{strURIFromDate}' AND '{strURIToDate}' GROUP BY ProductDesc ";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModelSalesProduct ModelSalesProduct1 = new ModelSalesProduct
+                {
+                    ProductDesc = dr["ProductDesc"].ToString(),
+                    TotalQty = double.Parse(dr["TotalQty"].ToString()),
+                    TotalSales = double.Parse(dr["TotalSales"].ToString()),
+                };
+                ModelSalesProductMSSQL.Add(ModelSalesProduct1);
+            }
+            myconnection.Close();
+            return ModelSalesProductMSSQL;
         }
 
         [HttpGet]
