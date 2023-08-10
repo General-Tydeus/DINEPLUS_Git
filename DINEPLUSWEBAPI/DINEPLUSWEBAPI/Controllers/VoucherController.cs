@@ -113,8 +113,8 @@ namespace DINEPLUSWEBAPI.Controllers
                             {
                                 foreach (var vartblMain2 in ModeltblMain11.ModelSubtblMain2)
                                 {
-                                    string sqlstatement2 = "INSERT INTO tblMain2 (IC, StockNumber,  PIn, POut, UP, Cost, Discount, RowNum) " +
-                                                        "Values (@_IC, @_StockNumber, @_PIn, @_POut, @_UP, @_Cost, @_Discount, @_RowNum)";
+                                    string sqlstatement2 = "INSERT INTO tblMain2 (IC, StockNumber,  PIn, POut, UP, Cost, Discount,  OrderTime, RowNum) " +
+                                                        "Values (@_IC, @_StockNumber, @_PIn, @_POut, @_UP, @_Cost, @_Discount,  @_OrderTime, @_RowNum)";
                                     mycommand3 = new SqlCommand(sqlstatement2, myconnection);
                                     mycommand3.Parameters.Add("_IC", SqlDbType.VarChar).Value = ModeltblMain11.Voucher + ModeltblMain11.UserCode + ModeltblMain11.CNCode;
                                     mycommand3.Parameters.Add("_StockNumber", SqlDbType.VarChar).Value = vartblMain2.StockNumber;
@@ -123,6 +123,7 @@ namespace DINEPLUSWEBAPI.Controllers
                                     mycommand3.Parameters.Add("_UP", SqlDbType.Money).Value = vartblMain2.UP;
                                     mycommand3.Parameters.Add("_Cost", SqlDbType.Money).Value = vartblMain2.Cost;
                                     mycommand3.Parameters.Add("_Discount", SqlDbType.Money).Value = vartblMain2.Discount;
+                                    mycommand3.Parameters.Add("_OrderTime", SqlDbType.VarChar).Value = vartblMain2.OrderTime;
                                     mycommand3.Parameters.Add("_RowNum", SqlDbType.Int).Value = IntRowNum2++; // intRowNum++;
                                     mycommand3.ExecuteNonQuery();
                                 }

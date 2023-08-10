@@ -125,5 +125,17 @@ namespace DINEPLUS.Droid.Devices
                 throw new Exception("No selected device.");
             }
         }
+        public async void testPrintSO()
+        {
+            PrinterSO PrinterSO1 = new PrinterSO();
+            if (_connectedDevice != null)
+            {
+                await PrinterSO1.PrintTest("plain", _connectedDevice);
+            }
+            else
+            {
+                throw new Exception("No selected device.");
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string Voucher { get; set; }
         public string DocNum { get; set; }
         public string UserCode { get; set; }
-        public string TDate { get; set; }
+        public DateTime TDate { get; set; }
         public string Reference { get; set; }
         public string ControlNo { get; set; }
         public string Remarks { get; set; }
@@ -20,24 +20,30 @@ namespace DINEPLUSWEBAPI.FldrModel
         public double CashReceived { get; set; }
         public bool Serve { get; set; }
         public string TableCode { get; set; }
+        public string TableDesc { get; set; }
+        public string TableDocNum { get; set; }
         public double CAmount { get; set; }
-
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }
 
         //public List<ModeltblMain3> ModelSubtblMain3 { get; set; }
+
         //public ModeltblPayMainLoan2 ModelSubtblPayMainLoan2 { get; set; }
     }
+
 
     public class ModeltblMain2
     {
         public string IC { get; set; }
         public string StockNumber { get; set; }
+        public string ProductDesc { get; set; }
         public double PIn { get; set; }
         public double POut { get; set; }
         public double UP { get; set; }
         public double Cost { get; set; }
         public double Discount { get; set; }
+        public double Totals { get; set; }
         public int RowNum { get; set; }
+        public string OrderTime { get; set; }
     }
 
     public class ModeltblMain3
@@ -72,5 +78,6 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string TableDesc { get; set; }
         public string Status { get; set; }
         public string LongStatus { get; set; }
+        public string TableDocNum { get; set; }
     }
 }

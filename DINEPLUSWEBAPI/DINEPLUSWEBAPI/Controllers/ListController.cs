@@ -94,11 +94,43 @@ namespace DINEPLUSWEBAPI.Controllers
                     TableCode = dr["TableCode"].ToString(),
                     TableDesc = dr["TableDesc"].ToString(),
                     Status = dr["Status"].ToString(),
-                    LongStatus = new ClsStringHelper().LongStats(dr["Status"].ToString())
+                    LongStatus = new ClsStringHelper().LongStats(dr["Status"].ToString()),
+                    TableDocNum = dr["TableDocNum"].ToString(),
+
                 };
                 yield return MdlTables1;
             }
             myconnection.Close();
+        }
+        [HttpGet]
+        [Route("API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblOrders")]
+        public IEnumerable<ModeltblMain2> GetTblOrders(string strDocnum)
+        {
+            List<ModeltblMain2> ModeltblMain2MSSQL = new List<ModeltblMain2>();
+
+            string sqlStatement = $"SELECT * FROM ViewOrdersSO WHERE IC = '{strDocnum}'";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModeltblMain2 ModeltblMain21 = new ModeltblMain2
+                {
+                    StockNumber = dr["StockNumber"].ToString(),
+                    ProductDesc = dr["ProductDesc"].ToString(),
+                    POut = double.Parse(dr["POut"].ToString()),
+                    UP = double.Parse(dr["UP"].ToString()),
+                    Cost = double.Parse(dr["Cost"].ToString()),
+                    Discount = double.Parse(dr["Discount"].ToString()),
+                    OrderTime = dr["OrderTime"].ToString(),
+                    Totals = double.Parse(dr["UP"].ToString()) * double.Parse(dr["POut"].ToString()),
+                };
+                ModeltblMain2MSSQL.Add(ModeltblMain21);
+            }
+            myconnection.Close();
+            return ModeltblMain2MSSQL;
+
         }
     }
 }
