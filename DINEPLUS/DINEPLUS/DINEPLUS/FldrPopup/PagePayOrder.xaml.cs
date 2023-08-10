@@ -22,6 +22,7 @@ namespace DINEPLUS.FldrPopup
     {
         //string DocNum;
         public static PagePayOrder Instance;
+        private bool finish = false;
 
         public PagePayOrder()
         {
@@ -97,13 +98,15 @@ namespace DINEPLUS.FldrPopup
                     string strresultFinal = strresult.Trim('"');
                     if (strresultFinal == "0")
                     {
-                        PrintReceipt();
-                        PagePAYO.Instance.listOrders.Clear();
-                        PagePAYO.Instance.LoadExp();
+                        await PrintReceipt();
                         await Navigation.PopAsync();
                         await PopupNavigation.Instance.PopAsync();
-
-                        //clrPages();
+                        //while (!finish)
+                        //{
+                        //    await Task.Delay(100);
+                        //}
+                        await WaitForFinishAsync();
+                        clrPages();
                     }
                     else if (strresultFinal == "1")
                     {
@@ -123,6 +126,14 @@ namespace DINEPLUS.FldrPopup
                     await DisplayAlert("Error", "Failed to save", "OK");
                     return;
                 }
+            }
+
+        }
+        private async Task WaitForFinishAsync()
+        {
+            while (!finish)
+            {
+                await Task.Delay(100);
             }
         }
         public ModeltblMain1 tblSavetblMain1()
@@ -148,6 +159,7 @@ namespace DINEPLUS.FldrPopup
                 Serve = true,
                 TableCode = "00",
                 CAmount = 0,
+                //CAmount = double.Parse(lblTotals.Text),
 
             };
         }
@@ -196,13 +208,12 @@ namespace DINEPLUS.FldrPopup
             lblChange.Text = sums.ToString("n2");
         }
 
-        public async void clrPages()
+        public void clrPages()
         {
-            await PopupNavigation.Instance.PopAsync();
-
-            await Navigation.PopAsync();
+            PagePAYO.Instance.listOrders.Clear();
+            PagePAYO.Instance.LoadExp();
         }
-        public async void PrintReceipt()
+        public async Task PrintReceipt()
         {
             string strBTPrinterName = await App.ClsServeMain.CurrentBTPrinter();
 
@@ -217,9 +228,10 @@ namespace DINEPLUS.FldrPopup
                 await DisplayAlert("Information", "No bluetooth device connected", "OK");
                 return;
             }
-            DependencyService.Get<IBlueToothPrinterService>().testPrint();
+            await Task.Run(() => DependencyService.Get<IBlueToothPrinterService>().testPrint());
 
 
+            finish = true;
         }
     }
 }

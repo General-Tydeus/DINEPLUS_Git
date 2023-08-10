@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Devices\PrinterPAYO.cs" />
     <Compile Include="Devices\PrinterService.cs" />
+    <Compile Include="Devices\PrinterSO.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

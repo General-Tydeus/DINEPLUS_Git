@@ -26,6 +26,9 @@ namespace DINEPLUS.FldrSO
         }
         protected async override void OnAppearing()
         {
+           // await DisplayAlert("1", MdlTables11.TableCode.ToString(), "ok");
+
+
             var varlist = await new ClsListEntry().GetProductList();
             ClMenu.ItemsSource = varlist;
         }

@@ -1,4 +1,5 @@
 ﻿using DINEPLUS.FldrModel;
+using DINEPLUSWEBAPI.FldrModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,13 @@ namespace DINEPLUS.FldrClass
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblList");
             var data = JsonConvert.DeserializeObject<List<MdlTables>>(response);
+            return data;
+        }
+        public async Task<List<ModeltblMain2>> GetTblOrders(string strDocnum)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblOrders?strDocnum={strDocnum}");
+            var data = JsonConvert.DeserializeObject<List<ModeltblMain2>>(response);
             return data;
         }
     }

@@ -33,5 +33,18 @@ namespace DINEPLUSWEBAPI.FldrClass
             myconnection.Close();
             return pristrNumber;
         }
+        public int GetLastRow(string strIC)
+        {
+            using (SqlConnection myconnection = new SqlConnection(new ClsGetConnection().PlsConnect()))
+            {
+                myconnection.Open();
+
+                using (SqlCommand mycommand = new SqlCommand($"SELECT MAX(RowNum) FROM tblMain2 WHERE IC = '{strIC}'", myconnection))
+                {
+                    int row = Convert.ToInt32(mycommand.ExecuteScalar());
+                    return row;
+                }
+            }
+        }
     }
 }
