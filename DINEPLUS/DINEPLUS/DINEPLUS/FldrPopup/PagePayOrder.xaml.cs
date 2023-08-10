@@ -86,46 +86,65 @@ namespace DINEPLUS.FldrPopup
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);
                 string strresult = await result.Content.ReadAsStringAsync();
 
-                await DisplayAlert("Error", strresult, "OK");
+                //string contentString = await content.ReadAsStringAsync();
+                //await DisplayAlert("Error", contentString, "OK");
 
-                if (strresult == "1")
+                if (strresult=="1")
                 {
-
-                    var clientGet = new HttpClient();
-                    clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Various/GetDoorMessage/?strWAPIVoucher=CS");
-                    HttpResponseMessage response = await clientGet.GetAsync("");
-                    strresult = await response.Content.ReadAsStringAsync();
-                    string strresultFinal = strresult.Trim('"');
-                    if (strresultFinal == "0")
-                    {
-                        await PrintReceipt();
-                        await Navigation.PopAsync();
-                        await PopupNavigation.Instance.PopAsync();
-                        //while (!finish)
-                        //{
-                        //    await Task.Delay(100);
-                        //}
-                        await WaitForFinishAsync();
-                        clrPages();
-                    }
-                    else if (strresultFinal == "1")
-                    {
-                        await DisplayAlert("Error", "Transaction not saved", "OK");
-                    }
-                    else if (strresultFinal == "2")
-                    {
-                        await DisplayAlert("Error", "Contact your administrator", "OK");
-                    }
-                    else if (strresultFinal == "3")
-                    {
-                        await DisplayAlert("Error", "Transaction not saved", "OK");
-                    }
+                    await PrintReceipt();
+                    await Navigation.PopAsync();
+                    await PopupNavigation.Instance.PopAsync();
+                    //while (!finish)
+                    //{
+                    //    await Task.Delay(100);
+                    //}
+                    await WaitForFinishAsync();
+                    clrPages();
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Failed to save", "OK");
-                    return;
+                    await DisplayAlert("Error", strresult, "OK");
                 }
+              
+
+                //if (strresult == "1")
+                //{
+
+                //    var clientGet = new HttpClient();
+                //    clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Various/GetDoorMessage/?strWAPIVoucher=CS");
+                //    HttpResponseMessage response = await clientGet.GetAsync("");
+                //    strresult = await response.Content.ReadAsStringAsync();
+                //    string strresultFinal = strresult.Trim('"');
+                //    if (strresultFinal == "0")
+                //    {
+                //        await PrintReceipt();
+                //        await Navigation.PopAsync();
+                //        await PopupNavigation.Instance.PopAsync();
+                //        //while (!finish)
+                //        //{
+                //        //    await Task.Delay(100);
+                //        //}
+                //        await WaitForFinishAsync();
+                //        clrPages();
+                //    }
+                //    else if (strresultFinal == "1")
+                //    {
+                //        await DisplayAlert("Error", "Transaction not saved", "OK");
+                //    }
+                //    else if (strresultFinal == "2")
+                //    {
+                //        await DisplayAlert("Error", "Contact your administrator", "OK");
+                //    }
+                //    else if (strresultFinal == "3")
+                //    {
+                //        await DisplayAlert("Error", "Transaction not saved", "OK");
+                //    }
+                //}
+                //else
+                //{
+                //    await DisplayAlert("Error", "Failed to save", "OK");
+                //    return;
+                //}
             }
 
         }
@@ -177,7 +196,8 @@ namespace DINEPLUS.FldrPopup
                     UP = vl.SellingPrice,
                     Cost = vl.UCost,
                     Discount = 0,
-                   // RowNum = vl.RowNum,
+                    // RowNum = vl.RowNum,
+                    OrderTime = DateTime.Now.ToString("hh:mm tt")
                 }); 
             }
             return listofData;

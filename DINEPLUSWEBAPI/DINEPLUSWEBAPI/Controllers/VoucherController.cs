@@ -136,7 +136,7 @@ namespace DINEPLUSWEBAPI.Controllers
                         ClsGetAcctVoucher1.ClsFinalize(ModeltblMain11.Voucher, new ClsAutoNumber().VoucherAutoNum(ModeltblMain11.Voucher, ModeltblMain11.CNCode), "1", ModeltblMain11.UserCode, ModeltblMain11.CNCode);
                         ClsGetAcctVoucher1.ClsZeroTheDoor(ModeltblMain11.Voucher);
                         ClsGetAcctVoucher1.ClsDoorMessage(ModeltblMain11.Voucher, "0");//Saved properly
-                                                                                       //return new HttpResponseMessage(HttpStatusCode.Created);
+                       // return new HttpResponseMessage(HttpStatusCode.Created);
                         return "1";
                     }
                     else
