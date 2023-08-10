@@ -65,6 +65,7 @@ namespace DINEPLUSBE.FldrModel
         public double Cost { get; set; }
         public double Discount { get; set; }
         public int RowNum { get; set; }
+        public string OrderTime { get; set; } = DateTime.Now.ToShortTimeString();
     }
 
     public class DeviceInfo

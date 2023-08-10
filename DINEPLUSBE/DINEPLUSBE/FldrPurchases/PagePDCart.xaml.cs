@@ -67,7 +67,6 @@ namespace DINEPLUSBE.FldrPurchases
 
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Information", PagePDName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"), "OK");
             using (HttpClient client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
