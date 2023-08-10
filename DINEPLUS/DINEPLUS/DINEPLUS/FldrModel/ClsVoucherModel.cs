@@ -11,7 +11,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string Voucher { get; set; }
         public string DocNum { get; set; }
         public string UserCode { get; set; }
-        public DateTime TDate { get; set; }
+        public string TDate { get; set; }
         public string Reference { get; set; }
         public string ControlNo { get; set; }
         public string Remarks { get; set; }

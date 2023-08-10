@@ -86,7 +86,7 @@ namespace DINEPLUS.FldrPopup
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);
                 string strresult = await result.Content.ReadAsStringAsync();
 
-                //await DisplayAlert("Error", strresult, "OK");
+                await DisplayAlert("Error", strresult, "OK");
 
                 if (strresult == "1")
                 {
@@ -149,16 +149,16 @@ namespace DINEPLUS.FldrPopup
 
                 Voucher = "CS",
                 UserCode = PageMainMenu.Instance.strUserCode,
-                TDate = DateTime.Now,
+                TDate = DateTime.Now.ToString("MM,dd,yyyy"),
                 DocNum = lblDocNum.Text,
                 Reference = txtRef.Text,
                 ControlNo = "001",
                 Remarks = txtRemarks.Text,
                 CNCode = PageMainMenu.Instance.strCNCode,
-                CashReceived = double.Parse(totalOrd),
+                CashReceived = double.Parse(txtCR.Text),
                 Serve = true,
                 TableCode = "00",
-                CAmount = 0,
+                CAmount = double.Parse(totalOrd),
                 //CAmount = double.Parse(lblTotals.Text),
 
             };

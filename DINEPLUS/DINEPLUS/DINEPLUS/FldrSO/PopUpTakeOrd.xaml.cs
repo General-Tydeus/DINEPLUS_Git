@@ -51,13 +51,18 @@ namespace DINEPLUS.FldrSO
                 return;
             }
 
-            if (PageSO.Instance.Additional == "NA")
+            if (PageSO.Instance.Additional == "New")
             {
                 SaveTheTransact();
             }
             else if (PageSO.Instance.Additional == "Additional")
             {
                 SaveAdditional();
+            }
+            else if (PageSO.Instance.Additional == "")
+            {
+                //SaveAdditional();
+                await DisplayAlert("Additional is empty", PageSO.Instance.Additional, "OK");
             }
 
             //else
@@ -84,12 +89,12 @@ namespace DINEPLUS.FldrSO
                 Voucher = "SO",
                 DocNum = MyDocNum,
                 UserCode = PageMainMenu.Instance.strUserCode,
-                TDate = DateTime.Now,
+                TDate = DateTime.Now.ToString("MM,dd,yyyy"),
                 Reference = $"SO{MyDocNum}",
                 ControlNo = "001",
                 Remarks = txtRemarks.Text,
                 CNCode = PageMainMenu.Instance.strCNCode,
-                TableCode = PageProductList.Instance.MdlTables11.TableCode.ToString(),
+                TableCode = PageProductList.Instance.MdlTables11.TableCode,
                 CashReceived = 0,
                 Serve = false,
                 //TableDesc = PageProductList.Instance.MdlTables11.TableDesc,
@@ -195,6 +200,7 @@ namespace DINEPLUS.FldrSO
             {
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);
+
                 string strresult = await result.Content.ReadAsStringAsync();
 
                // await DisplayAlert("Notif", strresult, "OK");
@@ -251,7 +257,7 @@ namespace DINEPLUS.FldrSO
         {
             ModeltblMain1 ModeltblMain11 = new ModeltblMain1()
             {
-                TableCode = PageProductList.Instance.MdlTables11.TableCode.ToString(),
+                TableCode = PageProductList.Instance.MdlTables11.TableCode,
                 TableDesc = "O",
                 TableDocNum = $"SO{MyDocNum}{PageMainMenu.Instance.strCNCode}",
             };
