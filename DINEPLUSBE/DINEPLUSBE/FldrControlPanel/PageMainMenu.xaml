@@ -31,6 +31,7 @@
                             <RowDefinition Height="15*" />
                             <RowDefinition Height="15*" />
                             <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
                             
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -138,11 +139,31 @@
                             </Button.Image>
                         </Button>
 
+                        <Button
+                            x:Name="BtnPrinter"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnPrinter_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Printer Setup"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="bluetoothprinter.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
 
-                        
+
+
                         <Button
                             x:Name="BtnLogout"
-                            Grid.Row="5"
+                            Grid.Row="6"
                             Grid.Column="0"
                             BackgroundColor="DodgerBlue"
                             BorderColor="White"

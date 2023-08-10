@@ -21,11 +21,9 @@
                     <ColumnDefinition Width="100*" />
                 </Grid.ColumnDefinitions>
                 <Label Text="From" Grid.Row="1" Grid.Column="0" FontSize="Large" TextColor="Red" HorizontalOptions="Start"/>
-                <DatePicker x:Name="DPFromDate" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public"/>
+                <DatePicker x:Name="DPFromDate" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public" Format="MM/dd/yyyy"/>
                 <Label Text="To" Grid.Row="2" Grid.Column="0" FontSize="Large" TextColor="Red" HorizontalOptions="Start"/>
-                <DatePicker x:Name="DPToDate" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public"/>
-
-
+                <DatePicker x:Name="DPToDate" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalOptions="End" TextColor="Red" x:FieldModifier="public" Format="MM/dd/yyyy"/>
                 <Button
                             x:Name="BtnOpen"
                             Grid.Row="3"
