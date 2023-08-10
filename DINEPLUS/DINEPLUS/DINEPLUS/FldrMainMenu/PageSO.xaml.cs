@@ -17,7 +17,7 @@ namespace DINEPLUS.FldrMainMenu
     {
         public MdlTables MdlTables1;
         public static PageSO Instance;
-        public string Additional = "NA";
+        public string Additional = "";
         public PageSO()
         {
             Instance = this;
@@ -52,6 +52,7 @@ namespace DINEPLUS.FldrMainMenu
             }
             else
             {
+                Additional = "New";
                 Navigation.PushAsync(new PageProductList(MdlTables1));
             }
         }
