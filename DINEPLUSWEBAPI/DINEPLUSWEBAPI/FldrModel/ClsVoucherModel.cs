@@ -43,7 +43,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public double Discount { get; set; }
         public double Totals { get; set; }
         public int RowNum { get; set; }
-        public string OrderTime { get; set; }
+        public string OrderTime { get; set; } = DateTime.Now.ToShortTimeString();
     }
 
     public class ModeltblMain3
