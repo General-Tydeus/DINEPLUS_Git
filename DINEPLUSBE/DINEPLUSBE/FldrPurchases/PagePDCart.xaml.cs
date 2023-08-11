@@ -61,13 +61,12 @@ namespace DINEPLUSBE.FldrPurchases
 
             catch (Exception)
             {
-                await DisplayAlert("Information", "Something is wrong, possible error in connection", "OK");
+                await DisplayAlert("Information", "Something went wrong, possible error in connection", "OK");
             }
         }
 
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Information", PagePDName.Instance.DPTDate.Date.ToString("MM/dd/yyyy"), "OK");
             using (HttpClient client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(tblSavetblMain1()), Encoding.UTF8, "application/json");
