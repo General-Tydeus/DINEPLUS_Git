@@ -152,7 +152,7 @@ namespace DINEPLUS.FldrSO
 
             ModeltblMain1 ModeltblMain11 = new ModeltblMain1()
             {
-                TableCode = PageProductList.Instance.MdlTables11.TableCode,
+                TableCode = PageSO.Instance.MdlTables1.TableCode,
                 TableDesc = "A",
                 TableDocNum = "NA",
             };
