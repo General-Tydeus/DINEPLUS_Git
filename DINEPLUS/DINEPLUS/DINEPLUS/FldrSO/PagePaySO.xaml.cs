@@ -94,9 +94,15 @@ namespace DINEPLUS.FldrSO
             {
                 //PrintReceipt();
                 //await UpdateTblStatus();
-                await UpdateTblStatus();
-                clearpages();
-             
+                string tblUp = await UpdateTblStatus();
+                if (tblUp == "1")
+                {
+                    clearpages();
+                }
+                else
+                {
+                    await DisplayAlert("Error", tblUp, "OK");
+                }
                 // await Navigation.PopAsync();
             }
             else
@@ -141,7 +147,7 @@ namespace DINEPLUS.FldrSO
             PagePAYO.Instance.listOrders.Clear();
             PagePAYO.Instance.LoadExp();
         }
-        public async Task UpdateTblStatus()
+        public async Task<string> UpdateTblStatus()
         {
 
             ModeltblMain1 ModeltblMain11 = new ModeltblMain1()
@@ -157,7 +163,7 @@ namespace DINEPLUS.FldrSO
             string strresult = await result.Content.ReadAsStringAsync();
             //await DisplayAlert("Notif", strresult, "OK");
             //await PopupNavigation.Instance.PopAsync();
-
+            return strresult;
         }
         public async Task PrintReceipt()
         {

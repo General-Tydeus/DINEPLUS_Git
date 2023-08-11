@@ -197,7 +197,7 @@ namespace DINEPLUS.FldrPopup
                     Cost = vl.UCost,
                     Discount = 0,
                     // RowNum = vl.RowNum,
-                    OrderTime = DateTime.Now.ToString("hh:mm tt")
+                    //OrderTime = DateTime.Now.ToString("hh:mm tt")
                 }); 
             }
             return listofData;
