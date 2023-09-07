@@ -22,7 +22,7 @@ namespace DINEPLUSBE.FldrServices
             db = new SQLiteAsyncConnection(dbPath);
             db.CreateTableAsync<ClsModeltblUser>().Wait();
             db.CreateTableAsync<ClsBluetoothPrinter>().Wait();
-            
+
         }
 
         public async Task<List<ClsModeltblUser>> GetCurrentUser(string localstrUserName)
@@ -55,5 +55,13 @@ namespace DINEPLUSBE.FldrServices
         {
             return db.ExecuteScalarAsync<string>("SELECT PrinterName FROM ClsBluetoothPrinter");
         }
+
+        //        var peopleWithNullAge = connection.Table<Person>().Where(p => p.Age == null).ToList();
+
+        //foreach (var person in peopleWithNullAge)
+        //{
+        //    // Do something with people who have null age
+        //}
+        //    }
     }
 }

@@ -32,18 +32,25 @@ namespace DINEPLUSBE.FldrControlPanel
         {
             try
             {
+                var varUserName = await App.ClsServeMain.GetCurrentUser();
+                string strUCode = varUserName.UserCode.ToString();
                 strLoggedIn = Preferences.Get("LogCheck", "");
                 if (string.IsNullOrEmpty(strLoggedIn))
                 {
                     Preferences.Set("LogCheck", "2");
                     await Navigation.PushAsync(new PageLogin());
                 }
-
                 else if (strLoggedIn == "1")
                 {
                     Preferences.Set("LogCheck", "2");
                     await Navigation.PushAsync(new PageLogin());
                 }
+                else if (string.IsNullOrEmpty(strUCode))
+                {
+                    Preferences.Set("LogCheck", "2");
+                    await Navigation.PushAsync(new PageLogin());
+                }
+                
             }
             catch (Exception)
             {
@@ -56,8 +63,9 @@ namespace DINEPLUSBE.FldrControlPanel
         {
             Preferences.Set("LogCheck", "1");
             await Task.Delay(1000);
-            //System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-            Preferences.Set("mvkev", "true");
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+            //Preferences.Set("mvkev", "true");
+
             await Navigation.PushAsync(new PageLogin());
         }
 

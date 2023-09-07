@@ -43,6 +43,25 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-         </StackLayout>
+
+            <Button
+                            x:Name="BtnInActiveAll"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnInActiveAll_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="In-Active All Products"
+                            TextColor="White">
+                <Button.Image>
+                    <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="setup.png"
+                                    iOS="cube.ico" />
+                </Button.Image>
+            </Button>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

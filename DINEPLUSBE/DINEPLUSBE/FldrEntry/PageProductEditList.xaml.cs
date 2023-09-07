@@ -55,5 +55,29 @@ namespace DINEPLUSBE.FldrEntry
             LVProductList.ItemsSource = ModeltblProducts1.Where(x => x.ProductDesc.ToLower().Contains(e.NewTextValue)).ToList();
         }
 
+        private async void BtnInActiveAll_Clicked(object sender, EventArgs e)
+        {
+            bool boolYes = await DisplayAlert("Information", "Are you sure?", "Yes", "Cancel");
+            if (boolYes)
+            {
+                var clientGet = new HttpClient();
+                clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}API/WebAPI/Entry/InActiveAllProduct");
+
+                HttpResponseMessage response = await clientGet.GetAsync("");
+                if (response.IsSuccessStatusCode)
+                {
+                    await DisplayAlert("Information", "Success", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Information", "Failed to update", "OK");
+                }
+
+            }
+            else
+            {
+              
+            }
+        }
     }
 }
