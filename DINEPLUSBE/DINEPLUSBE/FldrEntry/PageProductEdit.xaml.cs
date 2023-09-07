@@ -42,12 +42,17 @@ namespace DINEPLUSBE.FldrEntry
                 {
                     HttpClient client = new HttpClient();
                     var result = await client.GetAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/ProductActive?strURIStockNumber={pristrStockNumber}&boolURIActive={e.Value}");
-                   // await Navigation.PushAsync(new PageInvEditProduct(pristrProductCode));
-                   // var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-                   // var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-                   // foreach (var page in pageList)
-                   //     Navigation.RemovePage(page);
-                   //await PopupNavigation.Instance.PopAsync();
+               
+                    HttpResponseMessage response = await client.GetAsync("");
+                    if (response.IsSuccessStatusCode)
+                    {
+                    }
+                    else
+                    {
+                        await DisplayAlert("Information", "Failed to update record", "OK");
+                    }
+                    
+                    
                 }
             }
             catch (Exception)

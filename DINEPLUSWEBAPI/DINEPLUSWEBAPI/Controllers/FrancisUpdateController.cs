@@ -32,6 +32,20 @@ namespace DINEPLUSWEBAPI.Controllers
         }
 
         [HttpGet]
+        [Route("API/WebAPI/Entry/InActiveAllProduct")]
+        public HttpResponseMessage ProductInActive()
+        {
+            string SqlStatement = "UPDATE tblEntryProducts SET Active=@_Active";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(SqlStatement, myconnection);
+            mycommand.Parameters.Add("_Active", SqlDbType.Bit).Value = -1;
+            int n1 = mycommand.ExecuteNonQuery();
+            myconnection.Close();
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        [HttpGet]
         [Route("API/WebAPI/Entry/CustNameActive")]
         public HttpResponseMessage EditCustNameActive(string strURIControlNo, bool boolURIActive)
         {
