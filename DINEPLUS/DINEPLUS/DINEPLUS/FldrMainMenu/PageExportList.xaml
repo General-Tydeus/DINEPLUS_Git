@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUS.FldrMainMenu.PageExportList"
+             NavigationPage.HasNavigationBar="False"
+             >
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <StackLayout
+                BackgroundColor="#2A2929"
+                HeightRequest="60"
+                >
+                
+                <Label 
+                HeightRequest="60"
+                Text="EXPORT TRANSACTION"
+                TextColor="White"
+                FontSize="30"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+               />
+                
+            </StackLayout>
+            
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Button
+                    x:Name="btnExpPAYO" 
+                    Text="Pay as you Order"
+                    TextColor="Black"
+                    Clicked="btnExpPAYO_Clicked"
+                    Grid.Row="0"
+                    BorderRadius="20"
+                    BorderWidth="2"
+                    BorderColor="Black"
+                    BackgroundColor="White" 
+                    HeightRequest="70"
+                    />
+
+            <Button
+                    x:Name="btnExpSO" 
+                    Text="Pay after Order"
+                    Clicked="btnExpSO_Clicked"
+                    TextColor="Black"
+                    Grid.Row="1"
+                    BorderRadius="20"
+                    BorderWidth="2"
+                    BorderColor="Black"
+                    BackgroundColor="White" 
+                    HeightRequest="70"
+                    />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

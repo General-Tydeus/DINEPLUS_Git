@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.466" />
     <PackageReference Include="ESCPOS_NET" Version="3.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
@@ -35,16 +36,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="FldrExport\PageExport.xaml.cs">
+      <DependentUpon>PageExport.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrSO\PageEditOrderSO.xaml.cs">
+      <DependentUpon>PageEditOrderSO.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrSO\PagePaySO.xaml.cs">
       <DependentUpon>PagePaySO.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="FldrExport\PageExport.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrLoginPage\PageLogin.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrMainMenu\PageButtons.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrMainMenu\PageExportList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrMainMenu\PageMainMenu.xaml">
@@ -62,10 +75,16 @@
     <EmbeddedResource Update="FldrPopup\pageAddOrder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="FldrPopup\PageEditOrder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrPopup\PagePayOrder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrPopup\PageViewOrders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrSetup\PageSetup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrSO\PagePrevOrder.xaml">

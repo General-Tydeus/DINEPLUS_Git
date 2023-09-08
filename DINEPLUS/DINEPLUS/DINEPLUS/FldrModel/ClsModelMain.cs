@@ -8,15 +8,25 @@ namespace DINEPLUS.FldrModel
 
         public class MdlProduct
         {
+            [PrimaryKey, AutoIncrement]
+            public int RowNum { get; set; }
             public string StockNumber { get; set; }
             public string ProductDesc { get; set; }
             public string UnitMeasure { get; set; }
             public double SellingPrice { get; set; }
             public double UCost { get; set; }
             public bool Active { get; set; }
+            public double Qty { get; set; } = 0;
+            public double Totals { get; set; } = 0;
         }
 
-
+        public class OrderData
+        {
+            public string Code { get; set; }
+            public string Description { get; set; }
+            public double Price { get; set; }
+            public double Qty { get; set; }
+        }
 
 
 
@@ -34,6 +44,7 @@ namespace DINEPLUS.FldrModel
             public double Totals { get; set; } = 0;
 
         }
+
         public class ViewtblDetailsUser
         {
             public string UserCode { get; set; }
@@ -44,15 +55,22 @@ namespace DINEPLUS.FldrModel
         }
 
 
-    public class MdlTables
+        public class MdlTables
+        {
+            [PrimaryKey, AutoIncrement]
+            public int RowNum { get; set; }
+            public string TableCode { get; set; }
+            public string TableDesc { get; set; }
+            public string Status { get; set; }
+            public string LongStatus { get; set; }
+            public string TableDocNum { get; set; } = "NA";
+            public string TableGUID { get; set; } = "NA";
+        }
+
+    public class MdlDiscount
     {
-        [PrimaryKey]
-        [AutoIncrement]
-        public int RowNum { get; set; }
-        public string TableCode { get; set; }
-        public string TableDesc { get; set; }
-        public string Status { get; set; }
-        public string LongStatus { get; set; }
-        public string TableDocNum { get; set; } = "NA";
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string Discount{ get; set; }
     }
 }

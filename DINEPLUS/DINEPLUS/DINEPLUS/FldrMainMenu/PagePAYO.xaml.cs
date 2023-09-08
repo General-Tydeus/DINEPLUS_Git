@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,12 +16,12 @@ namespace DINEPLUS.FldrMainMenu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagePAYO : ContentPage
     {
+        public static PagePAYO Instance;
+
         public double varSellingPrice { get; set; }
         public double dblTotals { get; set; }
         public int strCartCount { get; set; }
-
-
-        public static PagePAYO Instance;
+        NetworkAccess current;
 
         public List<MdlOrders> listOrders = new List<MdlOrders>();
         public MdlProduct obj = new MdlProduct();
@@ -30,27 +30,39 @@ namespace DINEPLUS.FldrMainMenu
         {
             InitializeComponent();
             Instance = this;
-
+            current = Connectivity.NetworkAccess;
         }
 
         protected async override void OnAppearing()
         {
-            var varlist = await new ClsListEntry().GetProductList();
+            //if (current == NetworkAccess.Internet)
+            //{
+            //    var varlist = await new ClsListEntry().GetProductList();
+            //    ClMenu.ItemsSource = varlist;
+            //}
+            //else
+            //{
+                ClMenu.ItemsSource = await App.ClsServeMain.ImportProductList();
+            //}
 
-            ClMenu.ItemsSource = varlist;
         }
 
         private async void ClMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            obj = e.CurrentSelection[0] as MdlProduct;
-            varSellingPrice = obj.SellingPrice;
-            await Navigation.PushPopupAsync(new PageAddOrder
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
             {
-                BindingContext = e.CurrentSelection[0] as MdlProduct
-            });
-           
+                obj = e.CurrentSelection[0] as MdlProduct;
+                if (obj != null)
+                {
+                    varSellingPrice = obj.SellingPrice;
+                    await Navigation.PushPopupAsync(new PageAddOrder
+                    {
+                        BindingContext = e.CurrentSelection[0] as MdlProduct
+                    });
 
-            // DisplayAlert(" ", "   ", obj.StockNumber);
+                    ((CollectionView)sender).SelectedItem = null;
+                }
+            }
         }
         public void AddOrd(int intQty)
         {

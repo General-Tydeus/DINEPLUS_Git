@@ -35,6 +35,7 @@ namespace DINEPLUS.FldrSO
 
         private async void btnSave_Clicked(object sender, System.EventArgs e)
         {
+            btnSave.IsEnabled = false;
             if (int.Parse(txtQty.Text) <= 0)
             {
                 txtQty.Focus();

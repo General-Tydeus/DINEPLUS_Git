@@ -5,7 +5,7 @@
              NavigationPage.HasNavigationBar="False">
     
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightSkyBlue">
+        <StackLayout BackgroundColor="#2A2929">
             
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -14,15 +14,16 @@
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
 
                 <Label
                     FontAttributes="Bold"
-                    FontSize="30"
+                    VerticalOptions="Center"
+                    FontSize="40"
                     Grid.Column="0"
                     Text="{Binding TableDesc}"
-                    TextColor="Black" />
+                    TextColor="White" />
 
                 <ImageButton
                         x:Name="btnCart"
@@ -30,7 +31,7 @@
                         Grid.Row="0"
                         Grid.Column="2"
                         Aspect="AspectFit"
-                        BackgroundColor="LightSkyBlue"
+                        BackgroundColor="#2A2929"
                         HeightRequest="50"
                         WidthRequest="50"
                         VerticalOptions="Center"
@@ -42,7 +43,7 @@
                         FontAttributes="Bold"
                         FontSize="Large"
                         HorizontalTextAlignment="Center"
-                        TextColor="Red"
+                        TextColor="red"
                         Text="0"                        
                         VerticalOptions="Start" 
                         HorizontalOptions="End"/>
@@ -63,13 +64,13 @@
                             Padding="3"
                             CornerRadius="20"
                             BorderColor="WhiteSmoke"
-                         
+                            HeightRequest="120"
                             >
 
-                            <Grid Padding="10" Margin="15, 20, 15, 15" RowSpacing="0" ColumnSpacing="0" BackgroundColor="white">
+                            <Grid Padding="0" Margin="0, 20, 0, 15" RowSpacing="0" ColumnSpacing="0" BackgroundColor="white">
 
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="3*" />
+                                    <RowDefinition Height="9*" />
                                     <RowDefinition Height="1*" />
                                 </Grid.RowDefinitions>
 
@@ -82,7 +83,7 @@
                                 <!--<BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="4" />-->
 
                                 <Image
-                                HeightRequest="60"
+                                HeightRequest="40"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Start"
                                 Aspect="AspectFill"
@@ -95,13 +96,16 @@
                                 <Label
                                     FontAttributes="Bold"
                                     TextColor="Red"
-                                    VerticalOptions="End"
-                                    HorizontalOptions="Center"
                                     Grid.Column="1"
-                                    Grid.Row="0">
+                                    Grid.Row="0"
+                                    VerticalTextAlignment="End"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="CenterAndExpand"
+                                    WidthRequest="300"
+                                    >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding ProductDesc}" TextColor="Black" FontSize="20" FontAttributes="Bold" />
+                                            <Span Text="{Binding ProductDesc}" TextColor="Black" FontSize="18" FontAttributes="Bold" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -116,8 +120,6 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding SellingPrice, StringFormat='₱{0:0.00}'}" />
-                                            <Span Text=" per " />
-                                            <Span Text="{Binding UnitMeasure}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

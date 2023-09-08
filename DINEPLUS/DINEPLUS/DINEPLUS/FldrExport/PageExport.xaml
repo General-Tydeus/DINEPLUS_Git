@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUS.FldrExport.PageExport"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                    x:Name="lblTitle"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    FontSize="20"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Start"
+                    Grid.Column="0"
+                    />
+                    <Button
+                    Margin="0,5,5,0"
+                    x:Name="btnExport"
+                    HeightRequest="45"
+                    Text="EXP"
+                    TextColor="Black"
+                    Clicked="btnExport_Clicked"
+                    BackgroundColor="White"
+                    FontSize="15"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Grid.Column="1"
+                    BorderColor="Black"
+                    BorderWidth="1"   
+                   />
+                </Grid>
+           
+            <BoxView Color="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="5"/>
+
+            <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Date" FontSize="18" TextColor="Black" />
+                <Label Grid.Row="0" Grid.Column="1" Text="Code" FontSize="18" TextColor="Black" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Amount" FontSize="18" TextColor="Black" />
+                <Label Grid.Row="0" Grid.Column="3" Text="Time" FontSize="18" TextColor="Black" />
+                <Label Grid.Row="0" Grid.Column="4" Text="Export" FontSize="18" TextColor="Black" />
+
+                <BoxView Color="Black" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="5"/>
+
+                <ListView x:Name="LV1" Grid.Row="2"  Grid.ColumnSpan="5" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="0" BorderColor="DarkSlateGray" BackgroundColor="LightPink" >
+                                    <Grid Padding="0" RowSpacing="0" ColumnSpacing="0" Margin="-15,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="{Binding TDate}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black" FontSize="10"/>
+                                        <Label Grid.Column="1" Text="{Binding DocNum}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black" FontSize="10"/>
+                                        <Label Grid.Column="2" Text="{Binding CAmount, StringFormat='₱{0:0.00}'}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black" FontSize="10"/>
+                                        <Label Grid.Column="3" Text="{Binding OrderTime, StringFormat='{0:hh\\:mm tt}'}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black" FontSize="10"/>
+                                        <CheckBox Grid.Column="4" IsChecked="{Binding Exported}" IsVisible="True" IsEnabled="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                                    </Grid>
+                                   
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -18,8 +18,8 @@ namespace DINEPLUS.FldrPopup
         public PageAddOrder()
         {
             InitializeComponent();
-            lblPrice.Text = PagePAYO.Instance.varSellingPrice.ToString("n2");
-            lblTotal.Text = PagePAYO.Instance.varSellingPrice.ToString("n2");
+            lblPrice.Text = $"₱{PagePAYO.Instance.varSellingPrice.ToString("n2")}";
+            lblTotal.Text = $"₱{PagePAYO.Instance.varSellingPrice.ToString("n2")}";
         }
 
         private void txtQty_TextChanged(object sender, TextChangedEventArgs e)
@@ -30,14 +30,14 @@ namespace DINEPLUS.FldrPopup
             }
             else
             {
-                lblTotal.Text = (double.Parse(txtQty.Text) * PagePAYO.Instance.varSellingPrice).ToString("N2");
+                lblTotal.Text = $"₱{(double.Parse(txtQty.Text) * PagePAYO.Instance.varSellingPrice).ToString("N2")}";
             }
         }
 
         private void stepper_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             double value = e.NewValue;
-            lblTotal.Text = tPrice(value, PagePAYO.Instance.varSellingPrice).ToString("N2");
+            lblTotal.Text = $"₱{tPrice(value, PagePAYO.Instance.varSellingPrice).ToString("N2")}";
 
         }
         public double tPrice(double qty, double prices)
@@ -47,6 +47,7 @@ namespace DINEPLUS.FldrPopup
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
+            btnSave.IsEnabled = false;
             if (int.Parse(txtQty.Text) <= 0)
             {
                 txtQty.Focus();
@@ -56,5 +57,6 @@ namespace DINEPLUS.FldrPopup
             PagePAYO.Instance.AddOrd(int.Parse(txtQty.Text));
             await Navigation.PopPopupAsync();
         }
+
     }
 }

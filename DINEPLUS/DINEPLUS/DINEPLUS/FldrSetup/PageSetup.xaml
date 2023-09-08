@@ -1,40 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="DINEPLUS.FldrMainMenu.PageMainMenu"
-                    NavigationPage.HasNavigationBar="False"
-                    xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu"
-                    >
-    
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUS.FldrSetup.PageSetup"
+             NavigationPage.HasNavigationBar="False"
+             >
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="4*" />
                     <ColumnDefinition Width="4*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Image
-                    Source="Dineplus.png"
+
+                <Button
+                    x:Name="btnProduct" 
+                    Text="Load Product"
+                    TextColor="Black"
+                    Clicked="btnProduct_Clicked"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                  
+                    BorderRadius="20"
+                    BorderWidth="2"
+                    BorderColor="Black"
+                    BackgroundColor="White" 
+                    FontFamily="CalibriBold"
+                    FontSize="16"
                     />
-
-                
                 <Button
-                    x:Name="btnSetup" 
-                    Text="Set - up"
+                    x:Name="btnTables" 
+                    Text="Load Tables"
+                    Clicked="btnTables_Clicked"
                     TextColor="Black"
-                    Clicked="btnSetup_Clicked"
                     Grid.Row="2"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
@@ -43,13 +50,13 @@
                     BorderColor="Black"
                     BackgroundColor="White" 
                     FontFamily="CalibriBold"
-                    FontSize="18"
+                    FontSize="16"
                     />
 
                 <Button
-                    x:Name="btnExport" 
-                    Text="Export Data"
-                    Clicked="btnExport_Clicked"
+                    IsVisible="false"
+                    x:Name="btnClear" 
+                    Text="Clear History"
                     TextColor="Black"
                     Grid.Row="3"
                     Grid.Column="1"
@@ -59,55 +66,24 @@
                     BorderColor="Black"
                     BackgroundColor="White" 
                     FontFamily="CalibriBold"
-                    FontSize="18"
+                    FontSize="16"
                     />
-
-               
-    
                 <Button
-                    x:Name="btnLogout"
-                    Text="Log - Out"
+                    x:Name="btnPrinter" 
+                    Text="Bluetooth Printer"
+                    Clicked="btnPrinter_Clicked"
                     TextColor="Black"
-                    Clicked="btnLogout_Clicked"
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                     BorderRadius="20"
+                    BorderRadius="20"
                     BorderWidth="2"
                     BorderColor="Black"
                     BackgroundColor="White" 
                     FontFamily="CalibriBold"
-                    FontSize="18"
+                    FontSize="16"
                     />
-
-                <Button
-                    IsVisible="false"
-                    x:Name="btnView"
-                    Text="View"
-                    TextColor="Black"
-                    Clicked="btnView_Clicked"
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                     BorderRadius="20"
-                    BorderWidth="2"
-                    BorderColor="Black"
-                    BackgroundColor="White" 
-                    FontFamily="CalibriBold"
-                    FontSize="18"
-                    />
-
-    
-
             </Grid>
-            <nav:PageButtons 
-               HorizontalOptions="StartAndExpand"
-                VerticalOptions="EndAndExpand"/>
-
         </StackLayout>
-
     </ContentPage.Content>
-
-
-
 </ContentPage>

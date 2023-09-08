@@ -23,6 +23,11 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string TableDesc { get; set; }
         public string TableDocNum { get; set; }
         public double CAmount { get; set; }
+        public string GUID { get; set; }
+        public string DocNumLocal { get; set; }
+        public double Discount { get; set; }
+
+
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }
 
         //public List<ModeltblMain3> ModelSubtblMain3 { get; set; }
@@ -44,6 +49,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public double Totals { get; set; }
         public int RowNum { get; set; }
         public string OrderTime { get; set; }
+        public string DocNumLocal { get; set; }
     }
 
     public class ModeltblMain3

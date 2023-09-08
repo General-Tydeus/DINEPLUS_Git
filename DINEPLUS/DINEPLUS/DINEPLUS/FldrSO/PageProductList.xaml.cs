@@ -4,6 +4,7 @@ using Rg.Plugins.Popup.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,9 +15,8 @@ namespace DINEPLUS.FldrSO
     {
         public MdlTables MdlTables11;
         public MdlProduct mdlProduct1;
-        public List<MdlOrders> listOrders = new List<MdlOrders>();
+        public List<FldrModel.MdlOrders> listOrders = new List<FldrModel.MdlOrders>();
         public static PageProductList Instance;
-
         public PageProductList(MdlTables mdlTables1)
         {
             Instance = this;
@@ -26,11 +26,17 @@ namespace DINEPLUS.FldrSO
         }
         protected async override void OnAppearing()
         {
-           // await DisplayAlert("1", MdlTables11.TableCode.ToString(), "ok");
-
-
-            var varlist = await new ClsListEntry().GetProductList();
-            ClMenu.ItemsSource = varlist;
+            // await DisplayAlert("1", MdlTables11.TableCode.ToString(), "ok");
+            //CheckConnection();
+            //if (current == NetworkAccess.Internet)
+            //{
+            //    var varlist = await new ClsListEntry().GetProductList();
+            //    ClMenu.ItemsSource = varlist;
+            //}
+            //else
+            //{
+                ClMenu.ItemsSource = await App.ClsServeMain.ImportProductList();
+            //}
         }
 
 
@@ -41,9 +47,13 @@ namespace DINEPLUS.FldrSO
 
         private void ClMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mdlProduct1 = e.CurrentSelection[0] as MdlProduct;
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+            {
+                mdlProduct1 = e.CurrentSelection[0] as MdlProduct;
 
-            Navigation.PushPopupAsync(new PopUpProducts(mdlProduct1));
+                Navigation.PushPopupAsync(new PopUpProducts(mdlProduct1));
+                ((CollectionView)sender).SelectedItem = null;
+            }
         }
 
 
@@ -55,7 +65,7 @@ namespace DINEPLUS.FldrSO
                 var item = listOrders.FirstOrDefault(x => x.StockNumber == mdlProduct1.StockNumber);
                 if (item == null)
                 {
-                    listOrders.Add(new MdlOrders()
+                    listOrders.Add(new FldrModel.MdlOrders()
                     {
                         StockNumber = mdlProduct1.StockNumber,
                         ProductDesc = mdlProduct1.ProductDesc,
@@ -70,7 +80,7 @@ namespace DINEPLUS.FldrSO
                 else
                 {
                     listOrders.RemoveAll(x => x.StockNumber == mdlProduct1.StockNumber);
-                    listOrders.Add(new MdlOrders()
+                    listOrders.Add(new FldrModel.MdlOrders()
                     {
                         StockNumber = mdlProduct1.StockNumber,
                         ProductDesc = mdlProduct1.ProductDesc,
@@ -93,12 +103,16 @@ namespace DINEPLUS.FldrSO
 
         private void btnCart_Clicked(object sender, System.EventArgs e)
         {
-            if(listOrders.Count <= 0)
+            btnCart.IsEnabled = false;
+            if (listOrders.Count <= 0)
             {
                 this.DisplayToastAsync("No Item to Show!!", 500);
+                btnCart.IsEnabled = true;
                 return;
             }
             Navigation.PushAsync(new PageSOCart(MdlTables11));
+            btnCart.IsEnabled = true;
+
         }
     }
 }

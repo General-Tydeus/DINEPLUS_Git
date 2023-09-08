@@ -3,52 +3,49 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DINEPLUS.FldrSO.PopUpProducts"
+             x:Class="DINEPLUS.FldrPopup.PageEditOrder"
+             BackgroundClicked="PopupPage_BackgroundClicked"
              CloseWhenBackgroundIsClicked="True"
-             IsAnimationEnabled="True">
+             IsAnimationEnabled="True"
+             >
+
     <StackLayout         
-        WidthRequest="320"
-        HeightRequest="330"
+        WidthRequest="340"
+        HeightRequest="350"
         HorizontalOptions="Center" 
         VerticalOptions="Center" 
         BackgroundColor="White"
         Orientation="Vertical">
-        <Label Text="Add Order" 
-                   TextColor="Black"
-                   FontSize="30" 
-                   FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center" 
-                   HorizontalOptions="CenterAndExpand" />
+        <Label Text="Edit Order" 
+               FontSize="Large" 
+               FontAttributes="Bold" 
+               HorizontalTextAlignment="Center" 
+               HorizontalOptions="CenterAndExpand" />
         <StackLayout 
             Orientation="Horizontal" 
-            Margin="10,0,0,0">
+            Margin="10,10,0,0">
             <Label Text="Product : "
-                    FontSize="15"
-                    TextColor="Black"
+                    FontSize="20"
                     FontAttributes="Bold"/>
             <Label x:Name="lblProduct"
                    Text="{Binding ProductDesc}"
-                    FontSize="15"
+                    FontSize="20"
                     TextColor="Black"
                     FontAttributes="Bold"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+        <StackLayout Orientation="Horizontal" Margin="10,10,0,0">
             <Label Text="Price : "
-                    TextColor="Black"
-                    FontSize="15"
+                    FontSize="20"
                     FontAttributes="Bold"/>
             <Label x:Name="lblPrice"
-                       Text="{Binding SellingPrice, StringFormat= '₱ {0:#,0.#0}'}"
-                       TextColor="Red"
-                       FontSize="15"
+                       Text="{Binding SellingPrice, StringFormat='{0:00}'}"
+                       TextColor="Black"
+                       FontSize="20"
                        FontAttributes="Bold"/>
         </StackLayout>
-
         <StackLayout Orientation="Horizontal">
             <Entry x:Name="txtQty"
-               BindingContext="{x:Reference stepper}"
-               Text="{Binding Value}"
-               Placeholder="Qty"
+               Text="{Binding Qty, StringFormat='{0:0}'}"
                FontSize="30"
                FontAttributes="Bold"
                Keyboard="Numeric"
@@ -56,38 +53,35 @@
                Margin="10"
                MaxLength="4"
                HorizontalTextAlignment="Center"
-                       TextChanged="txtQty_TextChanged"/>
+               TextChanged="txtQty_TextChanged"
+               />
             <Stepper x:Name="stepper"
-                     Minimum="1" 
+                     Minimum="0" 
                      Maximum="999"
                      Increment="1"
-                     ValueChanged="stepper_ValueChanged"/>
+                     ValueChanged="stepper_ValueChanged"
+                    />
         </StackLayout>
-
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="10,0,10,0">
-
+        <StackLayout Orientation="Horizontal" Margin="10,10,0,0">
             <Label Text="Total : "
-                   TextColor="Black"
-                   FontSize="20"
-                   FontAttributes="Bold"
+                    FontSize="20"
+                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"/>
-
             <Label x:Name="lblTotal"
-                       Text="{Binding SellingPrice, StringFormat= '₱ {0:#,0.#0}'}"
+                       Text="0"
                        TextColor="Red"
                        FontSize="30"
                        FontAttributes="Bold"
                        VerticalTextAlignment="Center"/>
-
         </StackLayout>
-        <Button Text="Add Order"
+        <Button Text="Save"
                 x:Name="btnSave"
+                Clicked="btnSave_Clicked"
                 Margin="10"
                 BackgroundColor="Blue"
                 CornerRadius="3"
                 FontSize="Large"
                 FontAttributes="Bold"
-                TextColor="White"
-                Clicked="btnSave_Clicked"/>
+                TextColor="White"/>
     </StackLayout>
 </pages:PopupPage>

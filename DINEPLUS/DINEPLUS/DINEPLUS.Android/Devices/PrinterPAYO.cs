@@ -9,6 +9,7 @@ using DINEPLUS.FldrMainMenu;
 using DINEPLUS.FldrPopup;
 using ESCPOS_NET.Emitters;
 using ESCPOS_NET.Utilities;
+using Java.IO;
 using Java.Util;
 using System;
 using System.Collections.Generic;
@@ -21,82 +22,92 @@ namespace DINEPLUS.Droid.Devices
 {
     public class PrinterPAYO
     {
-
-        private double pridblGrossTotal = 0;
         public async Task PrintTest(string pln, BluetoothDevice _connectedDevice)
         {
+            string totalOrd = PagePayOrder.Instance.lblTotals.Text;
+            if (totalOrd.StartsWith("₱"))
+            {
+                totalOrd = totalOrd.Substring(1);
+            }
             var dateTime = DateTime.Now;
             try
             {
                 using (BluetoothSocket socket = _connectedDevice.CreateRfcommSocketToServiceRecord(UUID.FromString("00001101-0000-1000-8000-00805f9b34fb")))
                 {
-                    await socket.ConnectAsync();
+                    await socket.ConnectAsync(); 
                     switch (pln)
                     {
                         case "plain":
-
                             string usrname = Preferences.Get("prefUserName", "NA");
                             string strLine = "--------------------------------";
                             var e = new EPSON();
                             var buffer = ByteSplicer.Combine(
                                 e.CenterAlign(),
-                                e.PrintLine("Official Receipt"),
-                                //e.PrintLine(PagePAYO.Instance.listOrders.Count.ToString()),
                                 e.PrintLine(""),
-                                e.LeftAlign(), e.PrintLine("Order# : " + $"CS{PagePayOrder.Instance.lblDocNum.Text}"),
-                                e.LeftAlign(), e.PrintLine("Date   : " + dateTime.ToString("MM/dd/yyyy")),
-                                e.LeftAlign(), e.PrintLine("Time   : " + dateTime.ToString("hh:mm:ss tt")),
+                                e.PrintLine("Receipt"),
+                                e.PrintLine(""),
+                                e.LeftAlign(), e.PrintLine("Order#  : " + $"CS{PagePayOrder.Instance.lblDocNum.Text}"),
+                                e.LeftAlign(), e.PrintLine("Date    : " + dateTime.ToString("MM/dd/yyyy")),
+                                e.LeftAlign(), e.PrintLine("Time    : " + dateTime.ToString("hh:mm:ss tt")),
                                 e.LeftAlign(), e.PrintLine("Cashier : " + usrname),
                                 e.LeftAlign(), e.PrintLine(strLine),
-                                              e.PrintLine("Items" + "Qty".PadLeft(17) + "  Price".PadLeft(5)),
+                                e.PrintLine("Items" + "        Qty" + " Price" + "    Total"),
                                 e.LeftAlign(), e.PrintLine(strLine));
+
                             await socket.OutputStream.WriteAsync(buffer, 0, buffer.Length);
 
-                            foreach (var lv in PagePAYO.Instance.listOrders) //new command
+                            foreach (var lv in PagePAYO.Instance.listOrders)
                             {
-                                //var EP = new EPSON();
-                                //var bufferEP = ByteSplicer.Combine(
-                                //EP.LeftAlign(), EP.PrintLine(lv.ProductDesc + lv.SellingPrice.ToString("n2").PadLeft(10 - lv.ProductDesc.Length) + lv.Qty.ToString("").PadLeft(10 - lv.ProductDesc.Length))
-                                //    );
-                                //await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
-                               
+                                double totals = lv.Qty * lv.SellingPrice;
+
                                 var EP = new EPSON();
                                 var bufferEP = ByteSplicer.Combine(
-                                        EP.LeftAlign(),
-                                          EP.PrintLine($"{lv.ProductDesc} {lv.Qty.ToString("").PadLeft(20 - lv.ProductDesc.Length)} {lv.SellingPrice.ToString("n2").PadLeft(8 + lv.Qty.ToString("").Length)}")
-                                          );
+                                    EP.RightAlign(),
+                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
+                                    $"{lv.Qty.ToString().PadRight(3)}" +
+                                    $"{lv.SellingPrice.ToString("n2").PadRight(15- totals.ToString("n2").Length)}" +
+                                    $"{totals.ToString("n2")}")
+                                );
 
                                 await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
-                               
                             }
+
                             var D = new EPSON();
                             double CR = Convert.ToDouble(PagePayOrder.Instance.txtCR.Text);
 
                             var bufferD = ByteSplicer.Combine(
-                            D.LeftAlign(),
-                            D.PrintLine(strLine),
-                            D.PrintLine("Total : " + PagePayOrder.Instance.lblTotals.Text.PadLeft(30 -(PagePayOrder.Instance.lblTotals.Text.Length))),
-                            D.PrintLine("Cash Recieved : " + CR.ToString("n2").PadLeft(18 - (CR.ToString().Length))),
-                            D.PrintLine("Change : " + PagePayOrder.Instance.lblChange.Text.PadLeft(27 - (PagePayOrder.Instance.lblChange.Text).Length)),
-                            D.PrintLine("================================"),
-                            D.PrintLine("Powered By : CBytes")
-                                );
+                                D.LeftAlign(),
+                                D.PrintLine(strLine),
+                                D.RightAlign(),
+                                D.PrintLine($"{"Discount :"}{PagePayOrder.Instance.lblDiscount.Text.PadLeft(22)}"),
+                                D.PrintLine($"{"Total :"}{totalOrd.PadLeft(25)}"),
+                                D.PrintLine($"{"Cash Received :"}{CR.ToString("n2").PadLeft(17)}"),
+                                D.PrintLine($"{"Change :"}{PagePayOrder.Instance.lblChange.Text.PadLeft(24)}"),
+                                D.PrintLine("================================"),
+                                D.CenterAlign(),
+                                D.PrintLine("Powered By : CBytes Computer Programming Services"),
+                                D.PrintLine("Tel. No. : (034)703-5016")
+                            );
                            
+
                             await socket.OutputStream.WriteAsync(bufferD, 0, bufferD.Length);
 
-                            socket.OutputStream.WriteByte(0x0A); // br 
-                            socket.OutputStream.WriteByte(0x0A);
-                            socket.OutputStream.WriteByte(0x0A);
-                            socket.OutputStream.WriteByte(0x0A);
+                            socket.OutputStream.WriteByte(0x0A); 
+                            socket.OutputStream.WriteByte(0x0A); 
+                            socket.OutputStream.WriteByte(0x0A); 
                             break;
                     }
-                    socket.Close();
                 }
+            }
+            catch (IOException ex)
+            {
+                System.Console.WriteLine("IOException: " + ex.Message);
             }
             catch (Exception ex)
             {
-                throw ex;
+                System.Console.WriteLine("Exception: " + ex.Message);
             }
         }
+
     }
 }
