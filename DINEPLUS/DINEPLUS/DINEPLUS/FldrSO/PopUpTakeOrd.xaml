@@ -80,7 +80,7 @@
                         FontAttributes="Bold"
                         Grid.Column="1"
                         Grid.Row="2"
-                        FontSize="36"
+                        FontSize="30"
                         Text="0.00" 
                         TextColor="DarkRed"
                         HorizontalTextAlignment="Center"/>

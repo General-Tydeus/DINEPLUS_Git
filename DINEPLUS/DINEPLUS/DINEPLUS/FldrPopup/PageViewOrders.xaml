@@ -2,39 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DINEPLUS.FldrPopup.PageViewOrders"
+             NavigationPage.HasNavigationBar="false"
              Title="ORDER DETAILS">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout 
+                BackgroundColor="White" >
+                <Label
+                    Text="Order Details"
+                    FontSize="30"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+            </StackLayout>
+            
             <StackLayout
             Background="LightGray">
-                <Frame BackgroundColor="DodgerBlue" BorderColor="DarkSlateGray" Padding="0">
+                <Frame BackgroundColor="#2A2929" BorderColor="DarkSlateGray" Padding="0">
                     <Grid  Padding="5" RowSpacing="0" >
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="35"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Text="Product"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
                         <Label Grid.Column="1" Text="Unit of Measure"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
-                        <Label Grid.Column="2" Text="Qty"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="Qty"  VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
                         <Label Grid.Column="3" Text="Price"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
                         <Label Grid.Column="4" Text="Total"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
 
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                        <BoxView BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                     </Grid>
                 </Frame>
-                <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+                <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center" ItemSelected="LV1_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -43,14 +54,14 @@
                                         <SwipeItem
                                         Text="Remove"
                                         BackgroundColor="Red"
-                                        
+                                        Invoked="SwipeItem_Invoked"
                                         />
                                     </SwipeView.RightItems>
                                     <SwipeView.LeftItems>
                                         <SwipeItem
                                         Text="Remove"
                                         BackgroundColor="Red"
-                                       
+                                        Invoked="SwipeItem_Invoked"
                                         />
                                     </SwipeView.LeftItems>
                                     <Frame Padding="0" BorderColor="DarkSlateGray">
@@ -61,10 +72,10 @@
                                             </Grid.RowDefinitions>
 
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="3*"/>
                                                 <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
 
@@ -74,7 +85,7 @@
                                             <Label Grid.Column="1" Text="{Binding UnitMeasure}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
                                             <Label Grid.Column="2" Text="{Binding Qty}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
                                             <Label Grid.Column="3" Text="{Binding SellingPrice, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
-                                            <Label Grid.Column="4" Text="{Binding Totals, StringFormat= '{0:#,0.#0}'}" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Grid.Column="4" Text="{Binding Totals, StringFormat='{0:#,0.#0}'}" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold"/>
 
                                             <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                             <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>

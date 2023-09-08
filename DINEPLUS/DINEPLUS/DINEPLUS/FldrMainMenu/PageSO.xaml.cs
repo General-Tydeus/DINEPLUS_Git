@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,25 +18,66 @@ namespace DINEPLUS.FldrMainMenu
         public MdlTables MdlTables1;
         public static PageSO Instance;
         public string Additional = "";
+        public string strDisc;
+
+        NetworkAccess current;
+
         public PageSO()
         {
             Instance = this;
             InitializeComponent();
+            GetDiscount();
 
         }
-
+        public void CheckConnection()
+        {
+            current = Connectivity.NetworkAccess;
+        }
+        public async void GetDiscount()
+        {
+            //if (current == NetworkAccess.Internet)
+            //{
+            //    strDisc = await new ClsGetSomething().GetDiscount();
+            //}
+            //else
+            //{
+                MdlDiscount discount = await App.ClsServeMain.ImportDiscount();
+                if (discount != null)
+                {
+                    strDisc = discount.Discount;
+                }
+                //else
+                //{
+                //    strDisc = "No discount available.";
+                //}
+            //}
+            // await DisplayAlert("one", strDisc, "oks");
+        }
         protected async override void OnAppearing()
         {
+            //CheckConnection();
+            //if (current == NetworkAccess.Internet)
+            //{
+            //    await LoadSumary();
+            //}
+            //else
+            //{
+            //Clview.ItemsSource = await App.ClsServeMain.ImportTableList();
+            //}
             await LoadSumary();
         }
 
         public async Task LoadSumary()
         {
-            //Clview.ItemsSource = await App.ClsServeMain.ImportTableList();    
-            var varlist = await new ClsListEntry().GetTblList();
-
-            Clview.ItemsSource = varlist;
-
+            //CheckConnection();
+            //if (current == NetworkAccess.Internet)
+            //{
+            //    await App.ClsServeInsertLocal.SaveTable();
+            //}
+            //else
+            //{
+                Clview.ItemsSource = await App.ClsServeMain.ImportTableList();
+            //}
         }
 
         private void Clview_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -9,14 +9,15 @@
              >
 
     <StackLayout         
-        WidthRequest="340"
-        HeightRequest="400"
+        WidthRequest="320"
+        HeightRequest="330"
         HorizontalOptions="Center" 
         VerticalOptions="Center" 
         BackgroundColor="White"
         Orientation="Vertical">
         <Label Text="Add Order" 
-               FontSize="Large" 
+               TextColor="Black"
+               FontSize="30"  
                FontAttributes="Bold" 
                HorizontalTextAlignment="Center" 
                HorizontalOptions="CenterAndExpand" />
@@ -24,22 +25,24 @@
             Orientation="Horizontal" 
             Margin="10,10,0,0">
             <Label Text="Product : "
-                    FontSize="20"
+                    FontSize="15"
+                    TextColor="Black"
                     FontAttributes="Bold"/>
             <Label x:Name="lblProduct"
                    Text="{Binding ProductDesc}"
-                    FontSize="20"
+                    FontSize="15"
                     TextColor="Black"
                     FontAttributes="Bold"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="10,10,0,0">
             <Label Text="Price : "
-                    FontSize="20"
+                    FontSize="15"
+                    TextColor="Black"
                     FontAttributes="Bold"/>
             <Label x:Name="lblPrice"
                        Text="0"
-                       TextColor="Black"
-                       FontSize="20"
+                       TextColor="Red"
+                       FontSize="15"
                        FontAttributes="Bold"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
@@ -67,6 +70,7 @@
             <Label Text="Total : "
                     FontSize="20"
                     FontAttributes="Bold"
+                    TextColor="Black"
                    VerticalTextAlignment="Center"/>
             <Label x:Name="lblTotal"
                        Text="0"
@@ -79,6 +83,7 @@
                 x:Name="btnSave"
                 Clicked="btnSave_Clicked"
                 Margin="10"
+                HeightRequest="50"
                 BackgroundColor="Blue"
                 CornerRadius="3"
                 FontSize="Large"

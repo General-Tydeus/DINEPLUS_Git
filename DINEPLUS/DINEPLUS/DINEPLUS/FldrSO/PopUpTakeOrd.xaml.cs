@@ -20,24 +20,28 @@ namespace DINEPLUS.FldrSO
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopUpTakeOrd : PopupPage
     {
-        public string MyDocNum { get; set; }
+        //public string strDocNum { get; set; }
         public string MyReference { get; set; }
-
-
-
+        public string strDocNumLocal { get; set; }
+        public string prevDocNumLocal { get; set; }
+        public string strGUID { get; set; }
+        public bool export { get; set; }
+        NetworkAccess current;
+         
         public PopUpTakeOrd()
         {
             InitializeComponent();
-            lblTotals.Text = $"₱ {PageSOCart.Instance.Totals.ToString("n2")}";
+            lblTotals.Text = $"₱ {PageSOCart.Instance.LoadSumOrd()}";
+            strGUID = Guid.NewGuid().ToString();
         }
         protected async override void OnAppearing()
         {
-            int SOMainCount1 = await App.ClsServeMain.SOMainCount();
-            SOMainCount1++;
-            //MyDocNum = Convert.ToString(SOMainCount1).PadLeft(7, '0');
-            MyDocNum = await new ClsAutoNum().GetVoucherAutoNum("SO", PageMainMenu.Instance.strCNCode);
+          strDocNumLocal = await App.ClsServeMain.TDocNum();
         }
-
+        public void CheckConnection()
+        {
+            current = Connectivity.NetworkAccess;
+        }
         private void btnClose_Clicked(object sender, System.EventArgs e)
         {
             Navigation.PopPopupAsync();
@@ -45,7 +49,8 @@ namespace DINEPLUS.FldrSO
 
         private async void BtnPost_Clicked(object sender, System.EventArgs e)
         {
-            if(String.IsNullOrWhiteSpace(txtRemarks.Text))
+            BtnPost.IsEnabled = false;
+            if (String.IsNullOrWhiteSpace(txtRemarks.Text))
             {
                 await DisplayAlert("info","please complete entry!","OK");
                 return;
@@ -53,30 +58,44 @@ namespace DINEPLUS.FldrSO
 
             if (PageSO.Instance.Additional == "New")
             {
-                SaveTheTransact();
+                CheckConnection();
+                if (current == NetworkAccess.Internet)
+                {
+                    export = true;
+                    SaveTheTransact();
+                    SaveTheLocal();
+
+                }
+                else
+                {
+                    export = false;
+                    SaveTheLocal();
+                }
+                    
             }
             else if (PageSO.Instance.Additional == "Additional")
             {
-                SaveAdditional();
+                CheckConnection();
+                if (current == NetworkAccess.Internet)
+                {
+                    string IC1 = PagePrevOrder.Instance.mdlTables11.TableDocNum;
+                    string docnum = IC1.Substring(2, IC1.Length - 4);
+                    prevDocNumLocal = docnum;
+                    export = true;
+                    SaveAdditional();
+                    SaveNewOrder();
+                }
+                else
+                {
+                    string IC1 = PagePrevOrder.Instance.mdlTables11.TableDocNum;
+                    string docnum = IC1.Substring(2, IC1.Length - 4);
+                    prevDocNumLocal = docnum;
+                    export = false;
+                    SaveNewOrder();
+                }
+               
             }
-            else if (PageSO.Instance.Additional == "")
-            {
-                //SaveAdditional();
-                await DisplayAlert("Additional is empty", PageSO.Instance.Additional, "OK");
-            }
-
-            //else
-            //{
-            //        await App.ClsServeMain.SaveClsModelSO1(tblSavetblMain1());
-            //        await App.ClsServeMain.SaveClsModelSO2(SavetblMain2());
-
-            //        App.ClsServeMain.TableOccupied(tblSavetblMain1().TableCode, MyDocNum);
-
-            //        return;
-            //}
-
-
-
+            BtnPost.IsEnabled = true;
         }
 
         public ModeltblMain1 tblSavetblMain1()
@@ -87,10 +106,10 @@ namespace DINEPLUS.FldrSO
 
                 //IC = $"SO{MyDocNum}",
                 Voucher = "SO",
-                DocNum = MyDocNum,
+                DocNum = strDocNumLocal,
                 UserCode = PageMainMenu.Instance.strUserCode,
                 TDate = DateTime.Now.ToString("MM,dd,yyyy"),
-                Reference = $"SO{MyDocNum}",
+                Reference = $"SO{strDocNumLocal}",
                 ControlNo = "001",
                 Remarks = txtRemarks.Text,
                 CNCode = PageMainMenu.Instance.strCNCode,
@@ -98,7 +117,9 @@ namespace DINEPLUS.FldrSO
                 CashReceived = 0,
                 Serve = false,
                 //TableDesc = PageProductList.Instance.MdlTables11.TableDesc,
-                CAmount = 0
+                CAmount = 0,
+                GUID = strGUID,
+                DocNumLocal = strDocNumLocal,
                 //CAmount = double.Parse(lblTotals.Text),
 
             };
@@ -149,50 +170,6 @@ namespace DINEPLUS.FldrSO
             return listofData;
         }
 
-        //public LocaltblMain1 tblSavetblMain1()
-        //{
-        //    return new LocaltblMain1()
-        //    {
-        //        IC = $"SO{MyDocNum}",
-        //        Voucher = "SO",
-        //        DocNum = MyDocNum,
-        //        UserCode = PageMainMenu.Instance.strUserCode,
-        //        TDate = DateTime.Now,
-        //        Reference = $"SO{MyDocNum}",
-        //        ControlNo = "001",
-        //        Remarks = txtRemarks.Text,
-        //        CNCode = PageMainMenu.Instance.strCNCode,
-        //        TableCode = PageProductList.Instance.MdlTables11.TableCode,
-        //        TableDesc = PageProductList.Instance.MdlTables11.TableDesc,
-        //        CAmount = PageSOCart.Instance.Totals
-        //    };
-        //}
-
-
-
-        //public List<LocaltblMain2> SavetblMain2()
-        //{
-        //    var listofData = new List<LocaltblMain2>();
-        //    foreach (var vl in PageProductList.Instance.listOrders)
-        //    {
-        //        listofData.Add(new LocaltblMain2()
-        //        {
-        //            IC = $"SO{MyDocNum}",
-        //            DocNum = MyDocNum,
-        //            StockNumber = vl.StockNumber,
-        //            PIn = 0,
-        //            POut = vl.Qty,
-        //            UP = vl.SellingPrice,
-        //            Cost = vl.UCost,
-        //            Discount = 0,
-        //            ProductDesc = vl.ProductDesc,
-        //            Totals = vl.Totals,
-        //            OrderTime = DateTime.Now.ToString("hh:mm tt")
-        //        });
-        //    }
-        //    return listofData;
-        //}
-
 
         private async void SaveTheTransact()
         {
@@ -203,47 +180,8 @@ namespace DINEPLUS.FldrSO
 
                 string strresult = await result.Content.ReadAsStringAsync();
 
-               // await DisplayAlert("Notif", strresult, "OK");
-
                 if (strresult == "1")
                 {
-                    var clientGet = new HttpClient();
-                    clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Various/GetDoorMessage/?strWAPIVoucher=SO");
-                    HttpResponseMessage response = await clientGet.GetAsync("");
-                    strresult = await response.Content.ReadAsStringAsync();
-                    string strresultFinal = strresult.Trim('"');
-                    if (strresultFinal == "0")
-                    {
-                        await UpdateTblStatus();
-                        //PageSOCart.Instance.clsPage2();
-                        ////
-                        ////PageSO.Instance.docnum = MyDocNum;
-                        ////PageProductList.Instance.clsPage1();
-
-                        //await PageSO.Instance.LoadSumary();
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (Navigation.NavigationStack.Count > 1)
-                            {
-                                Page pageToRemove = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-                                Navigation.RemovePage(pageToRemove);
-                            }
-                        }
-                        //await Navigation.PopAsync();
-                        await Navigation.PopPopupAsync();
-                    }
-                    else if (strresultFinal == "1")
-                    {
-                        await DisplayAlert("Error", "Transaction not saved", "OK");
-                    }
-                    else if (strresultFinal == "2")
-                    {
-                        await DisplayAlert("Error", "Contact your administrator", "OK");
-                    }
-                    else if (strresultFinal == "3")
-                    {
-                        await DisplayAlert("Error", "Transaction not saved", "OK");
-                    }
                 }
                 else
                 {
@@ -252,64 +190,204 @@ namespace DINEPLUS.FldrSO
                 }
             }
         }
+        private async void SaveTheLocal()
+        {
+            try
+            {
+                tblMain1Local localtblMain1 = tblSavetblMain1Local();
+                int n = await App.ClsServeInsertLocal.SaveMain1(localtblMain1);
 
+
+                List<tblMain2Local> listOfData = tblSavetblMain2Local();
+                foreach (var item in listOfData)
+                {
+                    int result = await App.ClsServeInsertLocal.SaveMain2(item);
+
+                    if (result != 0)
+                    {
+                        await DisplayAlert("alert", result.ToString(), "Ok");
+                    }
+
+                }
+                if (n == 0)
+                {
+                    UpdateLocalTable();
+                    clrpgs();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to Save", "Ok");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "Ok");
+            }
+        }
+        public tblMain1Local tblSavetblMain1Local()
+        {
+          
+            return new tblMain1Local()
+            {
+                Voucher = "SO",
+                UserCode = PageMainMenu.Instance.strUserCode,
+                TDate = DateTime.Now.ToString("MM/dd/yyyy"),
+                DocNum = strDocNumLocal,
+                Reference = $"SO{strDocNumLocal}",
+                ControlNo = "001",
+                Remarks = txtRemarks.Text,
+                CNCode = PageMainMenu.Instance.strCNCode,
+                CashReceived = 0,
+                Serve = false,
+                TableCode = PageProductList.Instance.MdlTables11.TableCode,
+                CAmount = 0,
+                GUID = strGUID,
+                Exported = export,
+                OrderTime = DateTime.Now.ToString("hh:mm tt"),
+            };
+        }
+        public List<tblMain2Local> tblSavetblMain2Local()
+        {
+
+            List<tblMain2Local> listofData = new List<tblMain2Local>();
+            foreach (var vl in PageProductList.Instance.listOrders)
+            {
+                listofData.Add(new tblMain2Local()
+                {
+                    IC = $"SO{strDocNumLocal}{PageMainMenu.Instance.strCNCode}",
+                    StockNumber = vl.StockNumber,
+                    PIn = 0,
+                    POut = vl.Qty,
+                    UP = vl.SellingPrice,
+                    Cost = vl.UCost,
+                    Discount = 0,
+                    Totals = vl.Totals,
+                    ProductDesc = vl.ProductDesc,
+                    // RowNum = vl.RowNum,
+                    OrderTime = DateTime.Now.ToString("hh:mm tt"),
+                    Exported = export,
+                    DocNumLocal = strDocNumLocal,
+                });
+            }
+            return listofData;
+        }
         public async Task UpdateTblStatus()
         {
             ModeltblMain1 ModeltblMain11 = new ModeltblMain1()
             {
                 TableCode = PageProductList.Instance.MdlTables11.TableCode,
                 TableDesc = "O",
-                TableDocNum = $"SO{MyDocNum}{PageMainMenu.Instance.strCNCode}",
+                TableDocNum = $"SO{strDocNumLocal}{PageMainMenu.Instance.strCNCode}",
             };
             var json = JsonConvert.SerializeObject(ModeltblMain11);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
             var result = await client.PutAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/UpdateTblStatus", content);
             string strresult = await result.Content.ReadAsStringAsync();
-            //await DisplayAlert("Notif", strresult, "OK");
+        }
+
+        public void UpdateLocalTable()
+        {
+            string docnum = $"SO{strDocNumLocal}{PageMainMenu.Instance.strCNCode}";
+            App.ClsServeMain.TableOccupied(tblSavetblMain1Local().TableCode, docnum, tblSavetblMain1Local().GUID);
+
         }
         public async void SaveAdditional()
         {
-            //await DisplayAlert("IC", text, "OK");
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                     //modelMain2 = SavetblMain2();
-                    //string strIC = PagePrevOrder.Instance.mdlTables11.TableDocNum;
-
-
-
                     var content = new StringContent(JsonConvert.SerializeObject(SavetblMain21()), Encoding.UTF8, "application/json");
                     var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain2Additional", content);
                     string strresult = await result.Content.ReadAsStringAsync();
 
                     if (strresult == "1")
                     {
-                        //PageSOCart.Instance.clsPage2();
-                        //PageProductList.Instance.clsPage1();
-                        //PageSO.Instance.docnum = MyDocNum;
-                        // PageProductList.Instance.clsPage1();
-                        await PageSO.Instance.LoadSumary();
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (Navigation.NavigationStack.Count > 1)
-                            {
-                                Page pageToRemove = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-                                Navigation.RemovePage(pageToRemove);
-                            }
-                        }
-                        await Navigation.PopPopupAsync();
+                        //await PageSO.Instance.LoadSumary();
+                        //for (int i = 0; i < 3; i++)
+                        //{
+                        //    if (Navigation.NavigationStack.Count > 1)
+                        //    {
+                        //        Page pageToRemove = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+                        //        Navigation.RemovePage(pageToRemove);
+                        //    }
+                        //}
+                        //await Navigation.PopPopupAsync();
                     }
-                    //await DisplayAlert("SaveAdditional", strresult, "OK");
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                
             }
 
+        }
+        public async void clrpgs()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (Navigation.NavigationStack.Count > 1)
+                {
+                    Page pageToRemove = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+                    Navigation.RemovePage(pageToRemove);
+                }
+            }
+            await Navigation.PopPopupAsync();
+        }
+        public List<tblMain2Local> tblSavetblMain2LocalNew()
+        {
+
+            List<tblMain2Local> listofData = new List<tblMain2Local>();
+            foreach (var vl in PageProductList.Instance.listOrders)
+            {
+                listofData.Add(new tblMain2Local()
+                {
+                    IC = $"{PagePrevOrder.Instance.mdlTables11.TableDocNum}",
+                    StockNumber = vl.StockNumber,
+                    PIn = 0,
+                    POut = vl.Qty,
+                    UP = vl.SellingPrice,
+                    Cost = vl.UCost,
+                    Discount = 0,
+                    Totals = vl.Totals,
+                    ProductDesc = vl.ProductDesc,
+                    // RowNum = vl.RowNum,
+                    OrderTime = DateTime.Now.ToString("hh:mm tt"),
+                    Exported = export,
+                    DocNumLocal = prevDocNumLocal,
+                });
+            }
+            return listofData;
+        }
+        private async void SaveNewOrder()
+        {
+            List<tblMain2Local> listOfData = tblSavetblMain2LocalNew();
+            foreach (var item in listOfData)
+            {
+                int result = await App.ClsServeInsertLocal.SaveMain2(item);
+
+                if (result != 0)
+                {
+                    await DisplayAlert("alert", result.ToString(), "Ok");
+                    return;
+                }
+                clrpgs1();
+
+            }
+        }
+        public async void clrpgs1()
+        {
+            for (int i = 0; i <3; i++)
+            {
+                if (Navigation.NavigationStack.Count > 1)
+                {
+                    Page pageToRemove = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+                    Navigation.RemovePage(pageToRemove);
+                }
+            }
+            await Navigation.PopPopupAsync();
         }
     }
 }

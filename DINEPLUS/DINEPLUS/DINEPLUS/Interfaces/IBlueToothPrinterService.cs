@@ -14,6 +14,7 @@ namespace DINEPLUS.Interfaces
         bool boolBluetoothOn(string PrinterName);
         void testPrint();
         void testPrintSO();
+        void testPrintSO1();
         Task<bool> CheckBlueToothPrinter();
 
     }

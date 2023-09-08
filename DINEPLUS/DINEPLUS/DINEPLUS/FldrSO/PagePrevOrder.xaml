@@ -10,12 +10,15 @@
                 FontSize="30"
                 Text="PREVIOUS ORDERS"
                 FontAttributes="Bold"
+                
                 TextColor="Black" 
                 HorizontalOptions="Center"
                 Margin="0"
                 Padding="0"/>
 
             <Label
+                x:Name="lblTableName"
+                x:FieldModifier="public"
                 FontAttributes="Bold"
                 FontSize="15"
                 Text="{Binding TableDesc}"
@@ -58,12 +61,16 @@
                                 <SwipeView.RightItems>
                                     <SwipeItem
                                         Text="Remove"
-                                        BackgroundColor="Red"/>
+                                        BackgroundColor="Red"
+                                        Invoked="SwipeItem_Invoked"
+                                        />
                                 </SwipeView.RightItems>
                                 <SwipeView.LeftItems>
                                     <SwipeItem
                                         Text="Remove"
-                                        BackgroundColor="Red"/>
+                                        BackgroundColor="Red"
+                                        Invoked="SwipeItem_Invoked"
+                                        />
                                 </SwipeView.LeftItems>
                                 <Frame Padding="0" BorderColor="DarkSlateGray">
                                     <Grid Padding="0" RowSpacing="0" >
@@ -93,12 +100,13 @@
                                     </Grid>
                                 </Frame>
                             </SwipeView>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout x:Name="SLName" BackgroundColor="white" HeightRequest="121">
-                <Grid>
+                <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
@@ -118,7 +126,10 @@
                     Grid.Row="1"
                     BackgroundColor="Green"
                     CornerRadius="5"
+                    FontSize="Small"
                     FontAttributes="Bold"
+                    FontFamily="CalibriBold"
+                        
                     TextColor="White">
                         <Button.Image>
                             <OnPlatform
@@ -136,8 +147,10 @@
                     Grid.Row="1"
                     BackgroundColor="Maroon"
                     CornerRadius="5"
-                    BorderRadius="0"
+                    FontSize="Small"
                     FontAttributes="Bold"
+                    FontFamily="CalibriBold"
+                        
                     TextColor="White">
                         <Button.Image>
                             <OnPlatform
@@ -153,11 +166,10 @@
                     Grid.Column="2"
                     BackgroundColor="DodgerBlue"
                     BorderColor="White"
-                    BorderRadius="0"
+                    FontSize="Small"
                     CornerRadius="5"
                     x:Name="btnaddOrd"
                     Clicked="btnaddOrd_Clicked"
-                    BorderWidth="1"
                     Text="ADD ORDER"
                     TextColor="White">
                         <Button.Image>

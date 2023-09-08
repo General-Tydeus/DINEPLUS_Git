@@ -14,17 +14,28 @@
             </Grid.RowDefinitions>
 
             <Button 
+                ImageSource="cashsales.png"
                 x:Name="btnPayo"
+                BackgroundColor="#2A2929"
+                TextColor="White"
                 Text="Pay as you Order"
-                BackgroundColor="LightBlue"
                 Clicked="btnPayo_Clicked"
+                FontFamily="CalibriBold"
+                FontSize="16"
+                CornerRadius="0"
                 />
+
             <Button
+                ImageSource="order.png"
                 x:Name="btnSO"
-                Text="Sales Order"  
-                BackgroundColor="LightBlue" 
+                BackgroundColor="#2A2929"
+                TextColor="White"
+                Text="Pay after Order"
                 Grid.Column="1" 
                 Clicked="btnSO_Clicked"
+                CornerRadius="0"
+                FontFamily="CalibriBold"
+                FontSize="16"
                 />
         </Grid>
     </ContentView.Content>

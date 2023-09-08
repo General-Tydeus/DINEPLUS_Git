@@ -23,11 +23,13 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string TableDesc { get; set; }
         public string TableDocNum { get; set; }
         public double CAmount { get; set; }
+        public string GUID { get; set; }
+        public string DocNumLocal { get; set; }
+        public double Discount { get; set; }
+
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }
 
-        //public List<ModeltblMain3> ModelSubtblMain3 { get; set; }
 
-        //public ModeltblPayMainLoan2 ModelSubtblPayMainLoan2 { get; set; }
     }
 
 

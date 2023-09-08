@@ -58,8 +58,8 @@ namespace DINEPLUSWEBAPI.Controllers
                         myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
                         myconnection.Open();
                         ClsGetAcctVoucher1.ClsOneTheDoor(ModeltblMain11.Voucher);
-                        string SqlStatement = "INSERT INTO tblMain1 (IC, DocNum, Voucher, UserCode, TDate, Reference, ControlNo, Remarks, CashReceived, Serve, CNCode, TableCode, CAmount, DE)" +
-                                               "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount, @_DE)";
+                        string SqlStatement = "INSERT INTO tblMain1 (IC, DocNum, Voucher, UserCode, TDate, Reference, ControlNo, Remarks, CashReceived, Serve, CNCode, TableCode, CAmount, DE, GUID, DocNumLocal, Discount)" +
+                                               "Values (@_IC, @_DocNum, @_Voucher, @_UserCode, @_TDate, @_Reference, @_ControlNo, @_Remarks, @_CashReceived, @_Serve, @_CNCode, @_TableCode, @_CAmount, @_DE, @_GUID, @_DocNumLocal, @_Discount)";
                         mycommand = new SqlCommand(SqlStatement, myconnection);
                         mycommand.Parameters.Add("_IC", SqlDbType.VarChar).Value = ModeltblMain11.Voucher + ModeltblMain11.UserCode + ModeltblMain11.CNCode;
                         mycommand.Parameters.Add("_Voucher", SqlDbType.VarChar).Value = ModeltblMain11.Voucher;
@@ -75,37 +75,11 @@ namespace DINEPLUSWEBAPI.Controllers
                         mycommand.Parameters.Add("_TableCode", SqlDbType.VarChar).Value = ModeltblMain11.TableCode;
                         mycommand.Parameters.Add("_CAmount", SqlDbType.Money).Value = ModeltblMain11.CAmount;
                         mycommand.Parameters.Add("_DE", SqlDbType.DateTime).Value = new ClsDateandTime().plsLocalZoneDateTimeNow();
+                        mycommand.Parameters.Add("_GUID", SqlDbType.VarChar).Value = ModeltblMain11.GUID;
+                        mycommand.Parameters.Add("_DocNumLocal", SqlDbType.VarChar).Value = ModeltblMain11.DocNumLocal;
+                        mycommand.Parameters.Add("_Discount", SqlDbType.Money).Value = ModeltblMain11.Discount;
 
                         mycommand.ExecuteNonQuery();
-
-
-                        //if (ModeltblMain11.ModelSubtblMain3 != null)
-                        //{
-                        //    if (ModeltblMain11.ModelSubtblMain3.Count > 0)
-                        //    {
-                        //        foreach (var vartblMain3 in ModeltblMain11.ModelSubtblMain3)
-                        //        {
-                        //            string sqlstatement2 = "INSERT INTO tblMain3 (IC, Refer, ActRemarks, Debit, Credit, PA, STCode, SubNameCode, DeptCodeCC, SIT, RowNum, TaxBase)" +
-                        //             "Values (@_IC, @_Refer, @_ActRemarks, @_Debit, @_Credit, @_PA, @_STCode, @_SubNameCode, @_DeptCodeCC, @_SIT, @_RowNum, @_TaxBase)";
-
-                        //            mycommand2 = new SqlCommand(sqlstatement2, myconnection);
-                        //            mycommand2.Parameters.Add("_IC", SqlDbType.VarChar).Value = ModeltblMain11.Voucher + ModeltblMain11.UserCode + ModeltblMain11.CNCode;
-                        //            mycommand2.Parameters.Add("_Refer", SqlDbType.VarChar).Value = vartblMain3.Refer;
-                        //            mycommand2.Parameters.Add("_ActRemarks", SqlDbType.VarChar).Value = vartblMain3.ActRemarks;
-                        //            mycommand2.Parameters.Add("_Debit", SqlDbType.Money).Value = vartblMain3.Debit;
-                        //            mycommand2.Parameters.Add("_Credit", SqlDbType.Money).Value = vartblMain3.Credit;
-                        //            mycommand2.Parameters.Add("_PA", SqlDbType.VarChar).Value = vartblMain3.PA;
-                        //            mycommand2.Parameters.Add("_SIT", SqlDbType.Bit).Value = vartblMain3.SIT;
-                        //            mycommand2.Parameters.Add("_TaxBase", SqlDbType.Bit).Value = vartblMain3.TaxBase;
-                        //            mycommand2.Parameters.Add("_STCode", SqlDbType.Char).Value = vartblMain3.STCode;
-                        //            mycommand2.Parameters.Add("_SubNameCode", SqlDbType.Char).Value = vartblMain3.SubNameCode;
-                        //            mycommand2.Parameters.Add("_DeptCodeCC", SqlDbType.Char).Value = vartblMain3.DeptCodeCC;
-                        //            mycommand2.Parameters.Add("_RowNum", SqlDbType.Int).Value = intRowNum++;
-
-                        //            mycommand2.ExecuteNonQuery();
-                        //        }
-                        //    }
-                        //}
 
                         if (ModeltblMain11.ModelSubtblMain2 != null)
                         {
@@ -161,7 +135,7 @@ namespace DINEPLUSWEBAPI.Controllers
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return ex.ToString();
             }
         }
     }

@@ -27,5 +27,17 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
             return GetDMsg;
         }
+        
+        [Route("API/DINEPLUSWEBAPI/Various/GetDiscount")]
+        public string GetDiscount()
+        {
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            string strDMsg = string.Format($"SELECT Discount FROM tblDiscount");
+            SqlCommand comDMsg = new SqlCommand(strDMsg, myconnection);
+            string GetDMsg = comDMsg.ExecuteScalar().ToString();
+            myconnection.Close();
+            return GetDMsg;
+        }
     }
 }

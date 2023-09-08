@@ -1,5 +1,13 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using DINEPLUS.FldrClass;
+using DINEPLUS.FldrModel;
+using DINEPLUS.FldrSetup;
+using SQLite;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -24,7 +32,7 @@ namespace DINEPLUS.FldrMainMenu
         public PageMainMenu()
         {
             Instance = this;
-            current = Connectivity.NetworkAccess;
+            //current = Connectivity.NetworkAccess;
             InitializeComponent();
             OnOpeningPage();
         }
@@ -53,6 +61,10 @@ namespace DINEPLUS.FldrMainMenu
             }
 
         }
+        public void CheckConnection()
+        {
+           current = Connectivity.NetworkAccess;
+        }
         public async Task LoadUserDetails()
         {
             var strSMUser = await App.ClsServeMain.GetLogInInfo();
@@ -65,18 +77,10 @@ namespace DINEPLUS.FldrMainMenu
 
             Preferences.Set("prefUserName", strUserName);
         }
-        private async void btnPayo_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PagePAYO());
-        }
-
-        private async void btnSO_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageSO());
-        }
 
         private async void btnLogout_Clicked(object sender, EventArgs e)
         {
+            CheckConnection();
             if (current != NetworkAccess.Internet)
             {
                 await DisplayAlert("Attention", "Make sure you have  \n Internet data access! \n before Logging Out!.", "OK");
@@ -107,6 +111,128 @@ namespace DINEPLUS.FldrMainMenu
         private async void btnPrinter_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PagePrinterSetup());
+        }
+
+        private async void btnProduct_Clicked(object sender, EventArgs e)
+        {
+            CheckConnection();
+            if (current == NetworkAccess.Internet)
+            {
+                try
+                {
+                    using (UserDialogs.Instance.Loading("Loading Products..."))
+                    {
+                        await App.ClsServeMain.db.DeleteAllAsync<MdlProduct>();
+                        await App.ClsServeMain.db.DeleteAllAsync<MdlDiscount>();
+                        await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
+                        //await App.ClsServeMain.db.DeleteAllAsync<tblMain1Local>();
+                        //await App.ClsServeMain.db.DeleteAllAsync<tblMain2Local>();
+                        await Task.Delay(1000);
+                        await App.ClsServeInsertLocal.SaveProduct();
+                        await App.ClsServeInsertLocal.SaveDiscount();
+                        await App.ClsServeInsertLocal.SaveTable();
+                    }
+
+                    //await UserDialogs.Instance.ConfirmAsync("Product Loaded Successfully", "Alert!!!", "Ok");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            else
+            {
+                await DisplayAlert("Alert!", "Must be Connected to Internet", "Ok");
+            }
+        }
+
+        public async void ShowAllData()
+        {
+            var c = await App.ClsServeMain.ImportMain1();
+            var cc = await App.ClsServeMain.ImportMain2();
+
+            string formattedData = FormatDataListToString(c);
+            string formattedData2 = FormatDataListToString2(cc);
+
+            await DisplayAlert("All Data", $"{formattedData}{formattedData2}", "OK");
+        }
+        public string FormatDataListToString(List<tblMain1Local> dataList)
+        {
+            var stringBuilder = new StringBuilder();
+
+            foreach (var data in dataList)
+            {
+                stringBuilder.AppendLine($"IC : {data.IC}");
+                stringBuilder.AppendLine($"GUID: {data.GUID}");
+                stringBuilder.AppendLine($"Voucher: {data.Voucher}");
+                stringBuilder.AppendLine($"DocNum: {data.DocNum}");
+                stringBuilder.AppendLine($"TDate : {data.TDate}");
+                stringBuilder.AppendLine($"UserCode  : {data.UserCode}");
+                stringBuilder.AppendLine($"Reference  : {data.Reference}");
+                stringBuilder.AppendLine($"ControlNo  : {data.ControlNo}");
+                stringBuilder.AppendLine($"Remarks  : {data.Remarks}");
+                stringBuilder.AppendLine($"CNCode  : {data.CNCode}");
+                stringBuilder.AppendLine($"CashReceived   : {data.CashReceived}");
+                stringBuilder.AppendLine($"Serve : {data.Serve}");
+                stringBuilder.AppendLine($"TableCode : {data.TableCode}");
+                stringBuilder.AppendLine($"CAmount : {data.CAmount}");
+                stringBuilder.AppendLine($"Exported : {data.Exported}");
+                stringBuilder.AppendLine($"Order Time  : {data.OrderTime}");
+
+                //stringBuilder.AppendLine($"DocNum: {data.DocNum}");
+                // Add other properties as needed
+                stringBuilder.AppendLine(); // Add a line break between entries
+            }
+
+            return stringBuilder.ToString();
+        }
+        public string FormatDataListToString2(List<tblMain2Local> dataList)
+        {
+            var stringBuilder = new StringBuilder();
+
+            foreach (var data in dataList)
+            {
+                stringBuilder.AppendLine($"RowNum : {data.RowNum}");
+                stringBuilder.AppendLine($"StockNumber : {data.StockNumber}");
+                stringBuilder.AppendLine($"PIn : {data.PIn}");
+                stringBuilder.AppendLine($"POut  : {data.POut }");
+                stringBuilder.AppendLine($"UP : {data.UP}");
+                stringBuilder.AppendLine($"Cost  : {data.Cost}");
+                stringBuilder.AppendLine($"Discount  : {data.Discount}");
+                stringBuilder.AppendLine($"Totals  : {data.Totals}");
+                stringBuilder.AppendLine($"OrderTime  : {data.OrderTime}");
+                stringBuilder.AppendLine($"IC  : {data.IC}");
+                stringBuilder.AppendLine($"Exported  : {data.Exported}");
+                stringBuilder.AppendLine($"DocNum  : {data.DocNumLocal}");
+                stringBuilder.AppendLine($"Order Time  : {data.OrderTime}");
+                //stringBuilder.AppendLine($"CashReceived   : {data.CashReceived}");
+                //stringBuilder.AppendLine($"Serve : {data.Serve}");
+                //stringBuilder.AppendLine($"TableCode : {data.TableCode}");
+                //stringBuilder.AppendLine($"CAmount : {data.CAmount}");
+                //stringBuilder.AppendLine($"DocNum: {data.DocNum}");
+                // Add other properties as needed
+                stringBuilder.AppendLine(); // Add a line break between entries
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private async void btnSetup_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageSetup());
+
+        }
+
+        private async void btnExport_Clicked(object sender, EventArgs e)
+        {
+            // ShowAllData();
+            await Navigation.PushAsync(new PageExportList());
+            
+        }
+
+        private void btnView_Clicked(object sender, EventArgs e)
+        {
+            ShowAllData();
         }
     }
 }

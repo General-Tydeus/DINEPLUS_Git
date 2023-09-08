@@ -1,4 +1,5 @@
-﻿using DINEPLUS.FldrClass;
+﻿using Acr.UserDialogs;
+using DINEPLUS.FldrClass;
 using DINEPLUS.FldrModel;
 using System;
 using System.Collections.Generic;
@@ -14,84 +15,78 @@ namespace DINEPLUS.FldrMainMenu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageLogin : ContentPage
     {
-        //public static string glbltxtUserCode, glbltxtGroupCode, glbltxtUserName, glbltxtCNCode, glbltxtCompleteName;
         private bool pristrRememberPassword { get; set; } = false;
 
     
         public PageLogin()
-        {
+        { 
             InitializeComponent();
         }
         private async void btnLogin_Clicked(object sender, EventArgs e)
         {
-            var current = Connectivity.NetworkAccess;
-            if (txtUserName.Text == "")
+            using (UserDialogs.Instance.Loading("Logging in..."))
             {
-                await DisplayAlert("Username", "Please complete entry", "OK");
-                return;
-            }
-            if (txtPassword.Text == "")
-            {
-                await DisplayAlert("Password", "Please complete entry", "OK");
-                return;
-            }
-            if (current != NetworkAccess.Internet)
-            {
-                await DisplayAlert("Attention!", "Please check device connection!", "OK");
-                return;
-            }
-            else { 
-            //try
-            //{
-                /**string strXamOpen = await new ClsGetSomething().GetCurrentVersion();
-                if (strXamOpen == "No")
+                var current = Connectivity.NetworkAccess;
+                if (txtUserName.Text == "")
                 {
-                    await DisplayAlert("Information", "New version is available", "OK");
-                    return;
-                }**/
-                if (await new ClsLogData().CheckUserPWord(txtUserName.Text, txtPassword.Text) == "2")
-                {
-                    await DisplayAlert("Information", "Invalid Login Information", "OK");
+                    await DisplayAlert("Username", "Please complete entry", "OK");
                     return;
                 }
-                //var varUserDetails = await new ClsGetSecurity().GetUserDetailsList(txtUserName.Text);
-                //glbltxtUserCode = varUserDetails.UserCode;
-                //glbltxtGroupCode = varUserDetails.GroupCode;
-                //glbltxtUserName = varUserDetails.UserName;
-                //glbltxtCNCode = varUserDetails.CNCode;
-                OpenMainMenu();
+                if (txtPassword.Text == "")
+                {
+                    await DisplayAlert("Password", "Please complete entry", "OK");
+                    return;
+                }
+                if (current != NetworkAccess.Internet)
+                {
+                    await DisplayAlert("Attention!", "Please check device connection!", "OK");
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        if (await new ClsLogData().CheckUserPWord(txtUserName.Text, txtPassword.Text) == "2")
+                        {
+                            await DisplayAlert("Information", "Invalid Login Information", "OK");
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 
+                    }
+                }
+
+                    OpenMainMenu();
+                
             }
-            //catch (Exception)
-            //{
-            //    await DisplayAlert("Attention!", "Error Connection!", "OK");
-            //}
         }
         private async void OpenMainMenu()
         {
-            try
-            {
+                try
+                {
 
-                await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
-                await Task.Delay(200);
-                await App.ClsServeMain.SaveTblFunc();
+                    await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
+                    await Task.Delay(200);
+                    await App.ClsServeMain.SaveTblFunc();
 
-                await App.ClsServeMain.db.DeleteAllAsync<ViewtblDetailsUser>();
-                await App.ClsServeInsertLocal.SaveLoginInfo(txtUserName.Text);
+                    await App.ClsServeMain.db.DeleteAllAsync<ViewtblDetailsUser>();
+                    await App.ClsServeInsertLocal.SaveLoginInfo(txtUserName.Text);
 
 
-                PreferenceTransaction();
+                    PreferenceTransaction();
 
-                await Navigation.PushAsync(new PageMainMenu());
-                var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
-                var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
-                foreach (var page in pageList)
-                    Navigation.RemovePage(page);
-            }
-            catch (Exception)
-            {
-                await DisplayAlert("Attention!", "Posible error connnection!", "OK");
-            }
+                    await Navigation.PushAsync(new PageMainMenu());
+                    var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+                    var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
+                    foreach (var page in pageList)
+                        Navigation.RemovePage(page);
+                }
+                catch (Exception)
+                {
+                    await DisplayAlert("Attention!", "Posible error connnection!", "OK");
+                }
         }
         private void PreferenceTransaction()
         {

@@ -26,7 +26,7 @@ namespace DINEPLUSWEBAPI.Controllers
         {
             List<MdlProduct> MdlProductMSSQL = new List<MdlProduct>();
 
-            string sqlStatement = $"SELECT * FROM tblEntryProducts";
+            string sqlStatement = $"SELECT * FROM tblEntryProducts WHERE Active = 1";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(sqlStatement, myconnection);
@@ -82,7 +82,7 @@ namespace DINEPLUSWEBAPI.Controllers
         public IEnumerable<MdlTables> GetTblList()
         {
 
-            string sqlStatement = $"SELECT * FROM tblEntryTables";
+            string sqlStatement = $"SELECT * FROM tblEntryTables WHERE TableCode <> '00'";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(sqlStatement, myconnection);

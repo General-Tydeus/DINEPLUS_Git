@@ -7,7 +7,7 @@
     <ContentPage.Content>
 
         <StackLayout BackgroundColor="White">
-            <Grid BackgroundColor="Yellow">
+            <Grid BackgroundColor="#2A2929">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100*" />
                 </Grid.ColumnDefinitions>
@@ -16,12 +16,13 @@
                 </Grid.RowDefinitions>
 
                 <Label
+                    FontFamily="CalibriBold" 
                     FontAttributes="Bold"
-                    FontSize="30"
+                    FontSize="40"
                     Grid.Column="0"
-                    Text="SALE ORDER"
+                    Text="SALES ORDER"
                     x:Name="focusme"
-                    TextColor="Black"
+                    TextColor="White"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="Start"/>
             </Grid>
@@ -29,18 +30,26 @@
             <CollectionView 
             x:Name="Clview" 
             SelectionMode="Single"
+                ItemsLayout="VerticalGrid, 2"
+               
                 SelectionChanged="Clview_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0" 
+                        <Frame
+                            Padding="3"
+                            CornerRadius="20"
+                            BorderColor="WhiteSmoke"
+                            >
+                            <Grid Padding="0" 
                           RowSpacing="0" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="70"/>
                                 <RowDefinition Height="20"/>
+                                <RowDefinition Height="10"/>
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100*"/>
+                                <ColumnDefinition Width="50*"/>
                             </Grid.ColumnDefinitions>
 
                             <StackLayout 
@@ -55,7 +64,8 @@
                             TextColor="Red"
                             FontSize="35"
                             VerticalOptions="Center"
-                            FontAttributes="Bold"/>
+                            FontFamily="CalibriBold"       
+                            />
                             </StackLayout>
 
                             <StackLayout 
@@ -72,16 +82,21 @@
 
 
                                 <Label
-                            IsVisible="True"
+                            IsVisible="false"
                             Text= "{Binding TableDocNum}"
+                            TextColor="Green"
+                            VerticalOptions="Center" />
+                                  <Label
+                            IsVisible="false"
+                            Text= "{Binding TableGUID}"
                             TextColor="Green"
                             VerticalOptions="Center" />
 
                             </StackLayout>
 
-                            <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="2"
-                                 VerticalOptions="Center" HeightRequest="3" BackgroundColor="Navy"/>
+                            
                         </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
