@@ -39,7 +39,7 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(SqlStatement, myconnection);
-            mycommand.Parameters.Add("_Active", SqlDbType.Bit).Value = -1;
+            mycommand.Parameters.Add("_Active", SqlDbType.Bit).Value = 0;
             int n1 = mycommand.ExecuteNonQuery();
             myconnection.Close();
             return new HttpResponseMessage(HttpStatusCode.OK);
