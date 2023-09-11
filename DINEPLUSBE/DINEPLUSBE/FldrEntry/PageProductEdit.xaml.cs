@@ -43,14 +43,14 @@ namespace DINEPLUSBE.FldrEntry
                     HttpClient client = new HttpClient();
                     var result = await client.GetAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/ProductActive?strURIStockNumber={pristrStockNumber}&boolURIActive={e.Value}");
                
-                    HttpResponseMessage response = await client.GetAsync("");
-                    if (response.IsSuccessStatusCode)
-                    {
-                    }
-                    else
-                    {
-                        await DisplayAlert("Information", "Failed to update record", "OK");
-                    }
+                    //HttpResponseMessage response = await client.GetAsync("");
+                    //if (response.IsSuccessStatusCode)
+                    //{
+                    //}
+                    //else
+                    //{
+                    //    await DisplayAlert("Information", "Failed to update record", "OK");
+                    //}
                     
                     
                 }

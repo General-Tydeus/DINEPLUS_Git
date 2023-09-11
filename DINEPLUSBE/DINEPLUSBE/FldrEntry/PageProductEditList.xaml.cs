@@ -13,14 +13,14 @@ using DINEPLUSBE.FldrModel;
 
 namespace DINEPLUSBE.FldrEntry
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PageProductEditList : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageProductEditList : ContentPage
+    {
         public PageProductEditList()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
             LVProductList.ItemSelected += LVProductList_ItemSelected;
-		}
+        }
 
         private async void LVProductList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -39,7 +39,7 @@ namespace DINEPLUSBE.FldrEntry
         {
             try
             {
-            LVProductList.ItemsSource = await new ClsList().GettblProducts("1", "Nothing");
+                LVProductList.ItemsSource = await new ClsList().GettblProducts("1", "Nothing");
             }
             catch (Exception)
             {
@@ -57,26 +57,32 @@ namespace DINEPLUSBE.FldrEntry
 
         private async void BtnInActiveAll_Clicked(object sender, EventArgs e)
         {
-            bool boolYes = await DisplayAlert("Information", "Are you sure?", "Yes", "Cancel");
-            if (boolYes)
+            try
             {
-                var clientGet = new HttpClient();
-                clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}API/WebAPI/Entry/InActiveAllProduct");
-
-                HttpResponseMessage response = await clientGet.GetAsync("");
-                if (response.IsSuccessStatusCode)
+                bool boolYes = await DisplayAlert("Information", "Are you sure?", "Yes", "Cancel");
+                if (boolYes)
                 {
-                    await DisplayAlert("Information", "Success", "OK");
+                    var clientGet = new HttpClient();
+                    clientGet.BaseAddress = new Uri($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/InActiveAllProduct");
+
+                    HttpResponseMessage response = await clientGet.GetAsync("");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await DisplayAlert("Information", "Success", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Information", "Failed to update", "OK");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Information", "Failed to update", "OK");
-                }
 
+                }
             }
-            else
+            catch (Exception)
             {
-              
+                await DisplayAlert("Information", "Something went wrong. Possible connection error", "OK");
             }
         }
     }
