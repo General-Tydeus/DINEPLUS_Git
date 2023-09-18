@@ -3,6 +3,7 @@ using DINEPLUS.FldrModel;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,13 +55,22 @@ namespace DINEPLUS.FldrPopup
         }
         private void txtQty_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtQty.Text == "")
+            string text = txtQty.Text.Replace(',', '.'); // Replace comma with period for decimal values
+
+            if (string.IsNullOrEmpty(text))
             {
                 lblTotal.Text = "0";
             }
             else
             {
-                lblTotal.Text = (double.Parse(txtQty.Text) * double.Parse(lblPrice.Text)).ToString("N2");
+                if (double.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out double qty))
+                {
+                    lblTotal.Text = $"₱{(qty * PagePAYO.Instance.varSellingPrice).ToString("N2", CultureInfo.InvariantCulture)}";
+                }
+                else
+                {
+                    lblTotal.Text = "Invalid input"; // Handle invalid input
+                }
             }
         }
 

@@ -44,14 +44,14 @@ namespace DINEPLUS.Droid.Devices
                             var buffer = ByteSplicer.Combine(
                                 e.CenterAlign(),
                                 e.PrintLine(""),
-                                e.PrintLine("Receipt"),
+                                e.PrintLine("Acknowledgement Receipt"),
                                 e.PrintLine(""),
-                                e.LeftAlign(), e.PrintLine("Order#  : " + $"CS{PagePayOrder.Instance.lblDocNum.Text}"),
+                                e.LeftAlign(), e.PrintLine("Order#  : " + $"{PagePayOrder.Instance.lblDocNum.Text}"),
                                 e.LeftAlign(), e.PrintLine("Date    : " + dateTime.ToString("MM/dd/yyyy")),
                                 e.LeftAlign(), e.PrintLine("Time    : " + dateTime.ToString("hh:mm:ss tt")),
                                 e.LeftAlign(), e.PrintLine("Cashier : " + usrname),
                                 e.LeftAlign(), e.PrintLine(strLine),
-                                e.PrintLine("Items" + "        Qty" + " Price" + "    Total"),
+                                e.PrintLine("Items" + "     Qty" + "   Price" + "    Total"),
                                 e.LeftAlign(), e.PrintLine(strLine));
 
                             await socket.OutputStream.WriteAsync(buffer, 0, buffer.Length);
@@ -62,12 +62,19 @@ namespace DINEPLUS.Droid.Devices
 
                                 var EP = new EPSON();
                                 var bufferEP = ByteSplicer.Combine(
+                                    EP.LeftAlign(),
+                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}"),
                                     EP.RightAlign(),
-                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
-                                    $"{lv.Qty.ToString().PadRight(3)}" +
-                                    $"{lv.SellingPrice.ToString("n2").PadRight(15- totals.ToString("n2").Length)}" +
-                                    $"{totals.ToString("n2")}")
+                                    EP.PrintLine($"{lv.Qty.ToString("n2"),5}{lv.SellingPrice.ToString("n2"),7}{totals.ToString("n2"),10}")
                                 );
+
+                                //double totals = lv.Qty * lv.SellingPrice;
+                                ////-totals.ToString("n2").Length)
+                                //var EP = new EPSON();
+                                //var bufferEP = ByteSplicer.Combine(
+                                //    EP.RightAlign(),
+                                //    EP.PrintLine($"{lv.ProductDesc.PadRight(13 + lv.Qty.ToString("n1").Length)}{lv.Qty.ToString("n1").PadRight(10- lv.SellingPrice.ToString("n2").Length)}{lv.SellingPrice.ToString("n2").PadRight(6)}{totals.ToString("n2")}")
+                                //);
 
                                 await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
                             }
@@ -85,8 +92,11 @@ namespace DINEPLUS.Droid.Devices
                                 D.PrintLine($"{"Change :"}{PagePayOrder.Instance.lblChange.Text.PadLeft(24)}"),
                                 D.PrintLine("================================"),
                                 D.CenterAlign(),
-                                D.PrintLine("Powered By : CBytes Computer Programming Services"),
-                                D.PrintLine("Tel. No. : (034)703-5016")
+                                D.PrintLine("Powered By : CBytes Computer"),
+                                D.PrintLine("Programming Services"),
+                                D.PrintLine("Tel. No. : (034)703-5016"),
+                                D.PrintLine(""),
+                                D.PrintLine("THIS IS NOT AN OFFICIAL RECEIPT")
                             );
                            
 

@@ -15,6 +15,8 @@ namespace DINEPLUSWEBAPI.FldrModel
             public double SellingPrice { get; set; }
             public double UCost { get; set; }
             public bool Active { get; set; }
+            public string CatCode { get; set; }
+
         }
         public class ViewtblDetailsUser
         {

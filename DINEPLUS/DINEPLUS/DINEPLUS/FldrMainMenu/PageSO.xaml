@@ -4,6 +4,23 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:nav="clr-namespace:DINEPLUS.FldrMainMenu" xmlns:local="clr-namespace:DINEPLUS.FldrClass"
              x:Class="DINEPLUS.FldrMainMenu.PageSO">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Style for Status = O -->
+            <Style x:Key="FrameStyleStatusO" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="LightPink" />
+            </Style>
+
+            <!-- Default Style for other Status values -->
+            <Style x:Key="DefaultFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
     <ContentPage.Content>
 
         <StackLayout BackgroundColor="White">
@@ -20,7 +37,7 @@
                     FontAttributes="Bold"
                     FontSize="40"
                     Grid.Column="0"
-                    Text="SALES ORDER"
+                    Text="TABLES"
                     x:Name="focusme"
                     TextColor="White"
                     VerticalOptions="CenterAndExpand"
@@ -36,10 +53,18 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
+                            x:Name="frameTables"
+                            x:FieldModifier="Public"
                             Padding="3"
                             CornerRadius="20"
                             BorderColor="WhiteSmoke"
+                            Style="{StaticResource DefaultFrameStyle}"
                             >
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Status}" Value="O">
+                                    <Setter Property="Style" Value="{StaticResource FrameStyleStatusO}" />
+                                </DataTrigger>
+                            </Frame.Triggers>
                             <Grid Padding="0" 
                           RowSpacing="0" >
                             <Grid.RowDefinitions>
@@ -73,6 +98,7 @@
                             Grid.Row="1"
                             Grid.Column="0" 
                             HorizontalOptions="Center">
+
 
                                 <Label
                             IsVisible="True"

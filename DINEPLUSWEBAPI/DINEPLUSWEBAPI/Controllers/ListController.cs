@@ -41,7 +41,9 @@ namespace DINEPLUSWEBAPI.Controllers
                     SellingPrice = double.Parse(dr["SellingPrice"].ToString()),
                     UCost = double.Parse(dr["UCost"].ToString()),
                     Active = (bool)dr["Active"],
-            };
+                    CatCode = dr["CatCode"].ToString(),
+
+                };
                 MdlProductMSSQL.Add(MdlProduct1);
             }
             myconnection.Close();
@@ -99,6 +101,28 @@ namespace DINEPLUSWEBAPI.Controllers
 
                 };
                 yield return MdlTables1;
+            }
+            myconnection.Close();
+        }
+        [HttpGet]
+        [Route("API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetCategoryList")]
+        public IEnumerable<MdlCategory> GetCategoryList()
+        {
+
+            string sqlStatement = $"SELECT * FROM tblEntryCategory WHERE CatCode <> '00'";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                MdlCategory MdlCategory1 = new MdlCategory
+                {
+                    CatCode = dr["CatCode"].ToString(),
+                    CatDesc = dr["CatDesc"].ToString(),
+
+                };
+                yield return MdlCategory1;
             }
             myconnection.Close();
         }

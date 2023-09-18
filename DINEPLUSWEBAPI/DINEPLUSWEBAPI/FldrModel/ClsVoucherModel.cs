@@ -82,4 +82,12 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string LongStatus { get; set; }
         public string TableDocNum { get; set; }
     }
+
+    public class MdlCategory
+    {
+        public int RowNum { get; set; }
+        public string CatCode { get; set; }
+        public string CatDesc { get; set; }
+
+    }
 }

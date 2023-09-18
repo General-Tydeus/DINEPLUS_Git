@@ -80,10 +80,12 @@ namespace DINEPLUS.FldrMainMenu
 
         private async void btnLogout_Clicked(object sender, EventArgs e)
         {
+            btnExport.IsEnabled = false;
             CheckConnection();
             if (current != NetworkAccess.Internet)
             {
                 await DisplayAlert("Attention", "Make sure you have  \n Internet data access! \n before Logging Out!.", "OK");
+                btnExport.IsEnabled = true;
                 return;
             }
             var result = await this.DisplayAlert("Alert!", "Do you want to LogOut?", "Yes", "No");
@@ -95,6 +97,7 @@ namespace DINEPLUS.FldrMainMenu
             {
                 await Xamarin.Forms.Application.Current.SavePropertiesAsync();
             }
+            btnExport.IsEnabled = true;
         }
         private async Task Logmeout()
         {
@@ -219,15 +222,18 @@ namespace DINEPLUS.FldrMainMenu
 
         private async void btnSetup_Clicked(object sender, EventArgs e)
         {
+            btnSetup.IsEnabled = false;
             await Navigation.PushAsync(new PageSetup());
+            btnSetup.IsEnabled = true;
 
         }
 
         private async void btnExport_Clicked(object sender, EventArgs e)
         {
             // ShowAllData();
+            btnExport.IsEnabled = false;
             await Navigation.PushAsync(new PageExportList());
-            
+            btnExport.IsEnabled = true;
         }
 
         private void btnView_Clicked(object sender, EventArgs e)

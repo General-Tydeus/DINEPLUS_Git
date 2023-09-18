@@ -60,7 +60,7 @@
                TextChanged="txtQty_TextChanged"
                />
             <Stepper x:Name="stepper"
-                     Minimum="1" 
+                     Minimum="0" 
                      Maximum="999"
                      Increment="1" 
                      ValueChanged="stepper_ValueChanged"

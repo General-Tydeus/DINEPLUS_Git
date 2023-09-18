@@ -9,6 +9,7 @@ using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms.Xaml;
 using DINEPLUS.FldrMainMenu;
 using Xamarin.CommunityToolkit.Extensions;
+using System.Globalization;
 
 namespace DINEPLUS.FldrPopup
 {
@@ -20,17 +21,27 @@ namespace DINEPLUS.FldrPopup
             InitializeComponent();
             lblPrice.Text = $"₱{PagePAYO.Instance.varSellingPrice.ToString("n2")}";
             lblTotal.Text = $"₱{PagePAYO.Instance.varSellingPrice.ToString("n2")}";
+            txtQty.Text = $"{1}";
         }
 
         private void txtQty_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtQty.Text == "")
+            string text = txtQty.Text.Replace(',', '.'); 
+
+            if (string.IsNullOrEmpty(text))
             {
                 lblTotal.Text = "0";
             }
             else
             {
-                lblTotal.Text = $"₱{(double.Parse(txtQty.Text) * PagePAYO.Instance.varSellingPrice).ToString("N2")}";
+                if (double.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out double qty))
+                {
+                    lblTotal.Text = $"₱{(qty * PagePAYO.Instance.varSellingPrice).ToString("N2", CultureInfo.InvariantCulture)}";
+                }
+                else
+                {
+                    lblTotal.Text = "Invalid input"; 
+                }
             }
         }
 
@@ -47,15 +58,25 @@ namespace DINEPLUS.FldrPopup
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
-            btnSave.IsEnabled = false;
-            if (int.Parse(txtQty.Text) <= 0)
+            try
             {
-                txtQty.Focus();
-                await this.DisplayToastAsync("Invalid Quantity");
-                return;
+                btnSave.IsEnabled = false;
+                if (double.Parse(txtQty.Text) <= 0)
+                {
+                    txtQty.Focus();
+                    await this.DisplayToastAsync("Invalid Quantity");
+                    btnSave.IsEnabled = true;
+                    return;
+                }
+                PagePAYO.Instance.AddOrd(double.Parse(txtQty.Text));
+                await Navigation.PopPopupAsync();
+                btnSave.IsEnabled = true;
+
             }
-            PagePAYO.Instance.AddOrd(int.Parse(txtQty.Text));
-            await Navigation.PopPopupAsync();
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alert",ex.ToString(),"ok");
+            }
         }
 
     }

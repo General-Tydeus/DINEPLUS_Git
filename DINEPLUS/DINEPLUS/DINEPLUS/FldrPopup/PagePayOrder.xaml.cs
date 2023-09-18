@@ -39,7 +39,6 @@ namespace DINEPLUS.FldrPopup
             lblTotals.Text = $"₱{PageViewOrders.Instance.LoadSumOrd()}";
             strGUID = Guid.NewGuid().ToString();
             OnOpeningPage();
-            //ShowAllData();
         }
         public void CheckConnection()
         {
@@ -60,62 +59,7 @@ namespace DINEPLUS.FldrPopup
                 lblDocNum.Text = strDocNumLocal;
             }
         }
-        public async void ShowAllData()
-        {
-            var c = await App.ClsServeMain.ImportMain1();
-            var cc = await App.ClsServeMain.ImportMain2();
-
-            string formattedData = FormatDataListToString(c);
-            string formattedData2 = FormatDataListToString2(cc);
-
-            await DisplayAlert("All Data", $"{formattedData}{formattedData2}", "OK");
-        }
-        public string FormatDataListToString(List<tblMain1Local> dataList)
-        {
-            var stringBuilder = new StringBuilder();
-
-            foreach (var data in dataList)
-            {
-                stringBuilder.AppendLine($"IC : {data.IC}");
-                stringBuilder.AppendLine($"GUID: {data.GUID}");
-                stringBuilder.AppendLine($"Voucher: {data.Voucher}");
-                stringBuilder.AppendLine($"DocNum: {data.DocNum}");
-                stringBuilder.AppendLine($"TDate : {data.TDate}");
-                stringBuilder.AppendLine($"UserCode  : {data.UserCode}");
-                stringBuilder.AppendLine($"Reference  : {data.Reference}");
-                stringBuilder.AppendLine($"ControlNo  : {data.ControlNo}");
-                stringBuilder.AppendLine($"Remarks  : {data.Remarks}");
-                stringBuilder.AppendLine($"CNCode  : {data.CNCode}");
-                stringBuilder.AppendLine($"CashReceived   : {data.CashReceived}");
-                stringBuilder.AppendLine($"Serve : {data.Serve}");
-                stringBuilder.AppendLine($"TableCode : {data.TableCode}");
-                stringBuilder.AppendLine($"CAmount : {data.CAmount}");
-                stringBuilder.AppendLine(); 
-            }
-
-            return stringBuilder.ToString();
-        }
-        public string FormatDataListToString2(List<tblMain2Local> dataList)
-        {
-            var stringBuilder = new StringBuilder();
-
-            foreach (var data in dataList)
-            {
-                stringBuilder.AppendLine($"RowNum : {data.RowNum}");
-                stringBuilder.AppendLine($"StockNumber : {data.StockNumber}");
-                stringBuilder.AppendLine($"PIn : {data.PIn}");
-                stringBuilder.AppendLine($"POut  : {data.POut }");
-                stringBuilder.AppendLine($"UP : {data.UP}");
-                stringBuilder.AppendLine($"Cost  : {data.Cost}");
-                stringBuilder.AppendLine($"Discount  : {data.Discount}");
-                stringBuilder.AppendLine($"Totals  : {data.Totals}");
-                stringBuilder.AppendLine($"OrderTime  : {data.OrderTime}");
-                stringBuilder.AppendLine($"IC  : {data.IC}");
-                stringBuilder.AppendLine(); 
-            }
-
-            return stringBuilder.ToString();
-        }
+        
         private async void btnClose_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
@@ -226,7 +170,11 @@ namespace DINEPLUS.FldrPopup
             using (HttpClient client = new HttpClient())
             {
                 var tblMain1 = tblSavetblMain1(); 
-                tblMain1.ModelSubtblMain2 = SavetblMain2(); 
+                tblMain1.ModelSubtblMain2 = SavetblMain2();
+                tblMain1.Main2Count = tblMain1.ModelSubtblMain2.Count;
+                //var tblMain2List = SavetblMain2();
+                //await DisplayAlert("Alert", tblMain1.Main2Count.ToString(),"ok");
+
 
                 var content = new StringContent(JsonConvert.SerializeObject(tblMain1), Encoding.UTF8, "application/json");
                 var result = await client.PostAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/Voucher/InsertMain1", content);

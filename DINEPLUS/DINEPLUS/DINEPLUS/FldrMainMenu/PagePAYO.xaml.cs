@@ -25,6 +25,9 @@ namespace DINEPLUS.FldrMainMenu
 
         public List<MdlOrders> listOrders = new List<MdlOrders>();
         public MdlProduct obj = new MdlProduct();
+        public MdlCategory cat = new MdlCategory();
+        List<MdlProduct> productList;
+        List<MdlProduct> filteredList;
 
         public PagePAYO()
         {
@@ -35,16 +38,10 @@ namespace DINEPLUS.FldrMainMenu
 
         protected async override void OnAppearing()
         {
-            //if (current == NetworkAccess.Internet)
-            //{
-            //    var varlist = await new ClsListEntry().GetProductList();
-            //    ClMenu.ItemsSource = varlist;
-            //}
-            //else
-            //{
                 ClMenu.ItemsSource = await App.ClsServeMain.ImportProductList();
-            //}
+                ClCat.ItemsSource = await App.ClsServeMain.ImportCategoryList();
 
+                productList = await App.ClsServeMain.ImportProductList();
         }
 
         private async void ClMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,7 +61,7 @@ namespace DINEPLUS.FldrMainMenu
                 }
             }
         }
-        public void AddOrd(int intQty)
+        public void AddOrd(double intQty)
         {
             var counts = listOrders.Count;
             if (obj != null)
@@ -117,6 +114,27 @@ namespace DINEPLUS.FldrMainMenu
                 return;
             }
             Navigation.PushAsync(new PageViewOrders());
+        }
+
+        private void ClCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (e.CurrentSelection.Any())
+            {
+
+                var selectedItem = (MdlCategory)e.CurrentSelection.FirstOrDefault();
+
+                if (selectedItem != null)
+                {
+                    string CatCode = selectedItem.CatCode;
+
+                    filteredList = productList.Where(item => item.CatCode == CatCode).ToList();
+                    ClMenu.ItemsSource = filteredList;
+                }
+                //ClCat.SelectedItem = null;
+            }
+                
+
         }
     }
 }
