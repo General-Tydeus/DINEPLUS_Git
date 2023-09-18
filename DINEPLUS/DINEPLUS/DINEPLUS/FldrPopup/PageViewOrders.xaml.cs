@@ -94,7 +94,9 @@ namespace DINEPLUS.FldrPopup
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
+            btnSave.IsEnabled = false;
             await PopupNavigation.Instance.PushAsync(new PagePayOrder(), true);
+            btnSave.IsEnabled = true;
             return;
         }
 

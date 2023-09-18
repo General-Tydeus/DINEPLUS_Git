@@ -26,6 +26,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string GUID { get; set; }
         public string DocNumLocal { get; set; }
         public double Discount { get; set; }
+        public int Main2Count { get; set; }
 
 
         public List<ModeltblMain2> ModelSubtblMain2 { get; set; }

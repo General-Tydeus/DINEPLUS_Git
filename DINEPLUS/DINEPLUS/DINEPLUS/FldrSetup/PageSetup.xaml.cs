@@ -36,12 +36,14 @@ namespace DINEPLUS.FldrSetup
                     {
                         await App.ClsServeMain.db.DeleteAllAsync<MdlProduct>();
                         await App.ClsServeMain.db.DeleteAllAsync<MdlDiscount>();
+                        await App.ClsServeMain.db.DeleteAllAsync<MdlCategory>();
                         //await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
                         //await App.ClsServeMain.db.DeleteAllAsync<tblMain1Local>();
                         //await App.ClsServeMain.db.DeleteAllAsync<tblMain2Local>();
                         await Task.Delay(1000);
                         await App.ClsServeInsertLocal.SaveProduct();
                         await App.ClsServeInsertLocal.SaveDiscount();
+                        await App.ClsServeInsertLocal.SaveCategory();
                        
                     }
                 }
@@ -73,14 +75,12 @@ namespace DINEPLUS.FldrSetup
                 }
                 try
                 {
-                    using (UserDialogs.Instance.Loading("Loading Products..."))
+                    using (UserDialogs.Instance.Loading("Loading Tables..."))
                     {
                         await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
                         await Task.Delay(1000);
                         await App.ClsServeInsertLocal.SaveTable();
                     }
-
-                    //await UserDialogs.Instance.ConfirmAsync("Product Loaded Successfully", "Alert!!!", "Ok");
                 }
                 catch (Exception)
                 {

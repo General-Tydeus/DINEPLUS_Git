@@ -40,10 +40,18 @@ namespace DINEPLUS.FldrSO
         {
             Navigation.RemovePage(this);
         }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            LoadSumOrd();
-            LoadLV();
+            try
+            {
+                LoadSumOrd();
+                LoadLV();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("alert",ex.ToString(),"oks");
+            }
+            
         }
         public void LoadLV()
         {
@@ -107,14 +115,14 @@ namespace DINEPLUS.FldrSO
 
         private async void LV1_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem is FldrModel.MdlOrders selectedProduct)
-            {
-                await Navigation.PushPopupAsync(new PageEditOrderSO
-                {
-                    BindingContext = selectedProduct
-                });
-            }
-            ((ListView)sender).SelectedItem = null;
+            //if (e.SelectedItem is FldrModel.MdlOrders selectedProduct)
+            //{
+            //    await Navigation.PushPopupAsync(new PageEditOrderSO
+            //    {
+            //        BindingContext = selectedProduct
+            //    });
+            //}
+            //((ListView)sender).SelectedItem = null;
         }
         public async void SaveAdditional()
         {
@@ -172,7 +180,6 @@ namespace DINEPLUS.FldrSO
                 listofData.Add(new ModeltblMain2()
                 {
                     IC = PagePrevOrder.Instance.mdlTables11.TableDocNum,
-                    //DocNum = MyDocNum,
                     StockNumber = vl.StockNumber,
                     PIn = 0,
                     POut = vl.Qty,

@@ -55,6 +55,14 @@ namespace DINEPLUS.FldrModel
 
 
     }
+    public class MdlCategory
+    {
+        [PrimaryKey, AutoIncrement]
+        public int RowNum { get; set; }
+        public string CatCode { get; set; }
+        public string CatDesc { get; set; }
+        
+    }
 
 
 

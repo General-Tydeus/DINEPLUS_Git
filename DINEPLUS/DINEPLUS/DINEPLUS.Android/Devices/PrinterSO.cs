@@ -43,7 +43,7 @@ namespace DINEPLUS.Droid.Devices
                             var e = new EPSON();
                             var buffer = ByteSplicer.Combine(
                                 e.CenterAlign(),
-                                e.PrintLine("Official Receipt"),
+                                e.PrintLine("Receipt"),
                                 //e.PrintLine(PagePAYO.Instance.listOrders.Count.ToString()),
                                 e.PrintLine(""),
                                 e.LeftAlign(), e.PrintLine("Table   : " + $"{PagePrevOrder.Instance.lblTableName.Text}"),
@@ -62,12 +62,20 @@ namespace DINEPLUS.Droid.Devices
 
                                 var EP = new EPSON();
                                 var bufferEP = ByteSplicer.Combine(
+                                    EP.LeftAlign(),
+                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}"),
                                     EP.RightAlign(),
-                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
-                                    $"{lv.POut.ToString().PadRight(3)}" +
-                                    $"{lv.UP.ToString("n2").PadRight(15 - totals.ToString("n2").Length)}" +
-                                    $"{totals.ToString("n2")}")
+                                    EP.PrintLine($"{lv.POut.ToString("n2"),5}{lv.UP.ToString("n2"),7}{totals.ToString("n2"),10}")
                                 );
+
+                                //var EP = new EPSON();
+                                //var bufferEP = ByteSplicer.Combine(
+                                //    EP.RightAlign(),
+                                //    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
+                                //    $"{lv.POut.ToString().PadRight(3)}" +
+                                //    $"{lv.UP.ToString("n2").PadRight(15 - totals.ToString("n2").Length)}" +
+                                //    $"{totals.ToString("n2")}")
+                                //);
 
                                 await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
                             }
@@ -85,8 +93,11 @@ namespace DINEPLUS.Droid.Devices
                                D.PrintLine("================================"),
                                D.CenterAlign(),
                                D.PrintLine(""),
-                               D.PrintLine("Powered By : CBytes Computer Programming Services"),
-                               D.PrintLine("Tel. No. : (034)703-5016")
+                               D.PrintLine("Powered By : CBytes Computer"),
+                               D.PrintLine("Programming Services"),
+                               D.PrintLine("Tel. No. : (034)703-5016"),
+                               D.PrintLine(""),
+                               D.PrintLine("THIS IS NOT AN OFFICIAL RECEIPT")
                            );
 
 
@@ -142,15 +153,23 @@ namespace DINEPLUS.Droid.Devices
                             foreach (var lv in PagePrevOrder.Instance.PreviousOrd) 
                             {
                                 double totals = lv.POut * lv.UP;
-                         
+
                                 var EP = new EPSON();
                                 var bufferEP = ByteSplicer.Combine(
+                                    EP.LeftAlign(),
+                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}"),
                                     EP.RightAlign(),
-                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
-                                    $"{lv.POut.ToString().PadRight(3)}" +
-                                    $"{lv.UP.ToString("n2").PadRight(15 - totals.ToString("n2").Length)}" +
-                                    $"{totals.ToString("n2")}")
+                                    EP.PrintLine($"{lv.POut.ToString("n2"),5}{lv.UP.ToString("n2"),7}{totals.ToString("n2"),10}")
                                 );
+
+                                //var EP = new EPSON();
+                                //var bufferEP = ByteSplicer.Combine(
+                                //    EP.RightAlign(),
+                                //    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
+                                //    $"{lv.POut.ToString().PadRight(3)}" +
+                                //    $"{lv.UP.ToString("n2").PadRight(15 - totals.ToString("n2").Length)}" +
+                                //    $"{totals.ToString("n2")}")
+                                //);
 
                                 await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
                             }
@@ -163,8 +182,10 @@ namespace DINEPLUS.Droid.Devices
                             D.PrintLine($"{"Total :"}{totalOrd.PadLeft(25)}"),
                             D.PrintLine("================================"),
                             D.CenterAlign(),
-                            D.PrintLine("Powered By : CBytes Computer Programming Services"),
-                            D.PrintLine("Tel. No. : (034)703-5016")
+                            D.PrintLine("Powered By : CBytes Computer"),
+                            D.PrintLine("Programming Services"),
+                            D.PrintLine("Tel. No. : (034)703-5016"),
+                            D.PrintLine("")
                                 );
 
                             await socket.OutputStream.WriteAsync(bufferD, 0, bufferD.Length);

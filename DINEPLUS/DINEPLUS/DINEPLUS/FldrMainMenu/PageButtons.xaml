@@ -30,7 +30,7 @@
                 x:Name="btnSO"
                 BackgroundColor="#2A2929"
                 TextColor="White"
-                Text="Pay after Order"
+                Text="Pay after Dining"
                 Grid.Column="1" 
                 Clicked="btnSO_Clicked"
                 CornerRadius="0"

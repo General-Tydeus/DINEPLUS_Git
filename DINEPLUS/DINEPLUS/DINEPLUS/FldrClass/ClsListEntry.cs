@@ -26,6 +26,13 @@ namespace DINEPLUS.FldrClass
             var data = JsonConvert.DeserializeObject<List<MdlTables>>(response);
             return data;
         }
+        public async Task<List<MdlCategory>> GetCategoryList()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetCategoryList");
+            var data = JsonConvert.DeserializeObject<List<MdlCategory>>(response);
+            return data;
+        }
         public async Task<List<ModeltblMain2>> GetTblOrders(string strDocnum)
         {
             HttpClient client = new HttpClient();

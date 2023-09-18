@@ -81,7 +81,7 @@
 
                                         <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
                                         <Label Grid.Column="1" Text="{Binding SellingPrice, StringFormat= '₱{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black" Padding="0,0,5,0"/>
-                                        <Label Grid.Column="2" Text="{Binding Qty}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label Grid.Column="2" Text="{Binding Qty, StringFormat='{0:#,0.00}'}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
                                         <Label Grid.Column="3" Text="{Binding Totals, StringFormat= '₱{0:#,0.#0}'}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold" Padding="0,0,5,0"/>
 
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>

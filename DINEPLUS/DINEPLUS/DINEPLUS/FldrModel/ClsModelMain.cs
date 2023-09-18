@@ -18,6 +18,7 @@ namespace DINEPLUS.FldrModel
             public bool Active { get; set; }
             public double Qty { get; set; } = 0;
             public double Totals { get; set; } = 0;
+            public string CatCode { get; set; }
         }
 
         public class OrderData

@@ -27,6 +27,7 @@ namespace DINEPLUS.FldrServices
             db.CreateTableAsync<MdlDiscount>().Wait();
             db.CreateTableAsync<tblMain1Local>().Wait();
             db.CreateTableAsync<tblMain2Local>().Wait();
+            db.CreateTableAsync<MdlCategory>().Wait();
 
 
 
@@ -54,6 +55,11 @@ namespace DINEPLUS.FldrServices
         public Task<List<MdlProduct>> ImportProductList()
         {
             return db.QueryAsync<MdlProduct>($"SELECT * FROM MdlProduct");
+            //return db.Table<MdlProduct>().OrderByDescending(x => x.RowNum).FirstOrDefaultAsync();
+        }
+        public Task<List<MdlCategory>> ImportCategoryList()
+        {
+            return db.QueryAsync<MdlCategory>($"SELECT * FROM MdlCategory");
             //return db.Table<MdlProduct>().OrderByDescending(x => x.RowNum).FirstOrDefaultAsync();
         }
         public Task<List<tblMain1Local>> ImportMain1()

@@ -17,6 +17,9 @@ namespace DINEPLUS.FldrSO
         public MdlProduct mdlProduct1;
         public List<FldrModel.MdlOrders> listOrders = new List<FldrModel.MdlOrders>();
         public static PageProductList Instance;
+        public MdlCategory cat = new MdlCategory();
+        List<MdlProduct> productList;
+        List<MdlProduct> filteredList;
         public PageProductList(MdlTables mdlTables1)
         {
             Instance = this;
@@ -35,7 +38,10 @@ namespace DINEPLUS.FldrSO
             //}
             //else
             //{
-                ClMenu.ItemsSource = await App.ClsServeMain.ImportProductList();
+            ClMenu.ItemsSource = await App.ClsServeMain.ImportProductList();
+            ClCat.ItemsSource = await App.ClsServeMain.ImportCategoryList();
+
+            productList = await App.ClsServeMain.ImportProductList();
             //}
         }
 
@@ -57,7 +63,7 @@ namespace DINEPLUS.FldrSO
         }
 
 
-        public void AddOrdSO(int intQty)
+        public void AddOrdSO(double intQty)
         {
             var counts = listOrders.Count;
             if (mdlProduct1 != null)
@@ -113,6 +119,24 @@ namespace DINEPLUS.FldrSO
             Navigation.PushAsync(new PageSOCart(MdlTables11));
             btnCart.IsEnabled = true;
 
+        }
+
+        private void ClCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.Any())
+            {
+
+                var selectedItem = (MdlCategory)e.CurrentSelection.FirstOrDefault();
+
+                if (selectedItem != null)
+                {
+                    string CatCode = selectedItem.CatCode;
+
+                    filteredList = productList.Where(item => item.CatCode == CatCode).ToList();
+                    ClMenu.ItemsSource = filteredList;
+                }
+                //ClCat.SelectedItem = null;
+            }
         }
     }
 }
