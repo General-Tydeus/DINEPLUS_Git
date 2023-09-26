@@ -12,7 +12,7 @@
 
             <Label x:Name="lblCatCode" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
             
-            <Entry x:Name="txtCategoryDesc" Placeholder="Category" TextColor="White" FontSize="Medium"/>
+            <Entry x:Name="txtCategoryDesc" Placeholder="Category" TextColor="Black" FontSize="Medium"/>
             
             <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
         </StackLayout>

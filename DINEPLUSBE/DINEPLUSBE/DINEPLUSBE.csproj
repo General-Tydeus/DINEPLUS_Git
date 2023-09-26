@@ -31,11 +31,17 @@
     <Compile Update="FldrAdjustment\PageASCart.xaml.cs">
       <DependentUpon>PageASCart.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrControlPanel\PageSecurityMenu.xaml.cs">
+      <DependentUpon>PageSecurityMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrControlPanel\PageEntryMenu.xaml.cs">
       <DependentUpon>PageEntryMenu.xaml</DependentUpon>
     </Compile>
     <Compile Update="FldrControlPanel\PageReportMenu.xaml.cs">
       <DependentUpon>PageReportMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrEntry\PageProductEditCategoryList.xaml.cs">
+      <DependentUpon>PageProductEditCategoryList.xaml</DependentUpon>
     </Compile>
     <Compile Update="FldrEntry\PageNameAdd.xaml.cs">
       <DependentUpon>PageNameAdd.xaml</DependentUpon>
@@ -73,6 +79,15 @@
     <Compile Update="FldrEntry\PageProductAdd.xaml.cs">
       <DependentUpon>PageProductAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrMenuSetup\PageMenuCategoryList.xaml.cs">
+      <DependentUpon>PageMenuCategoryList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrMenuSetup\PageMenuList.xaml.cs">
+      <DependentUpon>PageMenuList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FldrMenuSetup\PageMenuFortheDay.xaml.cs">
+      <DependentUpon>PageMenuFortheDay.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrPopup\PopupEditProduct.xaml.cs">
       <DependentUpon>PopupEditProduct.xaml</DependentUpon>
     </Compile>
@@ -109,6 +124,9 @@
     <Compile Update="FldrReports\PageRptInvSum.xaml.cs">
       <DependentUpon>PageRptInvSum.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrSecurity\PageUserAdd.xaml.cs">
+      <DependentUpon>PageUserAdd.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -124,6 +142,9 @@
     <EmbeddedResource Update="FldrAdjustment\PageASCart.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="FldrControlPanel\PageSecurityMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrControlPanel\PageEntryMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -134,6 +155,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrControlPanel\PageMainMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrEntry\PageProductEditCategoryList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrEntry\PageNameAdd.xaml">
@@ -178,6 +202,15 @@
     <EmbeddedResource Update="FldrLoginPage\PageLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="FldrMenuSetup\PageMenuCategoryList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrMenuSetup\PageMenuList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrMenuSetup\PageMenuFortheDay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="FldrPopup\PopupEditCategoryList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -206,6 +239,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrReports\PageRptInvSum.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrSecurity\PageUserAdd.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

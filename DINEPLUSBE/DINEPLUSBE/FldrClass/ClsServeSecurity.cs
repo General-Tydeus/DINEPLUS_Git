@@ -13,16 +13,20 @@ namespace DINEPLUSBE.FldrClass
      
         public async Task<string> CheckUserExists(string servstrUserNameLog)
         {
-            var clientGet = new HttpClient();
-            clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/WebAPI/Login/GetUserExist/?strURILogInName=" + servstrUserNameLog);
+            //var clientGet = new HttpClient();
+            //clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/WebAPI/Login/GetUserExist/?strURILogInName=" + servstrUserNameLog);
 
-            HttpResponseMessage response = await clientGet.GetAsync("");
-            string strresult = await response.Content.ReadAsStringAsync();
-            //string strresultFinal = strresult.TrimStart('"').TrimEnd('"');
-            string strresultFinal = strresult.Trim('"');
-            return strresultFinal;
+            //HttpResponseMessage response = await clientGet.GetAsync("");
+            //string strresult = await response.Content.ReadAsStringAsync();
+            ////string strresultFinal = strresult.TrimStart('"').TrimEnd('"');
+            //string strresultFinal = strresult.Trim('"');
+            //return strresultFinal;
             //1=userExist
             //2=user not exist
+
+
+            return await new HttpClient().GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Login/GetUserExist/?strURILogInName={servstrUserNameLog}");
+
         }
 
         public async Task<string> CheckSalesmanPWord(string servstrUserNameLog, string servstrPWordLog)
@@ -41,7 +45,7 @@ namespace DINEPLUSBE.FldrClass
         public async Task<string> CheckMemberOldPWord(string servstrUserNameLog, string servstrPWordLog)
         {
                 var clientGet = new HttpClient();
-                clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/SWMGLWebAPI/Login/GetOldPWord?pristrLogInName=" + servstrUserNameLog + "&pristrPWordLog=" + servstrPWordLog);
+                clientGet.BaseAddress = new Uri(new ClsGetIPAddress().GetIPAddress() + "/API/WebAPI/Login/GetOldPWord?pristrLogInName=" + servstrUserNameLog + "&pristrPWordLog=" + servstrPWordLog);
                 HttpResponseMessage response = await clientGet.GetAsync("");
                 string strresult = await response.Content.ReadAsStringAsync();
                 string strresultFinal = strresult.Trim('"');

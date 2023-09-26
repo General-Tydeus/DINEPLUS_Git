@@ -111,5 +111,13 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
             return pristrNumber;
         }
+
+        [HttpGet]
+        [Route("API/WebAPI/SecurityAutoNumber/GetUserAutoNum")]
+        public string GetUserAutoNum()
+        {
+            return new ClsAutoNumber().UserAutoNum();
+        }
+
     }
 }

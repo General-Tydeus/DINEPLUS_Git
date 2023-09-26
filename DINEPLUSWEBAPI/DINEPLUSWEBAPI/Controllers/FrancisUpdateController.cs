@@ -32,10 +32,25 @@ namespace DINEPLUSWEBAPI.Controllers
         }
 
         [HttpGet]
+        [Route("API/WebAPI/Entry/ProductServedDaily")]
+        public HttpResponseMessage EditProfileProductServedDaily(string strURIStockNumber, bool boolURIServedDaily)
+        {
+            string SqlStatement = "UPDATE tblEntryProducts SET ServedDaily=@_ServedDaily WHERE StockNumber='" + strURIStockNumber + "'";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(SqlStatement, myconnection);
+            mycommand.Parameters.Add("_ServedDaily", SqlDbType.Bit).Value = boolURIServedDaily;
+            int n1 = mycommand.ExecuteNonQuery();
+            myconnection.Close();
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+
+        [HttpGet]
         [Route("API/WebAPI/Entry/InActiveAllProduct")]
         public HttpResponseMessage ProductInActive()
         {
-            string SqlStatement = "UPDATE tblEntryProducts SET Active=@_Active";
+            string SqlStatement = "UPDATE tblEntryProducts SET Active=@_Active WHERE ServedDaily=0";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(SqlStatement, myconnection);

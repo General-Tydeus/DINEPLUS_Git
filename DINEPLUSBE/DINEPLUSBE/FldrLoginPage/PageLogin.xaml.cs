@@ -22,7 +22,6 @@ namespace DINEPLUSBE.FldrLoginPage
         {
             InitializeComponent();
             btnLogin.Clicked += BtnLogin_Clicked;
-            btnSignup.Clicked += BtnSignup_Clicked;
             SWRemember.Toggled += SWRemember_Toggled;
             
         }
@@ -32,10 +31,6 @@ namespace DINEPLUSBE.FldrLoginPage
             pristrRememberPassword = e.Value.ToString();
         }
 
-        private async void BtnSignup_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageChangePWord());
-        }
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
@@ -52,6 +47,7 @@ namespace DINEPLUSBE.FldrLoginPage
                     {
                         await App.ClsServeMain.SaveGetCurrentUser(txtLogInName.Text);
                         PreferenceTransaction();
+                        Preferences.Set("LogCheck", "2");
                         //App.IsUserLoggedIn = true;
                         await Navigation.PushAsync(new PageMainMenu());
                         
@@ -155,6 +151,10 @@ namespace DINEPLUSBE.FldrLoginPage
                 SavePreference();
             }
         }
-        
+
+        private async void BtnChangePWord_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageChangePWord());
+        }
     }
 }

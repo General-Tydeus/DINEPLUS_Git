@@ -32,6 +32,7 @@
                             <RowDefinition Height="15*" />
                             <RowDefinition Height="15*" />
                             <RowDefinition Height="15*" />
+                            <RowDefinition Height="15*" />
                             
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -160,10 +161,28 @@
                         </Button>
 
 
-
+                        <Button
+                            x:Name="BtnMenuForTheDay"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            BackgroundColor="DodgerBlue"
+                            BorderColor="White"
+                            BorderRadius="0"
+                            BorderWidth="1"
+                            Clicked="BtnMenuForTheDay_Clicked"
+                            ContentLayout="Top, 10"
+                            Text="Menu for the Day"
+                            TextColor="White">
+                            <Button.Image>
+                                <OnPlatform
+                                    x:TypeArguments="FileImageSource"
+                                    Android="logout.png"
+                                    iOS="cube.ico" />
+                            </Button.Image>
+                        </Button>
                         <Button
                             x:Name="BtnLogout"
-                            Grid.Row="6"
+                            Grid.Row="7"
                             Grid.Column="0"
                             BackgroundColor="DodgerBlue"
                             BorderColor="White"

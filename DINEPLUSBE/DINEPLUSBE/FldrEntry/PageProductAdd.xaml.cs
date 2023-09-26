@@ -64,6 +64,7 @@ namespace DINEPLUSBE.FldrEntry
                     SellingPrice = double.Parse(txtSellingPrice.Text),
                     UCost = double.Parse(txtUCost.Text),
                     CatCode=strCatCode,
+                    ServedDaily=cbServedDaily.IsChecked,
                 };
                 var json = JsonConvert.SerializeObject(ModeltblProducts1);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -104,6 +105,7 @@ namespace DINEPLUSBE.FldrEntry
             }
         }
 
+
         private async void LoadPKCatCode()
         {
             try
@@ -115,6 +117,42 @@ namespace DINEPLUSBE.FldrEntry
                 await DisplayAlert("Information", "Something is wrong. Possible connection error3", "OK");
             }
 
+        }
+
+        private void txtUCost_Focused(object sender, FocusEventArgs e)
+        {
+            txtUCost.Text = "";
+        }
+
+        private void txtUCost_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUCost.Text))
+            {
+                txtUCost.Text = "0";
+                txtUCost.Text = Convert.ToDouble(txtUCost.Text).ToString("N2");
+            }
+            else
+            {
+                txtUCost.Text = Convert.ToDouble(txtUCost.Text).ToString("N2");
+            }
+        }
+
+        private void txtSellingPrice_Focused(object sender, FocusEventArgs e)
+        {
+            txtSellingPrice.Text = "";
+        }
+
+        private void txtSellingPrice_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSellingPrice.Text))
+            {
+                txtSellingPrice.Text = "0";
+                txtSellingPrice.Text = Convert.ToDouble(txtSellingPrice.Text).ToString("N2");
+            }
+            else
+            {
+                txtSellingPrice.Text = Convert.ToDouble(txtSellingPrice.Text).ToString("N2");
+            }
         }
     }
 }

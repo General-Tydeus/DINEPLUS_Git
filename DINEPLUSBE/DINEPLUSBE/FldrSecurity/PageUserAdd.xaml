@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DINEPLUSBE.FldrSecurity.PageUserAdd" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="lblTitle" Text="NEW USER" VerticalOptions="Center" TextColor="White" FontSize="Large"/>
+            </StackLayout>
+                <!-- Place new controls here -->
+
+                <Label x:Name="lblUserCode" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Text="User Name" TextColor="White" FontSize="Medium"/>
+                <Entry x:Name="txtUserName" TextColor="Black" FontSize="Medium"/>
+                <Label Text="Complete Name" TextColor="White" FontSize="Medium"/>
+                <Entry x:Name="txtCompleteName" TextColor="Black" FontSize="Medium"/>
+                <Label Text="Group" TextColor="White" FontSize="Medium"/>
+                <Picker x:Name="PKGroupCode" TextColor="Black"         
+            ItemsSource="{Binding GroupName}"
+            ItemDisplayBinding="{Binding GroupName}"
+            SelectedItem="{Binding GroupCode}" FontSize="Medium"/>
+             <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -30,15 +30,15 @@
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblQty" Grid.Row="0" Grid.Column="0" Text="Quantity" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Entry x:Name="txtQty" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Entry x:Name="txtQty" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                        Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged"/>
 
                 <Label x:Name="lblUM" Grid.Row="1" Grid.Column="0" Text="UM" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Label x:Name="lblEntUM" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Label x:Name="lblEntUM" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                         FontSize="Large" IsEnabled="False"/>
 
                 <Label x:Name="lblUnitCost" Grid.Row="2" Grid.Column="0" Text="Unit Cost" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Entry x:Name="txtUnitCost" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Entry x:Name="txtUnitCost" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                        Keyboard="Numeric" FontSize="Large" TextChanged="txtUnitCost_TextChanged"/>
 
                 <Label x:Name="lblTotal" Grid.Row="3" Grid.Column="0" Text="Total" HorizontalTextAlignment="Start" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>

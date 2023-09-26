@@ -100,5 +100,27 @@ namespace DINEPLUSBE.FldrClass
             }
         }
 
+        public async Task<string> CheckDuplicateUserName(string strValueName)
+        {
+            DuplicateData DuplicateData1 = new DuplicateData()
+            {
+                FldValueFieldName = strValueName,
+
+            };
+            var jsonDuplicate = JsonConvert.SerializeObject(DuplicateData1);
+            var contentDuplicate = new StringContent(jsonDuplicate, Encoding.UTF8, "application/json");
+            HttpClient clientDuplicate = new HttpClient();
+            var resultDuplicate = await clientDuplicate.PostAsync($"{pristrIPAddress}/API/WEBAPI/Duplicate/CheckDuplicateUserName", contentDuplicate);
+
+            if (resultDuplicate.IsSuccessStatusCode)
+            {
+                return "1"; //Duplicate
+            }
+            else
+            {
+                return "2"; //No Duplicate
+            }
+        }
+
     }
 }

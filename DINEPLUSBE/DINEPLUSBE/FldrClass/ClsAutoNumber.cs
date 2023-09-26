@@ -57,5 +57,9 @@ namespace DINEPLUSBE.FldrClass
             string strresultFinal = strresult.Trim('"');
             return strresultFinal;
         }
+        public async Task<string> GetUserCodeNumber()
+        {
+            return await new HttpClient().GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/SecurityAutoNumber/GetUserAutoNum");
+        }
     }
 }
