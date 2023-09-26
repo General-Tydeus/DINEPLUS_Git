@@ -43,7 +43,7 @@ namespace DINEPLUS.Droid.Devices
                             var e = new EPSON();
                             var buffer = ByteSplicer.Combine(
                                 e.CenterAlign(),
-                                e.PrintLine("Receipt"),
+                                e.PrintLine("Acknowledgement Receipt"),
                                 //e.PrintLine(PagePAYO.Instance.listOrders.Count.ToString()),
                                 e.PrintLine(""),
                                 e.LeftAlign(), e.PrintLine("Table   : " + $"{PagePrevOrder.Instance.lblTableName.Text}"),
