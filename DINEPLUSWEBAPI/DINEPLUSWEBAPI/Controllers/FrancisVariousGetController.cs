@@ -74,5 +74,26 @@ namespace DINEPLUSWEBAPI.Controllers
                 return NotFound();
             }
         }
+
+        [HttpPost]
+        [Route("API/WEBAPI/Duplicate/CheckDuplicateUserName")]
+        public ActionResult CheckIfDuplicateUserName(DuplicateData DuplicateData1)
+        {
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            string CheckNoTransact = string.Format("SELECT Count(*) FROM tblUser WHERE UserName='" + DuplicateData1.FldValueFieldName + "'");
+            SqlCommand com = new SqlCommand(CheckNoTransact, myconnection);
+            int CountData = int.Parse(com.ExecuteScalar().ToString());
+            myconnection.Close();
+            if (CountData > 0)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
     }
 }

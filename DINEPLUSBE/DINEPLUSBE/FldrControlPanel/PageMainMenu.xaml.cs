@@ -3,6 +3,7 @@ using DINEPLUSBE.FldrAdjustment;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrEntry;
 using DINEPLUSBE.FldrLoginPage;
+using DINEPLUSBE.FldrMenuSetup;
 using DINEPLUSBE.FldrPurchases;
 using DINEPLUSBE.FldrReports;
 using System;
@@ -63,10 +64,14 @@ namespace DINEPLUSBE.FldrControlPanel
         {
             Preferences.Set("LogCheck", "1");
             await Task.Delay(1000);
-            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+            //System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
             //Preferences.Set("mvkev", "true");
 
             await Navigation.PushAsync(new PageLogin());
+            var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
+            var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
+            foreach (var page in pageList)
+                Navigation.RemovePage(page);
         }
 
         private async void BtnReports_Clicked(object sender, EventArgs e)
@@ -89,14 +94,19 @@ namespace DINEPLUSBE.FldrControlPanel
             await Navigation.PushAsync(new PageEntryMenu());
         }
 
-        private void BtnSecurity_Clicked(object sender, EventArgs e)
+        private async void BtnSecurity_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PageSecurityMenu());
         }
 
         private async void BtnPrinter_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PagePrinterSetup());
+        }
+
+        private async void BtnMenuForTheDay_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageMenuCategoryList());
         }
     }
 }

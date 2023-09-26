@@ -27,10 +27,10 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Place new controls here -->
-                <Entry x:Name="txtLogInName" Grid.Row="1" Grid.Column="1" Placeholder="Login Name" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Entry x:Name="txtPassword" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Password" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Button x:Name="btnLogin" Grid.Row="3" Grid.Column="1" Text="Login" BackgroundColor="DodgerBlue" TextColor="White" BorderColor="White" BorderWidth="1"/>
-                <Button x:Name="btnSignup" Grid.Row="4" Grid.Column="1" Text="Change Password" BackgroundColor="DodgerBlue" TextColor="White" BorderColor="White" BorderWidth="1"/>
+                <Entry x:Name="txtLogInName" Grid.Row="1" Grid.Column="1" Placeholder="Login Name" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Entry x:Name="txtPassword" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Password" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Button x:Name="btnLogin" Grid.Row="3" Grid.Column="1" Text="Login" BackgroundColor="DodgerBlue" TextColor="Black" BorderColor="White" BorderWidth="1"/>
+                <Button x:Name="BtnChangePWord" Grid.Row="4" Grid.Column="1" Text="Change Password" BackgroundColor="DodgerBlue" TextColor="Black" BorderColor="White" BorderWidth="1" Clicked="BtnChangePWord_Clicked"/>
                 <Label x:Name="lblRemember" Text="Remember Password" Grid.Row="5" Grid.Column="1" TextColor="White"
                        VerticalOptions="CenterAndExpand"/>
                 <Switch x:Name="SWRemember" Grid.Row="5" Grid.Column="1"  IsVisible="True" 

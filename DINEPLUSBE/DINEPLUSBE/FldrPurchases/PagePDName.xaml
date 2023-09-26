@@ -24,8 +24,8 @@
                 <Label Text=":" Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="Medium"/>
                 <Label Text=":" Grid.Row="2" Grid.Column="1" TextColor="White" FontSize="Medium"/>
                 <Label x:Name="lblEntDocNum" Text="0000001" Grid.Row="0" Grid.Column="2" TextColor="White" FontSize="Medium" HorizontalTextAlignment="End"/>
-                <DatePicker x:Name="DPTDate"  TextColor="White" Grid.Row="1" Grid.Column="2" HorizontalOptions="End" x:FieldModifier="public"/>
-                <Entry x:Name="txtReference" Grid.Row="2" Grid.Column="2" TextColor="White" FontSize="Medium" x:FieldModifier="public"/>
+                <DatePicker x:Name="DPTDate"  TextColor="Black" Grid.Row="1" Grid.Column="2" HorizontalOptions="End" x:FieldModifier="public"/>
+                <Entry x:Name="txtReference" Grid.Row="2" Grid.Column="2" TextColor="Black" FontSize="Medium" x:FieldModifier="public"/>
             </Grid>
 
             <SearchBar Placeholder="Search" TextChanged="SearchBar_TextChanged"/>

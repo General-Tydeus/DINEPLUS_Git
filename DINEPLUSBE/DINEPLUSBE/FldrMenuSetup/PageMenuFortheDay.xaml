@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DINEPLUSBE.FldrEntry.PageProductEdit" NavigationPage.HasNavigationBar="False">
+             x:Class="DINEPLUSBE.FldrMenuSetup.PageMenuFortheDay" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DodgerBlue">
@@ -26,29 +26,29 @@
 
                 <Label x:Name="lblProductDesc" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Label x:Name="lblEntProductDesc" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <Button x:Name="BtnProductDesc" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnProductDesc_Clicked"/>
+                <Button x:Name="BtnProductDesc" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnProductDesc_Clicked" IsEnabled="False"/>
                    
                 <Label x:Name="lblUnitM" Grid.Row="1" Grid.Column="0" Text="UM" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Label x:Name="lblEntUnitM" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <Button x:Name="BtnUnitM" Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUnitM_Clicked"/>
+                    <Button x:Name="BtnUnitM" Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUnitM_Clicked" IsEnabled="False"/>
 
                 <Label x:Name="lblCatDesc" Grid.Row="2" Grid.Column="0" Text="Category" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Label x:Name="lblEntCatDesc" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <Button x:Name="BtnCatDesc" Grid.Row="2" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnCatDesc_Clicked"/>
+                    <Button x:Name="BtnCatDesc" Grid.Row="2" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnCatDesc_Clicked" IsEnabled="False"/>
 
                 <Label x:Name="lblSellingPrice" Grid.Row="3" Grid.Column="0" Text="Selling Price" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Label x:Name="lblEntSellingPrice" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <Button x:Name="BtnSellingPrice" Grid.Row="3" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnSellingPrice_Clicked"/>
+                    <Button x:Name="BtnSellingPrice" Grid.Row="3" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnSellingPrice_Clicked" IsEnabled="False"/>
 
                 <Label x:Name="lblUnitCost" Grid.Row="4" Grid.Column="0" Text="Unit Cost" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Label x:Name="lblEntUnitCost" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="End" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <Button x:Name="BtnUCost" Grid.Row="4" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUCost_Clicked"/>
+                    <Button x:Name="BtnUCost" Grid.Row="4" Grid.Column="1" BackgroundColor="Transparent" Clicked="BtnUCost_Clicked" IsEnabled="False"/>
 
                 <Label x:Name="lblActive" Grid.Row="5" Grid.Column="0" Text="Active" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
                 <Switch x:Name="SWTActive" Grid.Row="5" Grid.Column="1" IsEnabled="False" HorizontalOptions="End" />
                 
-                <Label x:Name="lblServedDaily" Grid.Row="6" Grid.Column="0" Text="Served Daily?" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
-                <CheckBox x:Name="cbServedDaily" Grid.Row="6" Grid.Column="1"  HorizontalOptions="End" CheckedChanged="cbServedDaily_CheckedChanged"/>
+                <Label x:Name="lblServedDaily" Grid.Row="6" Grid.Column="0" Text="ServedDaily" FontSize="Medium" VerticalOptions="Center" TextColor="White"/>
+                <CheckBox x:Name="cbServedDaily" Grid.Row="6" Grid.Column="1"  HorizontalOptions="End" CheckedChanged="cbServedDaily_CheckedChanged" IsEnabled="False"/>
 
                 </Grid>
                

@@ -11,17 +11,28 @@
                 <!-- Place new controls here -->
 
             <Label x:Name="lblProductCode" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-            <Picker x:Name="PKCatCode" Title="Category" TextColor="White"         
+            <Picker x:Name="PKCatCode" Title="Category" TextColor="Black"         
             ItemsSource="{Binding CatDesc}"
             ItemDisplayBinding="{Binding CatDesc}"
             SelectedItem="{Binding CatCode}" FontSize="Medium"/>
             
-            <Entry x:Name="txtProductDesc" Placeholder="Product Description" TextColor="White" FontSize="Medium"/>
-                <Entry x:Name="txtUnitMeasure" Placeholder="Unit of Measure" TextColor="White" FontSize="Medium"/>
-                <Entry x:Name="txtUCost" Placeholder="Unit Cost" Keyboard="Numeric" TextColor="White" HorizontalTextAlignment="End" FontSize="Medium"/>
-                <Entry x:Name="txtSellingPrice" Placeholder="Selling Price" Keyboard="Numeric" TextColor="White" HorizontalTextAlignment="End"/>
+            <Entry x:Name="txtProductDesc" Placeholder="Product Description" TextColor="Black" FontSize="Medium"/>
+                <Entry x:Name="txtUnitMeasure" Placeholder="Unit of Measure" TextColor="Black" FontSize="Medium"/>
+                <Entry x:Name="txtUCost" Placeholder="Unit Cost" Keyboard="Numeric" TextColor="Black" HorizontalTextAlignment="End" FontSize="Medium" Focused="txtUCost_Focused" Unfocused="txtUCost_Unfocused"/>
+                <Entry x:Name="txtSellingPrice" Placeholder="Selling Price" Keyboard="Numeric" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="End" Focused="txtSellingPrice_Focused" Unfocused="txtSellingPrice_Unfocused"/>
+                <Grid  Padding="5" RowSpacing="0" BackgroundColor="DodgerBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
 
-            <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                       </Grid.ColumnDefinitions>
+                    <Label Text="Served Daily?" Grid.Row="0" Grid.Column="0" TextColor="White" FontSize="Medium"/>
+                    <CheckBox x:Name="cbServedDaily" Grid.Row="0" Grid.Column="1" IsChecked="True" HorizontalOptions="End"/>
+                </Grid>
+                <Button x:Name="btnSave" Text="Save" Clicked="BtnSave_Clicked" BackgroundColor="DodgerBlue" BorderWidth="1" TextColor="White" BorderColor="White" FontSize="Medium"/>
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -28,7 +28,7 @@ namespace DINEPLUSBE.FldrControlPanel
 
         private async void BtnProductEdit_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageProductEditList());
+            await Navigation.PushAsync(new PageProductEditCategoryList());
         }
 
         private async void BtnCategoryAdd_Clicked(object sender, EventArgs e)

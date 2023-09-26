@@ -24,7 +24,7 @@ namespace DINEPLUSWEBAPI.Controllers
         [Route("API/WebAPI/Insert/InserttblProduct")]
         public HttpResponseMessage InsertProduct(ModeltblProducts ModeltblProducts1)
         {
-            string SqlStatement = "INSERT INTO tblEntryProducts (StockNumber, ProductDesc, UnitMeasure, SellingPrice, UCost, CatCode) Values (@_StockNumber, @_ProductDesc, @_UnitMeasure, @_SellingPrice, @_UCost, @_CatCode) ";
+            string SqlStatement = "INSERT INTO tblEntryProducts (StockNumber, ProductDesc, UnitMeasure, SellingPrice, UCost, CatCode, ServedDaily) Values (@_StockNumber, @_ProductDesc, @_UnitMeasure, @_SellingPrice, @_UCost, @_CatCode, @_ServedDaily) ";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(SqlStatement, myconnection);
@@ -34,6 +34,7 @@ namespace DINEPLUSWEBAPI.Controllers
             mycommand.Parameters.Add("_SellingPrice", SqlDbType.Money).Value = ModeltblProducts1.SellingPrice;
             mycommand.Parameters.Add("_UCost", SqlDbType.Money).Value = ModeltblProducts1.UCost;
             mycommand.Parameters.Add("_CatCode", SqlDbType.VarChar).Value = ModeltblProducts1.CatCode;
+            mycommand.Parameters.Add("_ServedDaily", SqlDbType.Bit).Value = ModeltblProducts1.ServedDaily;
             mycommand.ExecuteNonQuery();
             myconnection.Close();
             return new HttpResponseMessage(HttpStatusCode.OK);

@@ -14,6 +14,7 @@ namespace DINEPLUSBE.FldrModel
         public bool Active { get; set; }
         public string CatCode { get; set; }
         public string CatDesc { get; set; }
+        public bool ServedDaily { get; set; }
 
     }
 

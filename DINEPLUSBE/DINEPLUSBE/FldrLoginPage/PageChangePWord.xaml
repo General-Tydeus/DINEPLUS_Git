@@ -27,11 +27,11 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Place new controls here -->
-                <Entry x:Name="txtUserName" Grid.Row="1" Grid.Column="1" Placeholder="User Name" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Entry x:Name="txtOldPWord" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Old Password" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Entry x:Name="txtNewPWord" Grid.Row="3" Grid.Column="1" IsPassword="True" Placeholder="New Password" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Entry x:Name="txtVerifyPWord" Grid.Row="4" Grid.Column="1" IsPassword="True" Placeholder="Verify" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Button x:Name="btnSave" Grid.Row="5" Grid.Column="1" Text="Save" BackgroundColor="DodgerBlue" Clicked="BtnSave_Clicked" TextColor="White" BorderColor="White" BorderWidth="1"/>
+                <Entry x:Name="txtUserName" Grid.Row="1" Grid.Column="1" Placeholder="User Name" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Entry x:Name="txtOldPWord" Grid.Row="2" Grid.Column="1" IsPassword="True" Placeholder="Old Password" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Entry x:Name="txtNewPWord" Grid.Row="3" Grid.Column="1" IsPassword="True" Placeholder="New Password" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Entry x:Name="txtVerifyPWord" Grid.Row="4" Grid.Column="1" IsPassword="True" Placeholder="Verify" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Button x:Name="btnSave" Grid.Row="5" Grid.Column="1" Text="Save" BackgroundColor="DodgerBlue" Clicked="BtnSave_Clicked" TextColor="Black" BorderColor="White" BorderWidth="1"/>
             </Grid>
         </StackLayout>
         </StackLayout>

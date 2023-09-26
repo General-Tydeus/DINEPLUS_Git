@@ -20,6 +20,7 @@ namespace DINEPLUSWEBAPI.FldrModel
         public bool Active { get; set; }
         public string CatCode { get; set; }
         public string CatDesc { get; set; }
+        public bool ServedDaily { get; set; }
     }
 
     public class ModeltblCategory
@@ -39,5 +40,20 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string ControlNo { get; set; }
         public string CustName { get; set; }
         public bool Active { get; set; }
+    }
+
+    public class ModeltblGroup
+    {
+        public string GroupCode { get; set; }
+        public string GroupName { get; set; }
+    }
+    public class ModeltblUser
+    {
+        public string UserCode { get; set; }
+        public string PWord { get; set; }
+        public string GroupCode { get; set; }
+        public string UserName { get; set; }
+        public string CompleteName { get; set; }
+        public string CNCode { get; set; }
     }
 }

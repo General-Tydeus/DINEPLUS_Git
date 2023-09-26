@@ -72,6 +72,69 @@ namespace DINEPLUSWEBAPI.Controllers
                     SellingPrice = double.Parse(dr["SellingPrice"].ToString()),
                     UCost = double.Parse(dr["UCost"].ToString()),
                     Active = (bool)dr["Active"],
+                    ServedDaily=(bool)dr["ServedDaily"],
+                };
+                ModeltblProductsMSSQL.Add(ModeltblProducts1);
+            }
+            myconnection.Close();
+            return ModeltblProductsMSSQL;
+        }
+
+        [HttpGet]
+        [Route("API/WEBAPI/Entry/GetProductListCategory")]
+        public IEnumerable<ModeltblProducts> GetProductListCategory(string strURICatCode)
+        {
+            List<ModeltblProducts> ModeltblProductsMSSQL = new List<ModeltblProducts>();
+            string sqlViewStatement = $"SELECT * FROM ViewtblEntryProducts WHERE CatCode='{strURICatCode}'";
+  
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlViewStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModeltblProducts ModeltblProducts1 = new ModeltblProducts
+                {
+                    StockNumber = dr["StockNumber"].ToString(),
+                    ProductDesc = dr["ProductDesc"].ToString(),
+                    UnitMeasure = dr["UnitMeasure"].ToString(),
+                    CatCode = dr["CatCode"].ToString(),
+                    CatDesc = dr["CatDesc"].ToString(),
+                    SellingPrice = double.Parse(dr["SellingPrice"].ToString()),
+                    UCost = double.Parse(dr["UCost"].ToString()),
+                    Active = (bool)dr["Active"],
+                    ServedDaily=(bool)dr["ServedDaily"],
+                };
+                ModeltblProductsMSSQL.Add(ModeltblProducts1);
+            }
+            myconnection.Close();
+            return ModeltblProductsMSSQL;
+        }
+
+        [HttpGet]
+        [Route("API/WEBAPI/Entry/GetProductListCategoryDynamic")]
+        public IEnumerable<ModeltblProducts> GetProductListCategoryDynamic(string strURICatCode)
+        {
+            List<ModeltblProducts> ModeltblProductsMSSQL = new List<ModeltblProducts>();
+            string sqlViewStatement = $"SELECT * FROM ViewtblEntryProducts WHERE CatCode='{strURICatCode}' AND ServedDaily=0";
+
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlViewStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                ModeltblProducts ModeltblProducts1 = new ModeltblProducts
+                {
+                    StockNumber = dr["StockNumber"].ToString(),
+                    ProductDesc = dr["ProductDesc"].ToString(),
+                    UnitMeasure = dr["UnitMeasure"].ToString(),
+                    CatCode = dr["CatCode"].ToString(),
+                    CatDesc = dr["CatDesc"].ToString(),
+                    SellingPrice = double.Parse(dr["SellingPrice"].ToString()),
+                    UCost = double.Parse(dr["UCost"].ToString()),
+                    Active = (bool)dr["Active"],
+                    ServedDaily = (bool)dr["ServedDaily"],
                 };
                 ModeltblProductsMSSQL.Add(ModeltblProducts1);
             }
@@ -252,6 +315,33 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
             return ClsModeltblUserMSSQL;
         }
+
+        [HttpGet]
+        [Route("API/WEBAPI/WEBAPISecurity/GroupList")]
+        public IEnumerable<ModeltblGroup> GetGroup()
+        {
+            List<ModeltblGroup> ModeltblGroupMSSQL = new List<ModeltblGroup>();
+
+            string SqlSentenceView = "SELECT * FROM tblGroup ORDER BY GroupName";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(SqlSentenceView, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+
+                ModeltblGroup ModeltblGroup1 = new ModeltblGroup
+                {
+                    GroupCode = dr["GroupCode"].ToString(),
+                    GroupName = dr["GroupName"].ToString(),
+
+                };
+                ModeltblGroupMSSQL.Add(ModeltblGroup1);
+            }
+            myconnection.Close();
+            return ModeltblGroupMSSQL;
+        }
+
         public class ModelInvSum
         {
             public string StockNumber { get; set; }

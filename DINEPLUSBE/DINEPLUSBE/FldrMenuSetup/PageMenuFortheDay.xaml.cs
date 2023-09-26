@@ -17,15 +17,15 @@ using DINEPLUSBE.FldrControlPanel;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrPopup;
 
-namespace DINEPLUSBE.FldrEntry
+namespace DINEPLUSBE.FldrMenuSetup
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageProductEdit : ContentPage
+    public partial class PageMenuFortheDay : ContentPage
     {
         private string pristrStockNumber;
         private string pristrTogglefire = "1";//1=toggle not fire, 2=toggle fire
         private string pristrProductDesc, pristrUM, pristrCatCode, pristrSellingPrice, pristrUCost;
-        public PageProductEdit(string strHeadProductCode)
+        public PageMenuFortheDay(string strHeadProductCode)
         {
             InitializeComponent();
             pristrStockNumber = strHeadProductCode;
@@ -42,17 +42,6 @@ namespace DINEPLUSBE.FldrEntry
                 {
                     HttpClient client = new HttpClient();
                     var result = await client.GetAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/ProductActive?strURIStockNumber={pristrStockNumber}&boolURIActive={e.Value}");
-               
-                    //HttpResponseMessage response = await client.GetAsync("");
-                    //if (response.IsSuccessStatusCode)
-                    //{
-                    //}
-                    //else
-                    //{
-                    //    await DisplayAlert("Information", "Failed to update record", "OK");
-                    //}
-                    
-                    
                 }
             }
             catch (Exception)
@@ -103,7 +92,7 @@ namespace DINEPLUSBE.FldrEntry
 
         private async void BtnContinueEP_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageProductEditCategoryList());
+            await Navigation.PushAsync(new PageMenuCategoryList());
             var currenPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1];
             var pageList = Navigation.NavigationStack.Where(y => y != currenPage).ToList();
             foreach (var page in pageList)
@@ -115,22 +104,17 @@ namespace DINEPLUSBE.FldrEntry
 
         }
 
-        private async void BtnProductDesc_Clicked(object sender, EventArgs e)
+        private void BtnProductDesc_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrProductDesc, "1"), true);
+            //await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrProductDesc, "1"), true);
         }
 
         private async void cbServedDaily_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             try
             {
-                
-                    HttpClient client = new HttpClient();
-                    var result = await client.GetAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/ProductServedDaily?strURIStockNumber={pristrStockNumber}&boolURIServedDaily={e.Value}");
-
-                  
-
-        
+                    //HttpClient client = new HttpClient();
+                    //var result = await client.GetAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WebAPI/Entry/ProductServedDaily?strURIStockNumber={pristrStockNumber}&boolURIServedDaily={e.Value}");
             }
             catch (Exception)
             {
@@ -138,26 +122,26 @@ namespace DINEPLUSBE.FldrEntry
             }
         }
 
-        private async void BtnUnitM_Clicked(object sender, EventArgs e)
+        private void BtnUnitM_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrUM, "2"), true);
+            //await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrUM, "2"), true);
         }
 
-        private async void BtnCatDesc_Clicked(object sender, EventArgs e)
+        private void BtnCatDesc_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupEditCategoryList(pristrStockNumber), true);
-
-        }
-
-        private async void BtnSellingPrice_Clicked(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrSellingPrice, "4"), true);
+            //await PopupNavigation.Instance.PushAsync(new PopupEditCategoryList(pristrStockNumber), true);
 
         }
 
-        private async void BtnUCost_Clicked(object sender, EventArgs e)
+        private void BtnSellingPrice_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrUCost, "5"), true);
+            //await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrSellingPrice, "4"), true);
+
+        }
+
+        private void BtnUCost_Clicked(object sender, EventArgs e)
+        {
+            //await PopupNavigation.Instance.PushAsync(new PopupEditProduct(pristrStockNumber, pristrUCost, "5"), true);
 
         }
     }

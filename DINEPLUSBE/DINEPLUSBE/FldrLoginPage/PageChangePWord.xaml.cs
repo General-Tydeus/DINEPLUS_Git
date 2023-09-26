@@ -46,7 +46,7 @@ namespace DINEPLUSBE.FldrLoginPage
                 }
                 else
                 {
-                    await DisplayAlert("Information", "Something is wrong. Possible connection error", "OK");
+                    await DisplayAlert("Information", "Something went wrong. Possible connection error", "OK");
                 }
 
             }
@@ -57,7 +57,7 @@ namespace DINEPLUSBE.FldrLoginPage
             }
             else
             {
-                await DisplayAlert("Information", "Something is wrong. Possible connection error1", "OK");
+                await DisplayAlert("Information", "Something went wrong. Possible connection error1", "OK");
             }
 
         }
@@ -84,7 +84,7 @@ namespace DINEPLUSBE.FldrLoginPage
                 else
                 {
                     HttpClient client = new HttpClient();
-                    var result = await client.GetAsync(new ClsGetIPAddress().GetIPAddress() + "/API/SWMGLWebAPI/Login/PutNewPWord?pristrLogInName=" + txtUserName.Text + "&pristrNewPWord=" + txtNewPWord.Text);
+                    var result = await client.GetAsync(new ClsGetIPAddress().GetIPAddress() + "/API/WebAPI/Login/PutNewPWord?pristrLogInName=" + txtUserName.Text + "&pristrNewPWord=" + txtNewPWord.Text);
 
                     if (result.IsSuccessStatusCode)
                     {

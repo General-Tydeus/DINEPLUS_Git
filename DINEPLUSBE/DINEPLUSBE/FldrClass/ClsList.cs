@@ -26,6 +26,22 @@ namespace DINEPLUSBE.FldrClass
             return data;
         }
 
+        public async Task<List<ModeltblProducts>> GetCategoryProducts(string strCatCode)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Entry/GetProductListCategory?strURICatCode={strCatCode}");
+            var data = JsonConvert.DeserializeObject<List<ModeltblProducts>>(response);
+            return data;
+        }
+
+        public async Task<List<ModeltblProducts>> GetCategoryProductsDynamic(string strCatCode)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Entry/GetProductListCategoryDynamic?strURICatCode={strCatCode}");
+            var data = JsonConvert.DeserializeObject<List<ModeltblProducts>>(response);
+            return data;
+        }
+
         public async Task<List<ModeltblTable>> GetTable()
         {
             HttpClient client = new HttpClient();
@@ -71,6 +87,14 @@ namespace DINEPLUSBE.FldrClass
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/Report/GetSalesProduct?strURIFromDate={strFromDate}&strURIToDate={strToDate}");
             var data = JsonConvert.DeserializeObject<List<ModelSalesProduct>>(response);
+            return data;
+        }
+
+        public async Task<List<ModeltblGroup>> GetGroupList()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync($"{new ClsGetIPAddress().GetIPAddress()}/API/WEBAPI/WEBAPISecurity/GroupList");
+            var data = JsonConvert.DeserializeObject<List<ModeltblGroup>>(response);
             return data;
         }
 

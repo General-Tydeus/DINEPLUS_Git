@@ -31,19 +31,19 @@
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblPIn" Grid.Row="0" Grid.Column="0" Text="In" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Entry x:Name="txtPIn" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Entry x:Name="txtPIn" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                        Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged"/>
 
                 <Label x:Name="lblPOut" Grid.Row="1" Grid.Column="0" Text="Out" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Entry x:Name="txtPOut" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Entry x:Name="txtPOut" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                        Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged"/>
 
                 <Label x:Name="lblUM" Grid.Row="2" Grid.Column="0" Text="UM" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Label x:Name="lblEntUM" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Label x:Name="lblEntUM" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                         FontSize="Large" IsEnabled="False"/>
 
                 <Label x:Name="lblUnitCost" Grid.Row="3" Grid.Column="0" Text="Unit Cost" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
-                <Entry x:Name="txtUnitCost" Grid.Row="3" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="White"
+                <Entry x:Name="txtUnitCost" Grid.Row="3" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
                        Keyboard="Numeric" FontSize="Large" TextChanged="txtUnitCost_TextChanged"/>
 
                 <Label x:Name="lblTotal" Grid.Row="4" Grid.Column="0" Text="Total" HorizontalTextAlignment="Start" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>

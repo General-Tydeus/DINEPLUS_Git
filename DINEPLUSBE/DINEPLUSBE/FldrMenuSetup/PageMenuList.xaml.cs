@@ -11,12 +11,12 @@ using System.Net;
 using DINEPLUSBE.FldrClass;
 using DINEPLUSBE.FldrModel;
 
-namespace DINEPLUSBE.FldrEntry
+namespace DINEPLUSBE.FldrMenuSetup
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageProductEditList : ContentPage
+    public partial class PageMenuList : ContentPage
     {
-        public PageProductEditList()
+        public PageMenuList()
         {
             InitializeComponent();
             LVProductList.ItemSelected += LVProductList_ItemSelected;
@@ -27,7 +27,7 @@ namespace DINEPLUSBE.FldrEntry
             try
             {
                 string strStockNumber = (e.SelectedItem as ModeltblProducts)?.StockNumber.ToString();
-                await Navigation.PushAsync(new PageProductEdit(strStockNumber));
+                await Navigation.PushAsync(new PageMenuFortheDay(strStockNumber));
             }
             catch (Exception)
             {
@@ -39,7 +39,7 @@ namespace DINEPLUSBE.FldrEntry
         {
             try
             {
-                LVProductList.ItemsSource = await new ClsList().GetCategoryProducts(lblCatCode.Text);
+                LVProductList.ItemsSource = await new ClsList().GetCategoryProductsDynamic(lblCatCode.Text);
             }
             catch (Exception)
             {
@@ -50,8 +50,9 @@ namespace DINEPLUSBE.FldrEntry
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             List<ModeltblProducts> ModeltblProducts1;
-            ModeltblProducts1 = await new ClsList().GetCategoryProducts(lblCatCode.Text);
+            ModeltblProducts1 = await new ClsList().GetCategoryProductsDynamic(lblCatCode.Text);
             LVProductList.ItemsSource = ModeltblProducts1.Where(x => x.ProductDesc.ToLower().Contains(e.NewTextValue)).ToList();
         }
+
     }
 }
