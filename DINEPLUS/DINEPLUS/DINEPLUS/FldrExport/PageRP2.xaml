@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="DINEPLUS.FldrExport.PageRP2">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout 
+                BackgroundColor="LightGray" >
+                <Label
+                    Text="Order Details"
+                    FontSize="24"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    /> 
+                <Label
+                    x:Name="lblTable"
+                    x:FieldModifier="public"
+                    Text=""
+                    FontSize="24"
+                    TextColor="Red"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Order # :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="lblDocnum" x:FieldModifier="public" Text="" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Time :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="lblOrderTime" x:FieldModifier="public" Text="" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="0" Grid.Column="2" Text="Total :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="0" Grid.Column="3" x:Name="lblTotals" x:FieldModifier="public" Text="₱ 0.00" HorizontalTextAlignment="End" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Text="Discount :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="3" x:Name="lblDisc" x:FieldModifier="public" Text="" HorizontalTextAlignment="End" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="3" Grid.Column="2" Text="Change :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="3" Grid.Column="3" x:Name="lblChange" x:FieldModifier="public" Text="" HorizontalTextAlignment="End" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="2" Grid.Column="2" Text="Cash Received :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="3" x:Name="lblCR" x:FieldModifier="public" Text="" HorizontalTextAlignment="End" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Date :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="1" x:Name="lblDate" x:FieldModifier="public" Text="" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Cashier :" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                    <Label Grid.Row="3" Grid.Column="1" x:Name="lblCashier" x:FieldModifier="public" Text="" HorizontalTextAlignment="Start" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+               
+                </Grid>
+
+
+                <Frame BackgroundColor="#2A2929" BorderColor="DarkSlateGray" Padding="0">
+                    <Grid  Padding="5" RowSpacing="0" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="Product"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                        <!--<Label Grid.Column="1" Text="Unit of Measure"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>-->
+                        <Label Grid.Column="2" Text="Qty"  VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="Price"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                        <Label Grid.Column="4" Text="Total"  VerticalOptions="Center"  HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+
+                        <!--<BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>-->
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView BackgroundColor="White" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    </Grid>
+                </Frame>
+                <ListView x:Name="LV1"  SeparatorVisibility="Default" SeparatorColor="Red" VerticalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                    <Frame Padding="0" BorderColor="DarkSlateGray">
+                                        <Grid Padding="0" RowSpacing="0" >
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Text="{Binding RowNum}" IsVisible="False" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                            <Label Grid.Column="0" Text="{Binding StockNumber}" IsVisible="False" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                            <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" Padding="20,0,0,0" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
+                                            <!--<Label Grid.Column="1" Text="{Binding UnitMeasure}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>-->
+                                            <Label Grid.Column="2" Text="{Binding POut}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                            <Label Grid.Column="3" Text="{Binding UP, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black"/>
+                                            <Label Grid.Column="4" Text="{Binding Totals, StringFormat='{0:#,0.#0}'}" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Red" FontAttributes="Bold"/>
+
+                                            <!--<BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                            <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                            <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                            <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                            <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                        </Grid>
+                                    </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
+            <StackLayout x:Name="SLName" BackgroundColor="white" HeightRequest="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Button Text="Back"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            x:Name="btnBack"
+                            BackgroundColor="SeaGreen"
+                            CornerRadius="3"
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            Clicked="btnBack_Clicked"
+                            />
+
+                    <Button
+                            Text="Print"
+                            x:Name="btnSave"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            CornerRadius="3"
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            BackgroundColor="Red"
+                            Clicked="btnSave_Clicked"
+                            />
+
+                </Grid>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using DINEPLUS.FldrExport;
 using DINEPLUS.FldrSO;
 using ESCPOS_NET.Emitters;
 using ESCPOS_NET.Utilities;
@@ -106,6 +107,9 @@ namespace DINEPLUS.Droid.Devices
                             socket.OutputStream.WriteByte(0x0A); // br 
                             socket.OutputStream.WriteByte(0x0A);
                             socket.OutputStream.WriteByte(0x0A);
+
+                            socket.OutputStream.Close();
+                            socket.Close();
                             break;
                     }
                 }
@@ -194,14 +198,114 @@ namespace DINEPLUS.Droid.Devices
                             socket.OutputStream.WriteByte(0x0A);
                             socket.OutputStream.WriteByte(0x0A);
                             socket.OutputStream.WriteByte(0x0A);
+
+                            socket.OutputStream.Close();
+                            socket.Close();
                             break;
                     }
-                    socket.Close();
                 }
             }
             catch (Exception ex)
             {
                 // Handle other exceptions
+                System.Console.WriteLine("Exception: " + ex.Message);
+            }
+        }
+
+        public async Task RePrint(string pln, BluetoothDevice _connectedDevice)
+        {
+            //string totalOrd = PagePaySO.Instance.lblTotals.Text;
+            //if (totalOrd.StartsWith("₱"))
+            //{
+            //    totalOrd = totalOrd.Substring(1);
+            //}
+            var dateTime = DateTime.Now;
+            try
+            {
+                using (BluetoothSocket socket = _connectedDevice.CreateRfcommSocketToServiceRecord(UUID.FromString("00001101-0000-1000-8000-00805f9b34fb")))
+                {
+                    await socket.ConnectAsync();
+                    switch (pln)
+                    {
+                        case "plain":
+
+                            string usrname = Preferences.Get("prefUserName", "NA");
+                            string strLine = "--------------------------------";
+                            var e = new EPSON();
+                            var buffer = ByteSplicer.Combine(
+                                e.CenterAlign(),
+                                e.PrintLine("---REPRINT---"),
+                                e.PrintLine("Acknowledgement Receipt"),
+                                //e.PrintLine(PagePAYO.Instance.listOrders.Count.ToString()),
+                                e.PrintLine(""),
+                                e.LeftAlign(), e.PrintLine("Table   : " + $"{PageRP2.Instance.lblTable.Text}"),
+                                e.LeftAlign(), e.PrintLine("Order#  : " + $"{PageRP2.Instance.lblDocnum.Text}"),
+                                e.LeftAlign(), e.PrintLine("Date    : " + $"{PageRP2.Instance.lblDate.Text}"),
+                                e.LeftAlign(), e.PrintLine("Time    : " + $"{PageRP2.Instance.lblOrderTime.Text}"),
+                                e.LeftAlign(), e.PrintLine("Cashier : " + $"{PageRP2.Instance.lblCashier.Text}"),
+                                e.LeftAlign(), e.PrintLine(strLine),
+                                              e.PrintLine("Items" + "     Qty" + " Price" + "    Total"),
+                                e.LeftAlign(), e.PrintLine(strLine));
+                            await socket.OutputStream.WriteAsync(buffer, 0, buffer.Length);
+
+                            foreach (var lv in PageRP2.Instance.data)
+                            {
+                                double totals = lv.POut * lv.UP;
+
+                                var EP = new EPSON();
+                                var bufferEP = ByteSplicer.Combine(
+                                    EP.LeftAlign(),
+                                    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}"),
+                                    EP.RightAlign(),
+                                    EP.PrintLine($"{lv.POut.ToString("n2"),5}{lv.UP.ToString("n2"),7}{totals.ToString("n2"),10}")
+                                );
+
+                                //var EP = new EPSON();
+                                //var bufferEP = ByteSplicer.Combine(
+                                //    EP.RightAlign(),
+                                //    EP.PrintLine($"{lv.ProductDesc.PadRight(14)}" +
+                                //    $"{lv.POut.ToString().PadRight(3)}" +
+                                //    $"{lv.UP.ToString("n2").PadRight(15 - totals.ToString("n2").Length)}" +
+                                //    $"{totals.ToString("n2")}")
+                                //);
+
+                                await socket.OutputStream.WriteAsync(bufferEP, 0, bufferEP.Length);
+                            }
+                            var D = new EPSON();
+
+                            var bufferD = ByteSplicer.Combine(
+                               D.LeftAlign(),
+                               D.PrintLine(strLine),
+                               D.RightAlign(),
+                               D.PrintLine($"{"Discount :"}{PageRP2.Instance.lblDisc.Text.PadLeft(22)}"),
+                               D.PrintLine($"{"Total :"}{PageRP2.Instance.lblTotals.Text.PadLeft(25)}"),
+                               D.PrintLine($"{"Cash Received :"}{PageRP2.Instance.lblCR.Text.PadLeft(17)}"),
+                               D.PrintLine($"{"Change :"}{PageRP2.Instance.lblChange.Text.PadLeft(24)}"),
+                               D.PrintLine("================================"),
+                               D.CenterAlign(),
+                               D.PrintLine(""),
+                               D.PrintLine("Powered By : CBytes Computer"),
+                               D.PrintLine("Programming Services"),
+                               D.PrintLine("Tel. No. : (034)703-5016"),
+                               D.PrintLine(""),
+                               D.PrintLine("THIS IS NOT AN OFFICIAL RECEIPT")
+                           );
+
+
+                            await socket.OutputStream.WriteAsync(bufferD, 0, bufferD.Length);
+
+                            socket.OutputStream.WriteByte(0x0A); // br 
+                            socket.OutputStream.WriteByte(0x0A);
+                            socket.OutputStream.WriteByte(0x0A);
+
+                            socket.OutputStream.Close();
+                            socket.Close();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 System.Console.WriteLine("Exception: " + ex.Message);
             }
         }

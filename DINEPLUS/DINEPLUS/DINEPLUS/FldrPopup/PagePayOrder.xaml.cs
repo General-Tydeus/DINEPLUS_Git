@@ -187,7 +187,7 @@ namespace DINEPLUS.FldrPopup
             }
         }
 
-        private async  void CleanUpAsync()
+        private async  void CleanUpAsync()  
         {
             await Navigation.PopAsync();
             await PopupNavigation.Instance.PopAsync();
@@ -280,6 +280,9 @@ namespace DINEPLUS.FldrPopup
                 listofData.Add(new tblMain2Local()
                 {
                     StockNumber = vl.StockNumber,
+                    ProductDesc = vl.ProductDesc,
+                    UnitMeasure = vl.UnitMeasure,
+                    Totals = vl.Totals,
                     PIn = 0,
                     POut = vl.Qty,
                     UP = vl.SellingPrice,

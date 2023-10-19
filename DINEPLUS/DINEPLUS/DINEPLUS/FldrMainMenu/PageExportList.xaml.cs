@@ -28,5 +28,11 @@ namespace DINEPLUS.FldrMainMenu
             await Navigation.PushAsync(new PageExport("SO"));
 
         }
+
+        private async void btnReprint_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageReprint());
+
+        }
     }
 }

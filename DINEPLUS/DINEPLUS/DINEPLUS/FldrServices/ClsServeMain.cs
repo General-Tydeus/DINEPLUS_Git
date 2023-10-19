@@ -28,6 +28,7 @@ namespace DINEPLUS.FldrServices
             db.CreateTableAsync<tblMain1Local>().Wait();
             db.CreateTableAsync<tblMain2Local>().Wait();
             db.CreateTableAsync<MdlCategory>().Wait();
+            db.CreateTableAsync<MdlUser>().Wait();
 
 
 
@@ -51,6 +52,11 @@ namespace DINEPLUS.FldrServices
         public Task<List<MdlTables>> ImportTableList()
         {
             return db.QueryAsync<MdlTables>($"SELECT * FROM MdlTables ORDER BY TableCode");
+        }
+        public Task<List<MdlProduct>> GetProduct(string stock)
+        {
+            return db.QueryAsync<MdlProduct>($"SELECT * FROM MdlProduct WHERE StockNumber={stock}");
+            //return db.Table<MdlProduct>().OrderByDescending(x => x.RowNum).FirstOrDefaultAsync();
         }
         public Task<List<MdlProduct>> ImportProductList()
         {
@@ -159,15 +165,33 @@ namespace DINEPLUS.FldrServices
         {
             return db.QueryAsync<tblMain1Local>($"SELECT * FROM tblMain1Local WHERE DocNum = '{docnum}' AND Voucher = '{voucher}'");
         }
-        
+          public Task<List<tblMain1Local>> localMain1RP(string docnum, string voucher)
+        {
+            return db.QueryAsync<tblMain1Local>($"SELECT * FROM tblMain1Local WHERE DocNum = '{docnum}' AND Voucher = '{voucher}' AND CashReceived > 0");
+        }
+
         public Task<List<tblMain2Local>> localMain2Exp()
         {
             return db.QueryAsync<tblMain2Local>($"SELECT * FROM tblMain2Local WHERE Exported = '0'");
+        }
+        public Task<List<tblMain2Local>> localMain2Reprint()
+        {
+            return db.QueryAsync<tblMain2Local>($"SELECT * FROM tblMain2Local ORDER BY DocNumLocal DESC");
         }
         public Task<List<tblMain2Local>> localMain2Save(string doc)
         {
             return db.QueryAsync<tblMain2Local>($"SELECT * FROM tblMain2Local WHERE DocNumLocal = '{doc}'");
         }
+        public async Task<string> GetUser(string code)
+        {
+            var result = await db.QueryAsync<MdlUser>($"SELECT UserName FROM MdlUser WHERE UserCode = '{code}'");
+            if (result != null && result.Any())
+            {
+                return result.First().UserName;
+            }
+            return code;
+        }
+
 
         public async void LocalMain1DeleteAsync(string findDocnum)
         {

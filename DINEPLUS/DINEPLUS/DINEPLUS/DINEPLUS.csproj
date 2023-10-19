@@ -39,6 +39,9 @@
     <Compile Update="FldrExport\PageExport.xaml.cs">
       <DependentUpon>PageExport.xaml</DependentUpon>
     </Compile>
+    <Compile Update="FldrExport\PageRP2.xaml.cs">
+      <DependentUpon>PageRP2.xaml</DependentUpon>
+    </Compile>
     <Compile Update="FldrSO\PageEditOrderSO.xaml.cs">
       <DependentUpon>PageEditOrderSO.xaml</DependentUpon>
     </Compile>
@@ -49,6 +52,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="FldrExport\PageExport.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrExport\PageReprint.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FldrExport\PageRP.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="FldrLoginPage\PageLogin.xaml">
