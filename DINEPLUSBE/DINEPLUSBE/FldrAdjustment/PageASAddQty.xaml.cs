@@ -35,6 +35,61 @@ namespace DINEPLUSBE.FldrAdjustment
             lblEntUM.Text = strHeadUnitM;
             txtUnitCost.Text = strHeadUCost;
         }
+
+        private void txtPIn_Focused(object sender, FocusEventArgs e)
+        {
+            txtPIn.Text = "";
+        }
+
+        private void txtPIn_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPIn.Text))
+            {
+                txtPIn.Text = "0";
+                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N2");
+            }
+            else
+            {
+                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N2");
+            }
+        }
+
+        private void txtPOut_Focused(object sender, FocusEventArgs e)
+        {
+            txtPOut.Text = "";
+        }
+
+        private void txtPOut_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPOut.Text))
+            {
+                txtPOut.Text = "0";
+                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N2");
+            }
+            else
+            {
+                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N2");
+            }
+        }
+
+        private void txtUnitCost_Focused(object sender, FocusEventArgs e)
+        {
+            txtUnitCost.Text = "";
+        }
+
+        private void txtUnitCost_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUnitCost.Text))
+            {
+                txtUnitCost.Text = "0";
+                txtUnitCost.Text = Convert.ToDouble(txtUnitCost.Text).ToString("N2");
+            }
+            else
+            {
+                txtUnitCost.Text = Convert.ToDouble(txtUnitCost.Text).ToString("N2");
+            }
+        }
+
         private void txtQty_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
