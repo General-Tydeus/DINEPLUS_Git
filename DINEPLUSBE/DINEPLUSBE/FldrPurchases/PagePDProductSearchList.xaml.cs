@@ -124,5 +124,10 @@ namespace DINEPLUSBE.FldrPurchases
             });
             return true;
         }
+
+        private void SBSearch_Focused(object sender, FocusEventArgs e)
+        {
+            SBSearch.Text = "";
+        }
     }
 }

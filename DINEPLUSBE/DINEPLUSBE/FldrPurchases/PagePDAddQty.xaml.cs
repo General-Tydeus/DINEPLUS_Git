@@ -34,6 +34,43 @@ namespace DINEPLUSBE.FldrPurchases
             lblEntUM.Text = strHeadUnitM;
             txtUnitCost.Text = strHeadUCost;
         }
+
+        private void txtQty_Focused(object sender, FocusEventArgs e)
+        {
+            txtQty.Text = "";
+        }
+
+        private void txtQty_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtQty.Text))
+            {
+                txtQty.Text = "0";
+                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N2");
+            }
+            else
+            {
+                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N2");
+            }
+        }
+
+        private void txtUnitCost_Focused(object sender, FocusEventArgs e)
+        {
+            txtUnitCost.Text = "";
+        }
+
+        private void txtUnitCost_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUnitCost.Text))
+            {
+                txtUnitCost.Text = "0";
+                txtUnitCost.Text = Convert.ToDouble(txtUnitCost.Text).ToString("N2");
+            }
+            else
+            {
+                txtUnitCost.Text = Convert.ToDouble(txtUnitCost.Text).ToString("N2");
+            }
+        }
+
         private void txtQty_TextChanged(object sender, TextChangedEventArgs e)
         {
             try

@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblQty" Grid.Row="0" Grid.Column="0" Text="Quantity" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
                 <Entry x:Name="txtQty" Grid.Row="0" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
-                       Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged"/>
+                       Keyboard="Numeric" FontSize="Large" TextChanged="txtQty_TextChanged" Focused="txtQty_Focused" Unfocused="txtQty_Unfocused"/>
 
                 <Label x:Name="lblUM" Grid.Row="1" Grid.Column="0" Text="UM" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
                 <Label x:Name="lblEntUM" Grid.Row="1" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
@@ -39,7 +39,7 @@
 
                 <Label x:Name="lblUnitCost" Grid.Row="2" Grid.Column="0" Text="Unit Cost" HorizontalTextAlignment="Start" TextColor="White" FontSize="Large"/>
                 <Entry x:Name="txtUnitCost" Grid.Row="2" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Black"
-                       Keyboard="Numeric" FontSize="Large" TextChanged="txtUnitCost_TextChanged"/>
+                       Keyboard="Numeric" FontSize="Large" TextChanged="txtUnitCost_TextChanged" Focused="txtUnitCost_Focused" Unfocused="txtUnitCost_Unfocused"/>
 
                 <Label x:Name="lblTotal" Grid.Row="3" Grid.Column="0" Text="Total" HorizontalTextAlignment="Start" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>
                 <Label x:Name="lblEntTotal" Grid.Row="3" Grid.Column="2"  HorizontalTextAlignment="End" TextColor="Red" FontSize="Large" FontAttributes="Bold"/>

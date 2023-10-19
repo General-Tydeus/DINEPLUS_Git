@@ -114,7 +114,7 @@ namespace DINEPLUSBE.FldrEntry
             }
             catch (Exception)
             {
-                await DisplayAlert("Information", "Something is wrong. Possible connection error3", "OK");
+                await DisplayAlert("Information", "Something went wrong. Possible connection error3", "OK");
             }
 
         }
