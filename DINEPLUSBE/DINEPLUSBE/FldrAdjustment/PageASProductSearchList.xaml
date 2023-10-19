@@ -58,9 +58,9 @@
                                             <ColumnDefinition Width="1*"/>
 
                                         </Grid.ColumnDefinitions>
-                                        <Label x:Name="lblProductCode" Grid.Column="0" Text="{Binding StockNumber}" IsVisible="False" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="White"/>
-                                        <Label x:Name="lblProductDesc" Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="White"/>
-                                        <Label x:Name="lblSellingPrice" Grid.Column="1" Text="{Binding UCost, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="White"/>
+                                        <Label x:Name="lblProductCode" Grid.Column="0" Text="{Binding StockNumber}" IsVisible="False" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label x:Name="lblProductDesc" Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black"/>
+                                        <Label x:Name="lblSellingPrice" Grid.Column="1" Text="{Binding UCost, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Black"/>
                                         <BoxView BackgroundColor="Black"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                     </Grid>
                                 </Frame>

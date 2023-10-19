@@ -58,7 +58,8 @@
 
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Text="{Binding ProductDesc}" IsVisible="True" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Red"/>
-                                        <Label Grid.Column="1" Text="{Binding AlsQty, StringFormat= '{0:#,0.#0}'} " IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red"/>
+                                        <Label Grid.Column="1" Text="{Binding AlsQty, StringFormat= '{0:#,0.#}'} " IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red" Margin="0,0,8,0"/>
+                                        <!--Margin="0,0,10,0" left, top, right, bottom-->
                                         <Label Grid.Column="2" Text="{Binding AlsTotalCost, StringFormat= '{0:#,0.#0}'}" IsVisible="True" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Red"/>
 
                                         <BoxView BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>

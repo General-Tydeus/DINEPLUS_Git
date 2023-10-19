@@ -25,8 +25,8 @@ namespace DINEPLUSBE.FldrAdjustment
             strHeadUnitM = strInitUnitM;
             strHeadSellingPrice = strInitSellingPrice;
             strHeadUCost = strInitUCost;
-            txtPIn.Text = "1.00";
-            txtPOut.Text = "0.00";
+            txtPIn.Text = "1";
+            txtPOut.Text = "0";
             lblEntTotal.Text = "0.00";
             txtUnitCost.Text = double.Parse(strHeadUCost).ToString("N2");
 
@@ -46,11 +46,11 @@ namespace DINEPLUSBE.FldrAdjustment
             if (string.IsNullOrEmpty(txtPIn.Text))
             {
                 txtPIn.Text = "0";
-                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N2");
+                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N0");
             }
             else
             {
-                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N2");
+                txtPIn.Text = Convert.ToDouble(txtPIn.Text).ToString("N0");
             }
         }
 
@@ -64,11 +64,11 @@ namespace DINEPLUSBE.FldrAdjustment
             if (string.IsNullOrEmpty(txtPOut.Text))
             {
                 txtPOut.Text = "0";
-                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N2");
+                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N0");
             }
             else
             {
-                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N2");
+                txtPOut.Text = Convert.ToDouble(txtPOut.Text).ToString("N0");
             }
         }
 

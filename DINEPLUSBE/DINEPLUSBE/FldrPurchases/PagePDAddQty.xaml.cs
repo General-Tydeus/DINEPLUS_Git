@@ -25,7 +25,7 @@ namespace DINEPLUSBE.FldrPurchases
             strHeadUnitM = strInitUnitM;
             strHeadSellingPrice = strInitSellingPrice;
             strHeadUCost = strInitUCost;
-            txtQty.Text = "1.00";
+            txtQty.Text = "1";
             lblEntTotal.Text = "0.00";
             txtUnitCost.Text = double.Parse(strHeadUCost).ToString("N2");
 
@@ -45,11 +45,11 @@ namespace DINEPLUSBE.FldrPurchases
             if (string.IsNullOrEmpty(txtQty.Text))
             {
                 txtQty.Text = "0";
-                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N2");
+                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N0");
             }
             else
             {
-                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N2");
+                txtQty.Text = Convert.ToDouble(txtQty.Text).ToString("N0");
             }
         }
 
