@@ -42,6 +42,7 @@ namespace DINEPLUS.FldrModel
         public string IC { get; set; }
         public string StockNumber { get; set; }
         public string ProductDesc { get; set; }
+        public string UnitMeasure { get; set; }
 
         public double PIn { get; set; }
         public double POut { get; set; }
@@ -64,6 +65,10 @@ namespace DINEPLUS.FldrModel
         
     }
 
-
-
+     public class MdlUser
+    {
+        [PrimaryKey]
+        public string UserCode { get; set; }
+        public string UserName { get; set; }
+    }
 }

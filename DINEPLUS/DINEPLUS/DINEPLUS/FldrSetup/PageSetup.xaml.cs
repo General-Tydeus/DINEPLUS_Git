@@ -37,6 +37,7 @@ namespace DINEPLUS.FldrSetup
                         await App.ClsServeMain.db.DeleteAllAsync<MdlProduct>();
                         await App.ClsServeMain.db.DeleteAllAsync<MdlDiscount>();
                         await App.ClsServeMain.db.DeleteAllAsync<MdlCategory>();
+                        await App.ClsServeMain.db.DeleteAllAsync<MdlUser>();
                         //await App.ClsServeMain.db.DeleteAllAsync<MdlTables>();
                         //await App.ClsServeMain.db.DeleteAllAsync<tblMain1Local>();
                         //await App.ClsServeMain.db.DeleteAllAsync<tblMain2Local>();
@@ -44,6 +45,7 @@ namespace DINEPLUS.FldrSetup
                         await App.ClsServeInsertLocal.SaveProduct();
                         await App.ClsServeInsertLocal.SaveDiscount();
                         await App.ClsServeInsertLocal.SaveCategory();
+                        await App.ClsServeInsertLocal.SaveUser();
                        
                     }
                 }

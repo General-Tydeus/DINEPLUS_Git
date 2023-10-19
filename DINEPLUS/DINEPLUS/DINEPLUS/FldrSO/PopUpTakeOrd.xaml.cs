@@ -240,6 +240,7 @@ namespace DINEPLUS.FldrSO
                 CashReceived = 0,
                 Serve = false,
                 TableCode = PageProductList.Instance.MdlTables11.TableCode,
+                TableDesc = PageProductList.Instance.MdlTables11.TableDesc,
                 CAmount = 0,
                 GUID = strGUID,
                 Exported = export,

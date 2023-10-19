@@ -168,5 +168,27 @@ namespace DINEPLUS.FldrServices
                 return ex.Message;
             }
         }
+        
+        public async Task<string> SaveUser()
+        {
+            //var products = await new ClsListEntry().GetProductList();
+            var users = await new ClsListEntry().GetUserList();
+            try
+            {
+                if (users.Count > 0)
+                {
+                    await db.InsertAllAsync(users);
+                    return "0";
+                }
+                else
+                {
+                    return "1";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }

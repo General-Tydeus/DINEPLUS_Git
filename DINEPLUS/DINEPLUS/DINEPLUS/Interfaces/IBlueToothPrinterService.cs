@@ -12,10 +12,12 @@ namespace DINEPLUS.Interfaces
         List<FldrModel.DeviceInfo> GetAvailableDevices();
         bool SetCurrentDevice(string printerName);
         bool boolBluetoothOn(string PrinterName);
+        Task<bool> CheckBlueToothPrinter();
         void testPrint();
+        void testRePrint();
         void testPrintSO();
         void testPrintSO1();
-        Task<bool> CheckBlueToothPrinter();
+        void testRePrintSO();
 
     }
 }

@@ -214,6 +214,8 @@ namespace DINEPLUS.FldrSO
                     OrderTime = DateTime.Now.ToString("hh:mm tt"),
                     Exported = export,
                     DocNumLocal = prevDocNumLocal,
+                    UnitMeasure = vl.UnitMeasure,
+
                 });
             }
             return listofData;

@@ -90,4 +90,10 @@ namespace DINEPLUSWEBAPI.FldrModel
         public string CatDesc { get; set; }
 
     }
+
+    public class MdlUser
+    {
+        public string UserCode { get; set; }
+        public string UserName { get; set; }
+    }
 }

@@ -127,6 +127,28 @@ namespace DINEPLUSWEBAPI.Controllers
             myconnection.Close();
         }
         [HttpGet]
+        [Route("API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetUserList")]
+        public IEnumerable<MdlUser> GetUserList()
+        {
+
+            string sqlStatement = $"SELECT UserCode, UserName FROM tblUser WHERE Active = 1";
+            myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
+            myconnection.Open();
+            mycommand = new SqlCommand(sqlStatement, myconnection);
+            dr = mycommand.ExecuteReader();
+            while (dr.Read())
+            {
+                MdlUser MdlCategory1 = new MdlUser
+                {
+                    UserCode = dr["UserCode"].ToString(),
+                    UserName = dr["UserName"].ToString(),
+
+                };
+                yield return MdlCategory1;
+            }
+            myconnection.Close();
+        }
+        [HttpGet]
         [Route("API/DINEPLUSWEBAPI/DINEPLUSWEBAPIEntry/GetTblOrders")]
         public IEnumerable<ModeltblMain2> GetTblOrders(string strDocnum)
         {
