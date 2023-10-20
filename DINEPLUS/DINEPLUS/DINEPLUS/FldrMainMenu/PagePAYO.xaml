@@ -112,10 +112,8 @@
                                 <Label
                                 Text="{Binding CatDesc}"
                                 TextColor="Black"
-                                FontSize="18"
+                                FontSize="15"
                                 Grid.Row="0"
-                                HorizontalTextAlignment="Center"
-                                VerticalTextAlignment="Center"
                                 />
                                 
                                 <Label
@@ -124,8 +122,6 @@
                                 TextColor="Red"
                                 FontSize="18"
                                 Grid.Row="0"
-                                HorizontalTextAlignment="Center"
-                                VerticalTextAlignment="Center"
                                 />
 
                             </Grid>
@@ -191,7 +187,7 @@
                                     >
                                     <Label.FormattedText> 
                                         <FormattedString>
-                                            <Span Text="{Binding ProductDesc}" TextColor="Black" FontSize="18" FontAttributes="Bold" />
+                                            <Span Text="{Binding ProductDesc}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
