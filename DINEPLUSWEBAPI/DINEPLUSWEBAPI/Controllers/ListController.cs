@@ -26,7 +26,7 @@ namespace DINEPLUSWEBAPI.Controllers
         {
             List<MdlProduct> MdlProductMSSQL = new List<MdlProduct>();
 
-            string sqlStatement = $"SELECT * FROM tblEntryProducts WHERE Active = 1";
+            string sqlStatement = $"SELECT * FROM tblEntryProducts WHERE Active = 1 Order By ProductDesc ASC";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(sqlStatement, myconnection);
@@ -109,7 +109,7 @@ namespace DINEPLUSWEBAPI.Controllers
         public IEnumerable<MdlCategory> GetCategoryList()
         {
 
-            string sqlStatement = $"SELECT * FROM tblEntryCategory WHERE CatCode <> '00'";
+            string sqlStatement = $"SELECT * FROM tblEntryCategory WHERE CatCode <> '00' Order By CatDesc ASC";
             myconnection = new SqlConnection(new ClsGetConnection().PlsConnect());
             myconnection.Open();
             mycommand = new SqlCommand(sqlStatement, myconnection);

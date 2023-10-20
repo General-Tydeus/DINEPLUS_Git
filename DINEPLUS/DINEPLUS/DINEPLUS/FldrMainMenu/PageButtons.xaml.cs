@@ -52,8 +52,6 @@ namespace DINEPLUS.FldrMainMenu
             }
 
             await ((App)Application.Current).MainPage.Navigation.PushAsync(new PagePAYO());
-
         }
-
     }
 }
